@@ -19,6 +19,7 @@
     .gallery::-webkit-scrollbar{
       display:none;
     }
+
     </style>
     <title>Front Page</title>
 </head>
@@ -100,7 +101,7 @@
             </div>
 
             <div class="col-10 col-md-5 text-center">
-                <img class="img-fluid" src="/assets/girl-3.png" alt="beautiful lady">
+                <img class="img-fluid" src="./assets/girl-3.png" alt="beautiful lady">
             </div>
             <!-- mobile only -->
             <div class="col-md-5 text-center text-md-start d-md-none">
@@ -122,7 +123,7 @@
 
             <div class="row my-5 g-0 justify-content-around align-items-center">
                 <div class="col-md-5 d-none d-md-block">
-                    <img src="/assets/woman.png" class="img-fluid" alt="lady">
+                    <img src="./assets/woman.png" class="img-fluid" alt="lady">
                 </div>
 
                 <div class="col-10 col-md-6 text-center text-md-start">
@@ -183,14 +184,8 @@
                             <p class="card-text mx-1 text-muted">Lorem ipsum, dolor sit amet elit.</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
+                </div>          
     
-
 
     <section>      
         <div class="container">
@@ -204,15 +199,15 @@
             </div>
             <div class="gallery">
               <div>
-                <span><img src="/assets/Screenshot_1.png" width="30%"></span>
-                <span><img src="/assets/Screenshot_2.png" width="30%"></span>
-                <span><img src="/assets/Screenshot_3.png" width="30%"></span>
-                <span><img src="/assets/Screenshot_1.png" width="30%"></span>
-                <span><img src="/assets/Screenshot_5.png" width="30%"></span>
-                <span><img src="/assets/Screenshot_6.png" width="30%"></span>
-                <span><img src="/assets/Screenshot_7.png" width="30%"></span>
-                <span><img src="/assets/Screenshot_8.png" width="30%"></span>
-                <span><img src="/assets/Screenshot_9.png" width="30%"></span>
+                <span><img src="./assets/Screenshot_1.png" width="30%"></span>
+                <span><img src="./assets/Screenshot_2.png" width="30%"></span>
+                <span><img src="./assets/Screenshot_3.png" width="30%"></span>
+                <span><img src="./assets/Screenshot_1.png" width="30%"></span>
+                <span><img src="./assets/Screenshot_5.png" width="30%"></span>
+                <span><img src="./assets/Screenshot_6.png" width="30%"></span>
+                <span><img src="./assets/Screenshot_7.png" width="30%"></span>
+                <span><img src="./assets/Screenshot_8.png" width="30%"></span>
+                <span><img src="./assets/Screenshot_9.png" width="30%"></span>
               </div>
             </div>
     </section>
@@ -233,19 +228,89 @@
                 </div>
             </div>
             <div class="col-10 col-md-5 text-center">
-                <img class="img-fluid" src="/assets/NAILS.png" alt="beautiful lady">
+                <img class="img-fluid" src="./assets/NAILS.png" alt="beautiful lady">
             </div>
         </div>
     </section>
 
-
-    <!-- Map section -->
+    <section id="maps">
+        <!-- Map section -->
+        <div class="container-fluid contact-info">
+            <div class="row justify-content-center"> <!-- Center the content horizontally -->
+                <!-- Left half for the map -->
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <div id="map" style="height: 400px; width: 100%;"> <!-- Set height and width of map container -->
+                        <!-- JavaScript code for initializing Google Maps -->
+                        <script>
+                            // JavaScript code for initializing Google Maps
+                            function initMap() {
+                                const tampereCoordinates = { lat: 61.4986, lng: 23.762 }; // Coordinates for Tampere
+                                const map = new google.maps.Map(document.getElementById("map"), {
+                                    center: tampereCoordinates, // Set default center coordinates for Tampere
+                                    zoom: 15, // Set default zoom level
+                                });
     
-
+                                // Add red marker for a certain building
+                                const buildingCoordinates = { lat: 61.497, lng: 23.760 }; // Coordinates for the building
+                                const marker = new google.maps.Marker({
+                                    position: buildingCoordinates,
+                                    map: map,
+                                    title: 'Our location', // Title for the marker
+                                    icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png' // Red marker icon
+                                });
     
-
-
-
+                                // Add info window for the marker
+                                const infoWindow = new google.maps.InfoWindow({
+                                    content: '<h3>Our Location</h3><p>Fifth floor.</p>'
+                                });
+    
+                                marker.addListener('click', function() {
+                                    infoWindow.open(map, marker);
+                                });
+                            }
+                        </script>
+                    </div>
+                </div>
+                <!-- Right half for contact information -->
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <div>
+                        <h2>Contact Information</h2>
+                        <div class="card-body">
+                            <h5 class="card-title">Master 1</h5>
+                            <p class="card-text">Specialization: Specialization 1</p>
+                            <p class="card-text">Email: master1@example.com</p>
+                            <p class="card-text">Phone: +1234567890</p>
+                        </div>
+                        <!-- Master 2 -->
+                        <div class="card-body">
+                            <h5 class="card-title">Master 2</h5>
+                            <p class="card-text">Specialization: Specialization 2</p>
+                            <p class="card-text">Email: master2@example.com</p>
+                            <p class="card-text">Phone: +1234567890</p>
+                        </div>
+                        <!-- Master 3 -->
+                        <div class="card-body">
+                            <h5 class="card-title">Master 3</h5>
+                            <p class="card-text">Specialization: Specialization 3</p>
+                            <p class="card-text">Email: master3@example.com</p>
+                            <p class="card-text">Phone: +1234567890</p>
+                        </div>
+                        <!-- Add more contact information as needed -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <p>&copy; 2024 Nail Studio Ideal. All rights reserved / +358 44 2360960</p>
+    </footer>
+    
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Google Maps API (You need to replace YOUR_API_KEY with your actual API key) -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3rN9Xubz_QFIpHpxJu_VEGRSXSNG-_1Q&callback=initMap"></script>
+    
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
