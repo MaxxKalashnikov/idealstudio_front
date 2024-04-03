@@ -3,52 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <!-- Including Bootstrap CSS -->
+    <title>Sign Up Form</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="background-image: url('./img/background_v2.jpg'); background-size: cover; background-position: center center;">
+<body>
 
-<div class="container">
-    <div class="row justify-content-center align-items-center" style="height: 100vh;">
-        <div class="col-md-6">
-            <!-- Card for the form with white background and shadow -->
-            <div class="card" style="opacity: 0.9;">
-                <div class="card-body">
-                    <h3 class="text-center" style="font-weight: 700;">Login</h3>
-                    <!-- Login form -->
-                    <form>
-                        <!-- Input field for email -->
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="username" class="form-control" id="username" placeholder="@username">
-                        </div>
-                        <!-- Input field for password -->
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter password">
-                            <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" value="remember-me"> Remember me
-                                </label>
-                              </div>
-                        </div>
-                        <!-- Submit button -->
-                        <button type="login" class="btn btn-block" style="background-color: #ffe0d0; color: #333; padding: 12px 15; font-size: 18px; font-weight: 600;">Login</button>
-                    </form>
+    <div class="container">
+        <div class="row justify-content-center align-items-center" style="height: 100vh;">
+            <div class="col-md-6">
+                <!-- Card for the form with white background and shadow -->
+                <div class="card" style="opacity: 0.9;">
+                    <div class="card-body">
+                        <h3 class="text-center" style="font-weight: 700;">Login</h3>
+                        <!-- Login form -->
+
+            <form>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" placeholder="@username" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                 </div>
-            </div>
-        </div>
-        <div class="col-md-6" style="background-image: url('img/girl.png'); background-size: cover;">
-            <!-- Your image will be set as the background for this column -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" placeholder="Enter password" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                </div>
+                <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                  </div>    
+                <button type="submit" class="btn btn-block" style="background-color: #ffe0d0; color: #333; border-radius: 50px; padding: 20px 15px; border: none;">Login</button>
+            </form>
         </div>
     </div>
 </div>
 
-<!-- Include Bootstrap Javascript -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 </html>
