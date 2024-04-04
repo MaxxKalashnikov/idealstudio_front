@@ -1,0 +1,158 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- script for loading the sidebare-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sidebarContainer = document.getElementById("sidebar-container");
+            if (sidebarContainer) {
+                fetch("admin-sidebar.html")
+                    .then(response => response.text())
+                    .then(data => {
+                    sidebarContainer.innerHTML = data;
+                }).catch(error => {
+                    console.error("Error fetching navbar:", error);
+                });
+            }
+        });
+    </script>
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <!--sidebar-->
+            
+            <div class="col-auto px-sm-2 px-0 bg-dark" id="sidebar-container">
+                
+            </div>
+            
+            <!-- content -->
+            <div class="col py-3" id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6 text-start">
+                            <h2>All appoinments:</h2>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="table-responsive" bis_skin_checked="1">
+                                <table class="table">
+                                  <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Select</th>
+                                        <th scope="col">Starts at</th>
+                                        <th scope="col">Ends at</th>
+                                        <th scope="col">Service</th>
+                                        <th scope="col">Employee</th>
+                                        <th scope="col">Customer's name</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td><div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                          </div></td>
+                                        <td>04-04-2024 15:30</td>
+                                        <td>04-04-2024 15:30</td>
+                                        <td>Nail-polish</td>
+                                        <td>Jane Doe</td>
+                                        <td>Helmi Suomalainen</td>
+                                        <td>active</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">2</th>
+                                        <td><div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                          </div></td>
+                                        <td>04-04-2024 15:30</td>
+                                        <td>04-04-2024 15:30</td>
+                                        <td>Nail-polish</td>
+                                        <td>Jane Doe</td>
+                                        <td>Helmi Suomalainen</td>
+                                        <td>active</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">3</th>
+                                        <td><div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                          </div></td>
+                                        <td>04-04-2024 15:30</td>
+                                        <td>04-04-2024 15:30</td>
+                                        <td>Nail-polish</td>
+                                        <td>Jane Doe</td>
+                                        <td>Helmi Suomalainen</td>
+                                        <td>active</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Add new appointment
+                              </button>
+                              <button type="button" class="btn btn-primary">
+                                Delete selected appontments
+                              </button>
+                              <!-- Modal -->
+                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Add new appointment</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                  <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+                                                </div>
+                                                <div class="col">
+                                                  <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                <div class="col">
+                                                  <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+                                                </div>
+                                                <div class="col">
+                                                  <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+                                                </div>
+                                              </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Add</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+</body>
+</html>
