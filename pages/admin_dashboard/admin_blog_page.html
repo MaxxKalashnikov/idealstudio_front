@@ -76,23 +76,7 @@
         </div>
     </div>
 </div>
-<script>
-const articleData = [
-    { author: "John Doe", publishDate: "2021-09-01", comments: 5 },
-    { author: "Jane Smith", publishDate: "2021-09-02", comments: 8 },
-    { author: "Emily Rose", publishDate: "2021-09-03", comments: 2 }
-];
 
-const authors = document.querySelectorAll(".author");
-const publishDates = document.querySelectorAll(".timestamp");
-const commentCounts = document.querySelectorAll(".comments");
-
-articleData.forEach((data, index) => {
-    authors[index].textContent = `Author: ${data.author}`;
-    publishDates[index].textContent = `Published: ${data.publishDate}`;
-    commentCounts[index].textContent = `Comments: ${data.comments}`;
-});
-</script>
 <!-- Adding button -->
 <div class="text-center mb-4">
     <button style="background-color: #ffe0d0; border: none; color: #333; padding: 25px 100px; border-radius: 50px; font-family: sans-serif; font-size: 16px; outline: none;">
