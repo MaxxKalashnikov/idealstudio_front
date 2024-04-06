@@ -34,12 +34,21 @@
             </div>
             
             <!-- content -->
-            <div class="col py-3" id="content">
-                Content area...
+            <div class="col py-3" id="customerTable">
+                
             </div>
         </div>
     </div>
-      
+          
+    <script>
+        //Fetch customer table and insert into #customerTable div
+        fetch('http://localhost:3000/customers')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('customerTable').innerHTML = html;
+            })
+            .catch(error => console.error('Error fetching customer table:', error));
+    </script>
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 

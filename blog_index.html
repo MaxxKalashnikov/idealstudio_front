@@ -8,91 +8,77 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Blog</a>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Blog</a>
+    </div>
+</nav>
 <div class="container mt-4">
     <div class="text-center mb-4">
         <h1>Blog about Nails and Beauty</h1>
     </div>
     
-    <!-- Blog Posts Table -->
-    <div class="row">
-        <!-- Replace with actual image paths and blog details -->
-        <div class="col-md-4 mb-3">
-            <img src="background_v2.jpg" alt="Blog Article Image" class="img-fluid">
-        </div>
-        <div class="col-md-8 mb-3">
-            <h3>Title of Article One</h3>
-            <p>Brief description of the article content...</p>
-
-            <div class="row-mb-3">
-                <span class="text-sm author">Author: <span id="authorName"></span></span>
-                </div>
-                <div class="row-mb-3">
-                       <span class="text-sm timestamp">Published: <span id="publishDate"></span></span>
-                </div>
-                <div class="row-mb-3">
-                <span class="text-sm comments">Comments: <span id="commentCount"></span></span>
-                </div>         
-        </div>
-
-        <div class="col-md-4 mb-3">
-            <img src="background_v2.jpg" alt="Blog Article Image" class="img-fluid">
-        </div>
-        <div class="col-md-8 mb-3">
-            <h3>Title of Article Two</h3>
-            <p>Brief description of the article content...</p>
-
-            <div class="row-mb-3">
-                <span class="text-sm author">Author: <span id="authorName"></span></span>
-                </div>
-                <div class="row-mb-3">
-                       <span class="text-sm timestamp">Published: <span id="publishDate"></span></span>
-                </div>
-                <div class="row-mb-3">
-                <span class="text-sm comments">Comments: <span id="commentCount"></span></span>
-                </div>          
-        </div>
-
-        <div class="col-md-4 mb-3">
-            <img src="background_v2.jpg" alt="Blog Article Image" class="img-fluid">
-        </div>
-        <div class="col-md-8 mb-3">
-            <h3>Title of Article Three</h3>
-            <p>Brief description of the article content...</p>
-        
-            <div class="row-mb-3">
-            <span class="text-sm author">Author: <span id="authorName"></span></span>
+    <!-- Blog Posts List -->
+    <ul class="list-unstyled" id="blogPostsList">
+        <!-- Blog Post One -->
+        <li class="media mb-4" data-comment-count="5" data-author="John Doe">
+            <div class="col-md-4 mb-3">
+                <img src="background_v2.jpg" alt="Blog Article Image" class="mr-3 img-fluid">
             </div>
-            <div class="row-mb-3">
-                   <span class="text-sm timestamp">Published: <span id="publishDate"></span></span>
+            <div class="col-md-8 mb-3">
+                <h3>Title of Article One</h3>
+                <p>Brief description of the article content...</p>
+                <div class="row-mb-3">
+                    <span class="text-sm author">Author: <span class="author-name">John Doe</span></span>
+                </div>
+                <div class="row-mb-3">
+                    <span class="text-sm timestamp" id="publishDate1">Publish Date:</span>
+                </div>
+                <div class="row-mb-3">
+                    <span class="text-sm comments">Comments: <span class="comment-count">5</span></span>
+                </div>
             </div>
-            <div class="row-mb-3">
-            <span class="text-sm comments">Comments: <span id="commentCount"></span></span>
-            </div>          
-        </div>
-    </div>
+        </li>
+        <!-- Blog Post Two -->
+        <li class="media mb-4" data-comment-count="3" data-author="Jane Doe">
+            <div class="col-md-4 mb-3">
+                <img src="background_v2.jpg" alt="Blog Article Image" class="mr-3 img-fluid">
+            </div>
+            <div class="col-md-8 mb-3">
+                <h3>Title of Article Two</h3>
+                <p>Brief description of the article content...</p>
+                <div class="row-mb-3">
+                    <span class="text-sm author">Author: <span class="author-name">Jane Doe</span></span>
+                </div>
+                <div class="row-mb-3">
+                    <span class="text-sm timestamp" id="publishDate2">Publish date:</span>
+                </div>
+                <div class="row-mb-3">
+                    <span class="text-sm comments">Comments: <span class="comment-count">3</span></span>
+                </div>
+            </div>
+        </li>
+
+        <!-- Blog Post Three -->
+        <li class="media mb-4" data-comment-count="2" data-author="John Smith">
+            <div class="col-md-4 mb-3">
+                <img src="background_v2.jpg" alt="Blog Article Image" class="mr-3 img-fluid">
+            </div>
+            <div class="col-md-8 mb-3">
+                <h3>Title of Article Three</h3>
+                <p>Brief description of the article content...</p>
+                <div class="row-mb-3">
+                    <span class="text-sm author">Author: <span class="author-name">John Smith</span></span>
+                </div>
+                <div class="row-mb-3">
+                    <span class="text-sm timestamp" id="publishDate3">Publish Date:</span>
+                </div>
+                <div class="row-mb-3">
+                    <span class="text-sm comments">Comments: <span class="comment-count">2</span></span>
+                </div>
+            </div>
+    </ul>
 </div>
-<script>
-const articleData = [
-    { author: "John Doe", publishDate: "2021-09-01", comments: 5 },
-    { author: "Jane Smith", publishDate: "2021-09-02", comments: 8 },
-    { author: "Emily Rose", publishDate: "2021-09-03", comments: 2 }
-];
-
-const authors = document.querySelectorAll(".author");
-const publishDates = document.querySelectorAll(".timestamp");
-const commentCounts = document.querySelectorAll(".comments");
-
-articleData.forEach((data, index) => {
-    authors[index].textContent = `Author: ${data.author}`;
-    publishDates[index].textContent = `Published: ${data.publishDate}`;
-    commentCounts[index].textContent = `Comments: ${data.comments}`;
-});
-</script>
 
 <footer class="bg-dark text-white text-center py-3">
     <div class="container">
