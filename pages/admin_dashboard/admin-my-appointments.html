@@ -50,11 +50,12 @@
                                     <tr>
                                         <th scope="col">ID</th>
                                         <th scope="col">Select</th>
+                                        <th scope="col">Date</th>
                                         <th scope="col">Starts at</th>
                                         <th scope="col">Ends at</th>
                                         <th scope="col">Service</th>
                                         <th scope="col">Employee</th>
-                                        <th scope="col">Customer's name</th>
+                                        <th scope="col">Customer</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                   </thead>
@@ -91,13 +92,15 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                Add new appointment
-                              </button>
-                              <button type="button" class="btn btn-primary">
-                                Delete selected appontments
-                              </button>
+                        <div class="col-12">
+                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            Add new appointment
+                          </button>
+                          <button type="button" class="btn btn-primary">
+                            Change a status
+                          <button type="button" class="btn btn-primary">
+                            View details
+                          </button>
                               <!-- Modal -->
                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable">
