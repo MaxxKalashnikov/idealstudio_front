@@ -19,6 +19,7 @@ class StatAndInfo{
             personalInfo[0].lastname,
             personalInfo[0].email,
             personalInfo[0].phone
+            
         );
         console.log(info)
         this.#info.push(info); // Push the Info instance to the #info array
