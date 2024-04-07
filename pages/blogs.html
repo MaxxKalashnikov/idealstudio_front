@@ -8,10 +8,33 @@
     <!-- bootstrap icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <title>Document</title>
+    <!-- script for loading the navbar-->
+    <!--
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navbarContainer = document.getElementById("navbar-container");
+            if (navbarContainer) {
+                fetch("navbar.html")
+                    .then(response => response.text())
+                    .then(data => {
+                    navbarContainer.innerHTML = data;
+                }).catch(error => {
+                    console.error("Error fetching navbar:", error);
+                });
+            }
+        });
+    </script>
+-->
+    
+    <title>Blogs</title>
 </head>
 <body>
-    
+
+<!--
+    <div class="conr" id="navbar-container"></div>
+-->
+
+
     <section id="posts-section" class="d-block">
         <div class="container-lg">
             <div class="text-center mt-3">
