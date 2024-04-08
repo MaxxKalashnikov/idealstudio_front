@@ -1,6 +1,7 @@
 import { Appointment, AppointmentDetails } from "./appointment.js"
 class Appointments{
     #appointments = [];
+    #appointmentsMore = [];
     #backend_url;
 
     constructor(url){
@@ -26,15 +27,34 @@ class Appointments{
         });
     }
 
-    #readOnlyTask = (id, newStat) =>{
-        this.#appointments.forEach(appoint =>{
-            if(appoint.appointment_id = node.appointment_id){
-                appoint.is_canceled = newStat
-            }
-        })
+    #readJsonMore = (taskAsJson) => {
+        taskAsJson.forEach(node => {
+            //creating instances of task class for every json node from back response
+            const appoint = new AppointmentDetails(
+                node.appointment_id,
+                node.timeslot_date,
+                node.start_time,
+                node.end_time,
+                node.service_name,
+                node.category,
+                node.price,
+                node.employee_firstname,
+                node.employee_lastname,
+                node.employee_email,
+                node.employee_phone,
+                node.employee_specialization,
+                node.customer_firstname,
+                node.customer_lastname,
+                node.customer_email,
+                node.customer_phone,
+                node.is_canceled
+                );
+            this.#appointmentsMore.push(appoint);
+        });
     }
 
     getAppointments = async () =>{
+        this.#appointments.length = 0;
         return new Promise(async(resolve, reject) => {
             fetch(this.#backend_url + "/all")//fetching back
             .then((response) => response.json())
@@ -76,14 +96,28 @@ class Appointments{
             })
             .then(response => response.json())
             .then(json => {
-                this.#readOnlyTask(json.appointment_id, appoint_status);
                 resolve(json.appointment_id);
             })
             .catch(error => {
                 reject(error);
             });
         });
+    }  
+    
+    
+    getMoreDetails = async(id) =>{
+        return new Promise(async(resolve, reject) => {
+            fetch(this.#backend_url + "/more" + `/${id}`)//fetching back
+            .then((response) => response.json())
+            .then((json) => {
+                this.#readJsonMore(json);//storing appointments from response as instances of appointment class inside appointments array
+                resolve(this.#appointmentsMore)
+            },(error) => {
+                reject(error);
+            })
+        })
     }
+    
     
 }
 

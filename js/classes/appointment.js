@@ -65,6 +65,11 @@ class Appointment {
         return this.#is_canceled;
     }
 
+    set is_canceled(param) {
+        this.#is_canceled = param;
+        return this.#is_canceled;
+    }
+
     get username() {
         return this.#username;
     }
