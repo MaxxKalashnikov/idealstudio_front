@@ -79,6 +79,7 @@ function createPostCard(post) {
     return card
 }
 
+
 function renderReply(reply) { 
   const list = document.querySelector('#replies-list')
 

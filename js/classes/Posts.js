@@ -20,6 +20,23 @@ class Posts {
         })
     }
 
+    addPost = (post) => {
+        return new Promise(async(resolve,reject)=> {
+            fetch('http://localhost:3001/blogs/posts/new', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(post)
+            })
+            .then(response => response.json())
+            .then(json => {
+              resolve(json)
+            }),(error) => {
+              reject(error)
+            }
+          })
+    }
     getReplies = (post_id) => {
         return new Promise(async(resolve,reject)=> {
             fetch('http://localhost:3001/blogs/replies/' + post_id)
