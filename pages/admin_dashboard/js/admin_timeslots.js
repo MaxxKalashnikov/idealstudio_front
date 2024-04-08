@@ -71,6 +71,7 @@ const addTimeslot = async (timeslot) => {
         },
         body: JSON.stringify(timeslot)
     }).then(response => {
+        window.location.reload()
         alert('Timeslot created successfully!')
         console.log(response)
     })
