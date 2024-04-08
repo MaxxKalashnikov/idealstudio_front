@@ -71,7 +71,6 @@ function createPostCard(post) {
         post_container.appendChild(card)
         body.removeChild(button)
         getReplies(post.id)
-        alert(post.id)
     })
 
     body.appendChild(button)
@@ -161,8 +160,8 @@ document.getElementById('reply-button').addEventListener('click', (event) => {
     "content": document.getElementById('reply-content').value
   }
   addReply(reply)
-  getReplies(post_id)
   document.getElementById('reply-content').value = ''
+  getReplies(post_id)
 })
 
 document.getElementById('back-button').addEventListener('click', (event) => {
@@ -172,22 +171,8 @@ document.getElementById('back-button').addEventListener('click', (event) => {
   const article_section = document.getElementById('article-section');
   article_section.classList.toggle('d-none')
   posts_section.scrollIntoView({ behavior: 'smooth' });
+  window.location.reload()
  
 })
 getPosts()
-
-
-
-
-
-
-//fetch('http://localhost:3001/blogs/posts').then(response => response.json()).then(json => {
-//    json.forEach(p => {
-//        const post = new Post(p.post_id, p.title, p.content, p.author, p.post_created_time, p.image_url)
-//        console.log(post)
-//        renderPost(post)
-//    })
-//}).catch(error => {
-//    alert(error)
-//})
 
