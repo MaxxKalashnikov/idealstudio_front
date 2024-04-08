@@ -8,32 +8,203 @@
     <!-- bootstrap icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- script for loading the navbar-->
-    <!--
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const navbarContainer = document.getElementById("navbar-container");
-            if (navbarContainer) {
-                fetch("navbar.html")
-                    .then(response => response.text())
-                    .then(data => {
-                    navbarContainer.innerHTML = data;
-                }).catch(error => {
-                    console.error("Error fetching navbar:", error);
-                });
-            }
-        });
-    </script>
--->
+    <style>
+        body {
+            font-family: Baskerville Old Face
+        }
+        .gallery {
+      overflow-x: scroll;
+      white-space: nowrap;
+      padding: 20px;
+    }
+    .gallery::-webkit-scrollbar{
+      display:none;
+    }
+
+    </style>
     
     <title>Blogs</title>
 </head>
 <body>
 
-<!--
-    <div class="conr" id="navbar-container"></div>
--->
+        <!-- navbar -->
+    <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container-xxl">
+            <a href="#intro" class="navbar-brand">
+                <span class="fw-bold text-secondary">
+                    <img src="/assets/logo-icon.ico" width="40" height="40" class="d-inline-block align-center" alt="">
+                    Nail Studio Ideal
+                </span>
+            </a>
 
+            <!-- toggle button for mobile nav-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" 
+            aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- navbar links -->
+            <div class="collapse navbar-collapse justify-content-end align-center" 
+            id="main-nav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="/index.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/index.html#services" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/pages/blogs.html" class="nav-link">blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/index.html#masters" class="nav-link">Technicians</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/index.html#contact-info" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item d-md-none">
+                        <a href="/index.html#appointments" class="nav-link">Appointments</a>
+                    </li>
+                    <li class="nav-item  ms-2 d-none d-md-inline">
+                        <a href="/index.html#appointments" class="btn btn-outline-secondary">Make an Appointment</a>
+                    </li>
+                    <li class="nav-item d-md-none">
+                        <a href="/index.html#login" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Login</a>
+                    </li>
+                    <li class="nav-item  ms-2 d-none d-md-inline">
+                        <a href="/index.html#login" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <h4>
+                                <i class="bi bi-person-circle"></i>
+                            </h4>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> 
+    
+
+   <!-- Modal Section  -->
+      <section class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" id="loginContent" style="display: block;">
+            <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                      <label for="username">Username</label>
+                      <input type="text" class="form-control" placeholder="@username" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control" placeholder="Enter password" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    </div>
+                  </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <div class="row justify-content-center"> <!-- Center align the content -->
+                <div class="col-12 align-items-center text-center"> <!-- Center align the content -->
+                  <button type="button" class="btn btn-primary">Login</button>
+                  <p>Don't have an account? <a href="#" data-bs-toggle="tooltip" title="Tooltip"  id="toggleContent">Create it here!</a></p>
+                </div>
+              </div>
+            </div>          
+        </div>
+        <!-- signup content -->
+        <div class="modal-content" id="signupContent" style="display: none;">
+          <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeBut"></button>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-12">
+                    <label for="username">First name</label>
+                    <input type="text" class="form-control" placeholder="Enter first name" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <label for="password">Second name</label>
+                    <input type="text" class="form-control" placeholder="Enter secondname" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <label for="password">Email</label>
+                    <input type="email" class="form-control" placeholder="Enter email" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <label for="password">Phone number</label>
+                    <input type="tel" class="form-control" placeholder="Enter phone number" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <label for="password">Username</label>
+                    <input type="text" class="form-control" placeholder="Enter any username you like" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" placeholder="Enter password" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <label for="password">Confirm password</label>
+                    <input type="password" class="form-control" placeholder="Enter password again" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                  </div>
+                </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <div class="row justify-content-center"> <!-- Center align the content -->
+              <div class="col-12 align-items-center text-center" id="loginFooter" style="display: block;"> <!-- Center align the content -->
+                <button type="button" class="btn btn-primary">Login</button>
+                <div id="footerModal">
+                  <p>Don't have an account? <a href="#" data-bs-toggle="tooltip" title="Tooltip"  id="toggleContent">Create it here!</a></p>
+                </div>
+              </div>
+  
+              <div class="col-12 align-items-center text-center" id="signupFooter" style="display: none;"> <!-- Center align the content -->
+                <button type="button" class="btn btn-primary">Sign up</button>
+              </div>
+            </div>
+          </div>          
+        </div>
+        </div>
+        
+        <!-- script for a link -->
+        <script>
+          const change = document.getElementById('toggleContent');
+          const closeBut = document.getElementById('closeBut');
+          const login = document.getElementById('loginContent')
+          const signup = document.getElementById('signupContent')
+          const loginFoot = document.getElementById('loginFooter')
+          const signupFoot = document.getElementById('signupFooter')
+          change.addEventListener('click', ()=>{
+            login.style.display = "none";
+            loginFoot.style.display = "none";
+            signup.style.display = "block";
+            signupFoot.style.display = "block";
+          })
+          closeBut.addEventListener('click', ()=>{
+            login.style.display = "block";
+            loginFoot.style.display = "block";
+            signup.style.display = "none";
+            signupFoot.style.display = "none";
+          })
+        </script>
+      </section>
 
     <section id="posts-section" class="d-block">
         <div class="container-lg">
