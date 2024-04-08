@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Booking an appointment</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .time-slot-btn {
+            margin-bottom: 10px;
+        }
+        .time-slot-btn:focus{
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container-xxl">
+            <a href="../../index.html" class="navbar-brand">
+                <span class="fw-bold text-secondary">
+                    <img src="../../assets/logo-icon.ico" width="40" height="40" class="d-inline-block align-center" alt="">
+                    Nail Studio Ideal
+                </span>
+            </a>
+
+            <!-- toggle button for mobile nav-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" 
+            aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- navbar links -->
+            <div class="collapse navbar-collapse justify-content-end align-center" 
+            id="main-nav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#services" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../blogs.html" class="nav-link">blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#masters" class="nav-link">Technicians</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#contact-info" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item d-md-none">
+                        <a href="#appointments" class="nav-link">Appointments</a>
+                    </li>
+                    <li class="nav-item  ms-2 d-none d-md-inline">
+                        <a href="./booking.html" class="btn btn-outline-secondary">Make an Appointment</a>
+                    </li>
+                    <li class="nav-item d-md-none">
+                        <a href="#login" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Login</a>
+                    </li>
+                    <li class="nav-item  ms-2 d-none d-md-inline">
+                        <a href="#login" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <h4>
+                                <i class="bi bi-person-circle"></i>
+                            </h4>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> 
+
+
+    <section id="booking_section_first">
+        <div class="container">
+            <div class="row justify-content-center align-items-center vh-100">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 d-none d-md-block text-end" id="nextDiv">
+                        <button id="next_buttonFirst">Next</button>
+                    </div>
+                    <div class="col-12 text-center mb-5">
+                        <h2>Select category</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 text-end mb-5 d-none d-md-block">
+                            <img src="../../assets/section.jpg" id="manicure" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        </div>
+                        <div class="col-md-6 text-start mb-5 d-none d-md-block">
+                            <img src="../../assets/section.jpg" id="pedicure" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        </div>
+                        <div class="col-xs-12 text-center mb-5 d-block d-md-none">
+                            <img src="../../assets/section.jpg" id="manicure1" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        </div>
+                        <div class="col-xs-12 text-center mb-5 d-block d-md-none">
+                            <img src="../../assets/section.jpg" id="pedicure1" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-block d-md-none text-center" id="nextDiv">
+                        <button id="next_buttonFirst1">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <section id="booking_section_manicure" style="display: none;">
+        <div class="container" style="margin-top: 50px;">
+            <div class="row justify-content-center align-items-center vh-100">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 d-none d-md-block text-start" id="nextDiv">
+                        <button id="backToCategory1">Back</button>
+                    </div>
+                    <div class="col-md-6 d-none d-md-block text-end">
+                        <button id="nextToMasterForManicure">Next</button>
+                    </div>
+                    <div class="col-12 text-center mb-5">
+                        <h2>Select manicure service</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-xs-12 text-center mb-4">
+                            <img src="../../assets/section.jpg" id="manicure" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        </div>
+                        <div class="col-md-4 col-xs-12 text-center mb-4">
+                            <img src="../../assets/section.jpg" id="pedicure" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        </div>
+                        <div class="col-md-4 col-xs-12 text-center mb-4">
+                            <img src="../../assets/section.jpg" id="pedicure" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        </div>
+                        <div class="col-md-4 col-xs-12 text-center mb-4">
+                            <img src="../../assets/section.jpg" id="manicure" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        </div>
+                        <div class="col-md-4 col-xs-12 text-center mb-4">
+                            <img src="../../assets/section.jpg" id="pedicure" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        </div>
+                        <div class="col-md-4 col-xs-12 text-center mb-4">
+                            <img src="../../assets/section.jpg" id="pedicure" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        </div>
+                    </div>
+                    <div class="col-6 d-md-none d-block text-start" id="nextDiv">
+                        <button id="nextToMasterForManicure1">Next</button>
+                    </div>
+                    <div class="col-6 d-md-none d-block text-end">
+                        <button id="backToCategory2">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="booking_section_pedicure" style="display: none;">
+        <div class="container">
+            <div class="row justify-content-center align-items-center vh-100">
+                <div class="row justify-content-center">
+                    <div class="row">
+                        <div class="col-md-6 d-none d-md-block text-start" id="nextDiv">
+                            <button id="backToCategory3">Back</button>
+                        </div>
+                        <div class="col-md-6 d-none d-md-block text-end">
+                            <button id="nextToMasterForPedicure1">Next</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center mb-5">
+                            <h2>Select pedicure service</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-xs-12 text-center mb-4">
+                            <img src="../../assets/section.jpg" id="manicure" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        </div>
+                        <div class="col-md-4 col-xs-12 text-center mb-4">
+                            <img src="../../assets/section.jpg" id="pedicure" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        </div>
+                        <div class="col-md-4 col-xs-12 text-center mb-4">
+                            <img src="../../assets/section.jpg" id="pedicure" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 d-md-none d-block text-start" id="nextDiv">
+                            <button id="nextToMasterForPedicure">Next</button>
+                        </div>
+                        <div class="col-6 d-md-none d-block text-end">
+                            <button id="backToCategory4">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <section id="booking_section_master" style="display: none;">
+        <div class="container" style="margin-top: 100px;">
+            <div class="row">
+                <div class="col-md-6 d-none d-md-block text-start" id="nextDiv">
+                    <button id="backToManicPedic1">Back</button>
+                </div>
+                <div class="col-md-6 d-none d-md-block text-end">
+                    <button id="nextToDate1">Next</button>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-6 text-center">
+                    <h2>Service name</h2>
+                </div>
+                <div class="col-6 text-center">
+                    <h2>5$</h2>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+              <div class="col-12 text-center">
+                <h2>Choose your master</h2>
+              </div>
+          </div>
+
+            <!-- slider -->
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-8">
+
+                <div class="swiper mySwiper">
+                  <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                      <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                          <img src="../../assets/master-final.png" alt="" class="card-img">
+                        </div>
+                        <div class="card-content">
+                          <h2 class="name">Master 1</h2>
+                          <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, corrupti!</p>
+                          <button class="button">Choose</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                          <img src="../../assets/master2-final.png" alt="" class="card-img">
+                        </div>
+                        <div class="card-content">
+                          <h2 class="name">Master 1</h2>
+                          <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, corrupti!</p>
+                          <button class="button">Choose</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                          <img src="../../assets/master3-final.png" alt="" class="card-img">
+                        </div>
+                        <div class="card-content">
+                          <h2 class="name">Master 1</h2>
+                          <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, corrupti!</p>
+                          <button class="button">Choose</button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="swiper-pagination"></div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+
+              </div>
+              <div class="col-2"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 d-md-none d-block text-start" id="nextDiv">
+                    <button id="nextToDate">Next</button>
+                </div>
+                <div class="col-6 d-md-none d-block text-end">
+                    <button id="backToManicPedic">Back</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="date_and_time" class="date_and_time" style="display: none;">
+        <div class="container" style="margin-top: 100px;">
+            <div class="row">
+                <div class="col-md-6 d-none d-md-block text-start" id="nextDiv">
+                    <button id="backToMaster1">Back</button>
+                </div>
+                <div class="col-md-6 d-none d-md-block text-end">
+                    <button id="nextToInfo1">Next</button>
+                </div>
+            </div>
+
+        <form>
+            <div class="row form-group">
+                <h3 class="col-12 text-center pt-5">Choose suitable date</h3>
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="input-group date" id="datepicker">
+                        <input type="text" class="form-control" placeholder="dd/mm/yyyy">
+                        <span class="input-group-append">
+                            <span class="input-group-text bg-white">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row form-group" style="display: none;" id="timePickerContainer">
+                <div class="col-md-3"></div>
+                <div class="col-6">
+                    <h3 class="col-12 text-center mb-3">Choose available time</h3>
+                    <button type="button" class="btn btn-outline-primary time-slot-btn">08:00-11:00</button>
+                    <button type="button" class="btn btn-outline-primary time-slot-btn">08:30-11:30</button>
+                    <button type="button" class="btn btn-outline-primary time-slot-btn">09:00-12:00</button>
+                    <button type="button" class="btn btn-outline-primary time-slot-btn">09:30-12:30</button>
+                    <button type="button" class="btn btn-outline-primary time-slot-btn">10:00-13:00</button>
+                    <button type="button" class="btn btn-outline-primary time-slot-btn">10:30-13:30</button>
+                    <button type="button" class="btn btn-outline-primary time-slot-btn">11:00-14:00</button>
+                    <button type="button" class="btn btn-outline-primary time-slot-btn">11:30-14:30</button>
+                    <button type="button" class="btn btn-outline-primary time-slot-btn">12:00-15:00</button>
+                    <button type="button" class="btn btn-outline-primary time-slot-btn">12:30-15:30</button>
+                    <button type="button" class="btn btn-outline-primary time-slot-btn">13:00-16:00</button>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </form>
+
+            <div class="row">
+                <div class="col-6 d-md-none d-block text-start" id="nextDiv">
+                    <button id="nextToInfo">Next</button>
+                </div>
+                <div class="col-6 d-md-none d-block text-end">
+                    <button id="backToMaster">Back</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section id="contact_info" style="display: none;">
+        <div class="container" style="margin-top: 100px;">
+            <div class="row">
+                <div class="col-md-6 d-none d-md-block text-start" id="nextDiv">
+                    <button id="backToDate">Back</button>
+                </div>
+                <div class="col-md-6 d-none d-md-block text-end">
+                    <button id="next">Next</button>
+                </div>
+            </div>
+            <div class="row pt-5">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <label for="first-name">First name</label>
+                    <input type="text" class="form-control" id="first-name" placeholder="Your first name" aria-label="First name">
+                </div>
+                <div class="col-md-3">
+                    <label for="last-name">Last name</label>
+                    <input type="text" class="form-control" id="last-name" placeholder="Your last name" aria-label="Last name">
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row pt-1">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" placeholder="Your email address" aria-label="Your email address">
+                </div>
+                <div class="col-md-3">
+                    <label for="phone">Phone number</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="Your phone number" aria-label="Your phone number">
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row pt-1">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <label for="email">Anything you would like add to your appointment:</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center pt-5">
+                    <button>Confirm order</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 d-md-none d-block text-start" id="nextDiv">
+                    <button id="next">Next</button>
+                </div>
+                <div class="col-6 d-md-none d-block text-end">
+                    <button id="backToDate1">Back</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+         $(document).ready(function(){
+            $('#datepicker').datepicker().on('changeDate', function() {
+                $('#timePickerContainer').show();
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>
