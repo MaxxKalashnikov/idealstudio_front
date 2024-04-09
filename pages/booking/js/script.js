@@ -59,25 +59,25 @@ let manic = false;
 let pedic = false;
 
 // Event Listeners
-imgManic.addEventListener('click', () => {
-  manic = true;
-  pedic = false;
-});
+// imgManic.addEventListener('click', () => {
+//   manic = true;
+//   pedic = false;
+// });
 
-imgPedic.addEventListener('click', () => {
-  manic = false;
-  pedic = true;
-});
+// imgPedic.addEventListener('click', () => {
+//   manic = false;
+//   pedic = true;
+// });
 
-imgManic1.addEventListener('click', () => {
-  manic = true;
-  pedic = false;
-});
+// imgManic1.addEventListener('click', () => {
+//   manic = true;
+//   pedic = false;
+// });
 
-imgPedic1.addEventListener('click', () => {
-  manic = false;
-  pedic = true;
-});
+// imgPedic1.addEventListener('click', () => {
+//   manic = false;
+//   pedic = true;
+// });
 
 next_buttonFirst.addEventListener('click', () => {
   const categorySection = document.getElementById('booking_section_first');
@@ -211,3 +211,29 @@ backToDate1.addEventListener('click', () => {
   datetimeSection.style.display = "block";
 });
 
+const BACKEND_ROOT_URL = "http://localhost:3001/services"; //back url 
+import { Services } from "../../../js/classes/services.js" //importing class for appointments
+const services = new Services(BACKEND_ROOT_URL);
+
+const getServicesAll = async () => {
+  //method from todos class which returns an array of task objects
+  services.getServices().then((services) =>{
+      services.forEach(service => {
+          renderService(service);//handling of ui elements
+      });
+  }).catch((error) => {//error handling
+      alert(error)
+  })
+}
+
+function renderService(service){
+  const parent = document.getElementById('ourId');
+
+  const p = document.createElement('p');
+  console.log(service)
+  p.innerText = service.serviceName;
+
+  parent.appendChild(p);
+}
+
+getServicesAll();
