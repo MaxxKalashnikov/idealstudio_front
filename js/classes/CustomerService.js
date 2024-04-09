@@ -1,5 +1,8 @@
 // CustomerService.js
  class CustomerService {
+    // #customers = [];
+    // #backendUrl;
+
     constructor(url) {
         this.backendUrl = url;
     }
@@ -10,7 +13,9 @@
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return await response.json();
+            const result = await response.json();
+            console.log(result)
+            return await result;
         } catch (error) {
             console.error('Error fetching customer data:', error);
             throw error;
@@ -19,4 +24,4 @@
 }
 
 
-export {CustomerService};
+export { CustomerService };

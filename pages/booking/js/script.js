@@ -59,25 +59,25 @@ let manic = false;
 let pedic = false;
 
 // Event Listeners
-// imgManic.addEventListener('click', () => {
-//   manic = true;
-//   pedic = false;
-// });
+imgManic.addEventListener('click', () => {
+  manic = true;
+  pedic = false;
+});
 
-// imgPedic.addEventListener('click', () => {
-//   manic = false;
-//   pedic = true;
-// });
+imgPedic.addEventListener('click', () => {
+  manic = false;
+  pedic = true;
+});
 
-// imgManic1.addEventListener('click', () => {
-//   manic = true;
-//   pedic = false;
-// });
+imgManic1.addEventListener('click', () => {
+  manic = true;
+  pedic = false;
+});
 
-// imgPedic1.addEventListener('click', () => {
-//   manic = false;
-//   pedic = true;
-// });
+imgPedic1.addEventListener('click', () => {
+  manic = false;
+  pedic = true;
+});
 
 next_buttonFirst.addEventListener('click', () => {
   const categorySection = document.getElementById('booking_section_first');
@@ -227,13 +227,35 @@ const getServicesAll = async () => {
 }
 
 function renderService(service){
-  const parent = document.getElementById('ourId');
+  if(service.category == "Manicure"){
 
-  const p = document.createElement('p');
-  console.log(service)
-  p.innerText = service.serviceName;
+    // Create a div element with specified classes
+    var divElement = document.createElement("div");
+    divElement.classList.add("col-md-4", "col-xs-12", "text-center", "mb-4");
 
-  parent.appendChild(p);
+    // Create an image element
+    var imgElement = document.createElement("img");
+
+    // Set image source, ID, class, alt text, and cursor style
+    imgElement.setAttribute("src", "../../assets/section.jpg");
+    imgElement.setAttribute("id", service.serviceId);
+    imgElement.setAttribute("class", "img-fluid");
+    imgElement.setAttribute("alt", "room1");
+    imgElement.style.cursor = "pointer";
+
+    var paragraphElement = document.createElement("p");
+    paragraphElement.textContent = service.price + "€";
+
+    // Append image element to the div
+    divElement.appendChild(imgElement);
+    divElement.appendChild(paragraphElement);
+
+    // Find the parent element where you want to append this div
+    var parentElement = document.getElementById("manicContainer"); // Replace "parentElementId" with the actual ID of the parent element
+
+    // Append the created div to the parent element
+    parentElement.appendChild(divElement);
+  }
 }
 
 getServicesAll();

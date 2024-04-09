@@ -10,9 +10,9 @@ const displayCustomers = async () => {
         customers.forEach(customer => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${customer.id}</td>
-                <td>${customer.first_name}</td>
-                <td>${customer.last_name}</td>
+                <td>${customer.customer_id}</td>
+                <td>${customer.firstname}</td>
+                <td>${customer.lastname}</td>
                 <td>${customer.phone}</td>
                 <td>${customer.email}</td>
             `;

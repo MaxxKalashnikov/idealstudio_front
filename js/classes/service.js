@@ -16,7 +16,7 @@ class Service{
     }
 
     // Getter methods using get keyword
-    get serviceId() {getCustomers
+    get serviceId() {
         return this.#service_id;
     }
 

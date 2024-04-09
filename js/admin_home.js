@@ -42,18 +42,7 @@ function renderInfo(elem){
 }
 
 function renderStat(elem){
-    const spanAppoint = document.gclass Appointment {
-        #appointment_id;
-        #timeslot_date;
-        #start_time;
-        #end_time;
-        #service_name;
-        #employee_firstname;
-        #employee_lastname;
-        #customer_firstname;
-        #customer_lastname;5432
-        #is_canceled;
-        #username;etElementById('appointmentNumber')
+    const spanAppoint = document.getElementById('appointmentNumber')
     const spanMaster = document.getElementById('masterNumber')
     const spanClient = document.getElementById('customersNumber')
     const spanReview = document.getElementById('reviewsNumber')

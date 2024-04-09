@@ -36,7 +36,7 @@ class Appointment {
     get start_time() {
         return this.#start_time;
     }
-    js/classes/CustomerApp.js
+
     get end_time() {
         return this.#end_time;
     }
@@ -116,7 +116,7 @@ class AppointmentDetails {
         this.#is_canceled = status;
     }
 
-    get appointment_id() {./classes/CustomerService.js
+    get appointment_id() {
         return this.#appointment_id;
     }
 
@@ -132,7 +132,7 @@ class AppointmentDetails {
         return this.#end_time;
     }
 
-    get service_name() {js/classes/CustomerApp.js
+    get service_name() {
         return this.#service_name;
     }
 
@@ -161,7 +161,7 @@ class AppointmentDetails {
     }
 
     get employee_specialization() {
-        return this.#employee_specialization;js/classes/CustomerApp.js
+        return this.#employee_specialization;
     }
 
     get customer_firstname() {
