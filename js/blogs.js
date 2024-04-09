@@ -41,7 +41,14 @@ function createPostCard(post) {
 
     const details = document.createElement('p')
     details.classList = 'card-text'
-    body.appendChild(details)
+    body.appendChild(details)fetch('http://localhost:3000/customers')
+    .then(response => {
+        console.log("JSON FROM SERVER: ",response)
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
 
     const author = document.createElement('small')
     author.classList = 'text-muted'

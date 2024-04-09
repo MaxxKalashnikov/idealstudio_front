@@ -42,7 +42,7 @@
           
     <script>
         //Fetch customer table and insert into #customerTable div
-        fetch('http://localhost:3000/customers')
+        fetch('http://localhost:3001/customers')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('customerTable').innerHTML = html;
