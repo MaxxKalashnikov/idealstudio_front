@@ -29,7 +29,6 @@ class Services{
             .then((response) => response.json())
             .then((json) => {
                 this.#readJson(json);//storing appointments from response as instances of appointment class inside appointments array
-                console.log(this.#services)
                 resolve(this.#services)
             },(error) => {
                 reject(error);

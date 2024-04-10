@@ -17,6 +17,11 @@
         .time-slot-btn:focus{
             background-color: bisque;
         }
+        @media (min-width: 768px) and (max-width: 992px) {
+        [id^="serviceDescription"] {
+            display: none; /* Размер шрифта для экранов md (ширина 992px - 1200px) */
+        }
+}
     </style>
 </head>
 <body>
@@ -88,23 +93,47 @@
                     <div class="col-12 text-center mb-5">
                         <h2>Select category</h2>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 text-end mb-5 d-none d-md-block">
-                            <img src="../../assets/section.jpg" id="manicure" class="img-fluid" alt="room1" style="cursor: pointer;">
+                    <div class="row" id="categorySection">
+                        <div class="col-md-6 text-end mb-5 d-none d-md-block" id="manicure">
+                            <div class="card text-center text-bg-dark">
+                                <img src="../../assets/section.jpg" class="card-img" alt="...">
+                                <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
+                                    <h5 class="card-title" id="nameOfService">name here</h5>
+                                    <p class="card-text" id="descriptionOfService"><small>description</small></p>
+                                    <p class="card-text" id="priceOfService">124</p>  
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6 text-start mb-5 d-none d-md-block">
-                            <img src="../../assets/section.jpg" id="pedicure" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        <div class="col-md-6 text-end mb-5 d-none d-md-block" id="pedicure">
+                            <div class="card text-center text-bg-dark">
+                                <img src="../../assets/section.jpg" class="card-img" alt="...">
+                                <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
+                                    <h5 class="card-title" id="nameOfService"></h5>
+                                    <p class="card-text" id="descriptionOfService"><small></small></p>
+                                    <p class="card-text" id="priceOfService"></p>  
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-xs-12 text-center mb-5 d-block d-md-none">
-                            <img src="../../assets/section.jpg" id="manicure1" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        <div class="col-xs-12 text-center mb-5 d-block d-md-none" id="manicure1">
+                            <div class="card text-center text-bg-dark">
+                                <img src="../../assets/section.jpg" class="card-img" alt="...">
+                                <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
+                                    <h5 class="card-title" id="nameOfService"></h5>
+                                    <p class="card-text" id="descriptionOfService"><small></small></p>
+                                    <p class="card-text" id="priceOfService"></p>  
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-xs-12 text-center mb-5 d-block d-md-none">
-                            <img src="../../assets/section.jpg" id="pedicure1" class="img-fluid" alt="room1" style="cursor: pointer;">
+                        <div class="col-xs-12 text-center mb-5 d-block d-md-none" id="pedicure1">
+                            <div class="card text-center text-bg-dark">
+                                <img src="../../assets/section.jpg" class="card-img" alt="...">
+                                <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
+                                    <h5 class="card-title" id="nameOfService"></h5>
+                                    <p class="card-text" id="descriptionOfService"><small></small></p>
+                                    <p class="card-text" id="priceOfService"></p>  
+                                </div>
+                            </div>
                         </div>
-                        <!-- <div class="col-md-6 text-end mb-5 d-none d-md-block" id="ourId">
-                            
-                        </div> -->
-                        
                     </div>
                     <div class="col-md-12 d-block d-md-none text-center" id="nextDiv">
                         <button id="next_buttonFirst1">Next</button>
@@ -134,25 +163,16 @@
                     <div class="col-12 text-center mb-5">
                         <h2>Select manicure service</h2>
                     </div>
-                    <div class="row" id="manicContainer">
-                        <!-- <div class="col-md-4 col-xs-12 text-center mb-4">
-                            <img src="../../assets/section.jpg" id="manicure21" class="img-fluid" alt="room1" style="cursor: pointer;">
-                            <p>asf</p>
-                        </div>
-                        <div class="col-md-4 col-xs-12 text-center mb-4">
-                            <img src="../../assets/section.jpg" id="manicure22" class="img-fluid" alt="room1" style="cursor: pointer;">
-                        </div>
-                        <div class="col-md-4 col-xs-12 text-center mb-4">
-                            <img src="../../assets/section.jpg" id="manicure23" class="img-fluid" alt="room1" style="cursor: pointer;">
-                        </div>
-                        <div class="col-md-4 col-xs-12 text-center mb-4">
-                            <img src="../../assets/section.jpg" id="manicure24" class="img-fluid" alt="room1" style="cursor: pointer;">
-                        </div>
-                        <div class="col-md-4 col-xs-12 text-center mb-4">
-                            <img src="../../assets/section.jpg" id="manicure25" class="img-fluid" alt="room1" style="cursor: pointer;">
-                        </div>
-                        <div class="col-md-4 col-xs-12 text-center mb-4">
-                            <img src="../../assets/section.jpg" id="manicure26" class="img-fluid" alt="room1" style="cursor: pointer;">
+                    <div class="row" id="manicContainer"> <!-- на MD пофиксить шрифт-->
+                        <!-- <div class="col-md-4 col-xs-12 mb-4">
+                            <div class="card text-center text-bg-dark">
+                                <img src="../../assets/section.jpg" class="card-img" alt="...">
+                                <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
+                                    <h5 class="card-title" id="nameOfService">name here</h5>
+                                    <p class="card-text" id="descriptionOfService"><small>description</small></p>
+                                    <p class="card-text" id="priceOfService">124</p>  
+                                </div>
+                            </div>
                         </div> -->
                     </div>
                     <div class="col-6 d-md-none d-block text-start" id="nextDiv">
@@ -185,8 +205,8 @@
                             <h2>Select pedicure service</h2>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4 col-xs-12 text-center mb-4">
+                    <div class="row" id="pedicContainer">
+                        <!-- <div class="col-md-4 col-xs-12 text-center mb-4">
                             <img src="../../assets/section.jpg" id="manicure" class="img-fluid" alt="room1" style="cursor: pointer;">
                         </div>
                         <div class="col-md-4 col-xs-12 text-center mb-4">
@@ -194,7 +214,7 @@
                         </div>
                         <div class="col-md-4 col-xs-12 text-center mb-4">
                             <img src="../../assets/section.jpg" id="pedicure" class="img-fluid" alt="room1" style="cursor: pointer;">
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col-6 d-md-none d-block text-start" id="nextDiv">
@@ -223,7 +243,7 @@
                     <button id="nextToDate1">Next</button>
                 </div>
             </div>
-            <div class="row mt-5">
+            <div class="row mt-5" id="serviceNameAtMaster">
                 <div class="col-6 text-center">
                     <h2>Service name</h2>
                 </div>
@@ -244,9 +264,9 @@
               <div class="col-8">
 
                 <div class="swiper mySwiper">
-                  <div class="swiper-wrapper">
+                  <div class="swiper-wrapper" id="swiper_wrapper">
 
-                    <div class="swiper-slide">
+                    <!-- <div class="swiper-slide">
                       <div class="image-content">
                         <span class="overlay"></span>
                         <div class="card-image">
@@ -286,7 +306,7 @@
                           <button class="button">Choose</button>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
 
                   </div>
                   <div class="swiper-pagination"></div>
@@ -327,7 +347,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="input-group date" id="datepicker">
-                        <input type="text" class="form-control" placeholder="dd/mm/yyyy">
+                        <input type="text" class="form-control" placeholder="dd/mm/yyyy" id="dateInp">
                         <span class="input-group-append">
                             <span class="input-group-text bg-white">
                                 <i class="fa fa-calendar"></i>
@@ -339,9 +359,8 @@
             </div>
             <div class="row form-group" style="display: none;" id="timePickerContainer">
                 <div class="col-md-3"></div>
-                <div class="col-6">
-                    <h3 class="col-12 text-center mb-3">Choose available time</h3>
-                    <button type="button" class="btn btn-outline-primary time-slot-btn">08:00-11:00</button>
+                <div class="col-6" id="timeSlotContainer">
+                    <!-- <button type="button" class="btn btn-outline-primary time-slot-btn">08:00-11:00</button>
                     <button type="button" class="btn btn-outline-primary time-slot-btn">08:30-11:30</button>
                     <button type="button" class="btn btn-outline-primary time-slot-btn">09:00-12:00</button>
                     <button type="button" class="btn btn-outline-primary time-slot-btn">09:30-12:30</button>
@@ -351,7 +370,7 @@
                     <button type="button" class="btn btn-outline-primary time-slot-btn">11:30-14:30</button>
                     <button type="button" class="btn btn-outline-primary time-slot-btn">12:00-15:00</button>
                     <button type="button" class="btn btn-outline-primary time-slot-btn">12:30-15:30</button>
-                    <button type="button" class="btn btn-outline-primary time-slot-btn">13:00-16:00</button>
+                    <button type="button" class="btn btn-outline-primary time-slot-btn">13:00-16:00</button> -->
                 </div>
                 <div class="col-md-3"></div>
             </div>
@@ -381,7 +400,7 @@
                     <button id="next">Next</button>
                 </div>
             </div>
-            <div class="row pt-5">
+            <!-- <div class="row pt-5">
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
                     <label for="first-name">First name</label>
@@ -412,11 +431,52 @@
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
                 <div class="col-md-3"></div>
-            </div>
+            </div> -->
             <div class="row">
-                <div class="col-12 text-center pt-5">
-                    <button>Confirm order</button>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3>Enter your personal information</h3>
+                    </div>
                 </div>
+                <form class="row g-3 needs-validation" novalidate>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                      <label for="validationCustom01" class="form-label">First name</label>
+                      <input type="text" class="form-control" id="validationCustom01" value="" required>
+                      <div class="invalid-feedback">
+                        Please provide your first name
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="validationCustom02" class="form-label">Last name</label>
+                      <input type="text" class="form-control" id="validationCustom02" value="" required>
+                      <div class="invalid-feedback">
+                        Please provide your last name
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                      <label for="validationCustom03" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="validationCustom03" required>
+                      <div class="invalid-feedback">
+                        Please provide correct email
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationCustom04" class="form-label">Phone number</label>
+                        <input type="tel" class="form-control" id="validationCustom04" value="" required>
+                        <div class="invalid-feedback">
+                            Please provide correct phone number
+                          </div>
+                      </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-12 text-center pt-5">
+                      <button class="btn btn-primary" id="subButton">Submit</button>
+                    </div>
+                  </form>
+                  <div class="col-md-3"></div>
+                  <button class="btn btn-primary" id="confirmButton">confirm</button>
             </div>
 
             <div class="row">
@@ -434,10 +494,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript">
-         $(document).ready(function(){
+            $(document).ready(function(){
             $('#datepicker').datepicker().on('changeDate', function() {
                 $('#timePickerContainer').show();
             });
+            
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
