@@ -8,6 +8,7 @@ class Master {
     #specialization;
     #employee_type;
     #status;
+  
 
     constructor(id, userAccountId, firstName, lastName, email, phone, specialization, employeeType, status) {
         this.#id = id;
@@ -20,6 +21,8 @@ class Master {
         this.#employee_type = employeeType;
         this.#status = status;
     }
+
+    
     
     getId() {
         return this.#id;
@@ -57,4 +60,4 @@ class Master {
         return this.#status;
     }
 }
-
+export { Master };

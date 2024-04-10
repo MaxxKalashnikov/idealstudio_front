@@ -5,13 +5,13 @@ class MasterS{
     #masters_list = [];
     #backend_url;
 
-    constructor(url){
+
+    constructor(url) {
         this.#backend_url = url;
     }
 
     #read_json = (taskAsJson) => {
         taskAsJson.forEach(row => {
-            //creating instances of task class for every json node from back response
             const master = new Master(
                 row.id,
                 row.user_account_id,
@@ -27,34 +27,34 @@ class MasterS{
         });
     }
 
-    get_masters = async () =>{
-        this.#masters_list.length = 0;
-        return new Promise(async(resolve, reject) => {
-            fetch(this.#backend_url + "/")//fetching back
-            .then((response) => response.json())
-            .then((json) => {
-                this.#read_json(json);//storing appointments from response as instances of appointment class inside appointments array
-                console.log(this.#masters_list)
-                resolve(this.#masters_list)
-            },(error) => {
-                reject(error);
-            })
-        })
+    get_masters = () => {
+        this.#masters_list = [];
+        
+        return fetch(`${this.#backend_url}/masters`) 
+            .then(response => response.json())
+            .then(json => {
+                this.#read_json(json);
+                console.log(this.#masters_list);
+                return this.#masters_list;
+            }).catch(error => {
+                console.error('Error fetching masters:', error);
+                throw error;
+            });
     }
 
     get_master_by_id = async (masterId) => {
         try {
-            const response = await fetch(this.#backend_url+ "/masters/${masterId}");
+            const response = await fetch(`${this.#backend_url}/${masterId}`); 
             if (!response.ok) {
                 throw new Error('Failed to fetch master details');
             }
             const master = await response.json();
-            // Display master details in a modal or any other UI element
             console.log(master);
         } catch (error) {
             console.error('Error:', error);
         }
     }
+    
 
     add_new_master = async(masterData) => {
         try {
@@ -76,9 +76,9 @@ class MasterS{
         }
     }
 
-    update_master_info = async(masterId, updatedData) => {
+    update_master_info = async (masterId, updatedData) => {
         try {
-            const response = await fetch(this.#backend_url+ "/masters/update/${masterId}", {
+            const response = await fetch(`${this.#backend_url}/masters/update/${masterId}`, { 
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -90,14 +90,14 @@ class MasterS{
             }
             const updatedMaster = await response.json();
             console.log('Master updated:', updatedMaster);
-            // Optionally, update UI to reflect the updated master information
         } catch (error) {
             console.error('Error:', error);
         }
     }
-    delete_master = async(masterId) => {
+    
+    delete_master = async (masterId) => {
         try {
-            const response = await fetch(this.#backend_url+ "/masters/delete/${masterId}", {
+            const response = await fetch(`${this.#backend_url}/masters/delete/${masterId}`, { // Исправлено здесь
                 method: 'DELETE'
             });
             if (!response.ok) {
@@ -105,25 +105,17 @@ class MasterS{
             }
             const deletedMaster = await response.json();
             console.log('Master deleted:', deletedMaster);
-            // Optionally, update UI to reflect the deletion of the master
         } catch (error) {
             console.error('Error:', error);
         }
     }
+
+    
     
 
 }
 
-// Event listener for checkboxes or master names to view master details
-document.addEventListener('DOMContentLoaded', function () {
-    document.addEventListener('click', function (event) {
-        if (event.target.matches('input[type="checkbox"]')) {
-            const masterId = event.target.id.replace('master', '');
-            fetchMasterDetails(masterId);
-        }
-    });
-});
 
 export {MasterS}
 
-// Function to delete a master
+
