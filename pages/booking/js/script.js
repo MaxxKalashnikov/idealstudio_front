@@ -235,12 +235,16 @@ backToDate1.addEventListener('click', () => {
 const BACKEND_ROOT_URL_SERVICE = "http://localhost:3001/services"; //back url 
 const BACKEND_ROOT_URL_MASTER = "http://localhost:3001/employees";
 const BACKEND_ROOT_URL_TS = "http://localhost:3001/timeslots";
+const BACKEND_ROOT_URL_CUS = "http://localhost:3001/customers";
 import { Services } from "../../../js/classes/services.js" //importing class for services
 import { Employees } from "../../../js/classes/employees.js"; //importing class for masters
 import { Timeslots } from "../../../js/classes/Timeslots.js"; //importing class for timeslots
+import { CustomerService } from "../../../js/classes/CustomerService.js"; //importing class for timeslots
+
 const services = new Services(BACKEND_ROOT_URL_SERVICE);
 const employees = new Employees(BACKEND_ROOT_URL_MASTER);
 const timeslots = new Timeslots(BACKEND_ROOT_URL_TS);
+const customers = new CustomerService(BACKEND_ROOT_URL_CUS);
 
 const getServicesAll = async () => {
   //method from todos class which returns an array of task objects
@@ -594,8 +598,22 @@ function submit(){
   let lname = document.getElementById('validationCustom02').value
   let email = document.getElementById('validationCustom03').value
   let phone = document.getElementById('validationCustom04').value
+  
+  let personalInfoObj = new Object();
 
-  console.log(fname, lname, email, phone)
+  personalInfoObj.fname = fname;
+  personalInfoObj.lname = lname;
+  personalInfoObj.email = email;
+  personalInfoObj.phone = phone;
+  console.log(personalInfoObj)
+  customers.createNewCustomer(personalInfoObj).then((customers) =>{
+    customers.forEach(ts => {
+        console.log(ts);//handling of ui elements
+        alert("suckkass")
+    });
+  }).catch((error) => {//error handling
+    alert(error)
+  })
 }
 
 function timeChosen(timeslotChosen){
@@ -605,6 +623,22 @@ function timeChosen(timeslotChosen){
 function getAppointmentReady(description, customerId, serviceId, timeslotId){
   let appointmentReady = new Object();
 }
+
+const getAllCustomers = async()=>{
+  customers.getAllCustomers().then((customers)=>{
+    customers.forEach(customer =>{
+      console.log(customer)
+    })
+  })
+}
+
+const confBut = document.getElementById('confirmButton')
+confBut.addEventListener('click', ()=>{
+  getAllCustomers();
+})
+
 getEmployeesAll();
 
 getServicesAll();
+
+//create also a textarea for a description later

@@ -1,10 +1,11 @@
 // CustomerService.js
+import { Customer } from './customer.js'
  class CustomerService {
-    // #customers = [];
-    // #backendUrl;
+    #customers = [];
+    #backendUrl;
 
     constructor(url) {
-        this.backendUrl = url;
+        this.#backendUrl = url;
     }
 
     async getCustomers() {
@@ -20,6 +21,68 @@
             console.error('Error fetching customer data:', error);
             throw error;
         }
+    }
+
+    createNewCustomer = async (customer) =>{
+        let fname = customer.fname;
+        let lname = customer.lname;
+        let email = customer.email;
+        let phone = customer.phone;
+        return new Promise((resolve, reject) => {
+            fetch(this.#backendUrl + '/new', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    firstname: fname,
+                    lastname: lname,
+                    email: email,
+                    phone: phone
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to create customer');
+                }
+                return response.json();
+            })
+            .then(json => {
+                resolve(json); // You may adjust the response format based on your backend API
+            })
+            .catch(error => {
+                console.error('Error creating new customer:', error);
+                reject(error);
+            });
+        });
+    }
+
+    #readJson = (customerAsJson) => {
+        customerAsJson.forEach(node => {
+            //creating instances of service class for every json node from back response
+            const cus = new Customer(
+                node.customer_id,
+                node.firstname,
+                node.lastname,
+                node.email,
+                node.phone,
+                node.user_account_id);
+            this.#customers.push(cus);
+        });
+    }
+
+    getAllCustomers = async () =>{
+        this.#customers.length = 0;
+        return new Promise(async(resolve, reject) => {
+            fetch(this.#backendUrl)//fetching back
+            .then((response) => response.json())
+            .then((json) => {
+                this.#readJson(json);//storing employees from response as instances of employee class inside employees array
+                resolve(this.#customers)
+            },(error) => {
+                reject(error);
+            })
+        })
     }
 }
 
