@@ -39,7 +39,7 @@ class Timeslots{
     getTimeslotsPerPerson = async(id) =>{
         this.#timeslots.length = 0;
         return new Promise(async(resolve, reject) => {
-            fetch(this.#backend_url + `/${id}`)//fetching back
+            fetch(this.#backend_url + `/time/${id}`)//fetching back
             .then((response) => response.json())
             .then((json) => {
                 console.log(json)

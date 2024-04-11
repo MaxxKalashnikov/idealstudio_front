@@ -41,14 +41,10 @@ import { Customer } from './customer.js'
                     phone: phone
                 })
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to create customer');
-                }
-                return response.json();
-            })
-            .then(json => {
-                resolve(json); // You may adjust the response format based on your backend API
+            .then((response) => response.json())
+            .then((json) => {
+                this.#readJson(json);//storing employees from response as instances of employee class inside employees array
+                resolve(this.#customers)
             })
             .catch(error => {
                 console.error('Error creating new customer:', error);

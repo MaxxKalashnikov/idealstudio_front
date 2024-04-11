@@ -246,6 +246,8 @@ const employees = new Employees(BACKEND_ROOT_URL_MASTER);
 const timeslots = new Timeslots(BACKEND_ROOT_URL_TS);
 const customers = new CustomerService(BACKEND_ROOT_URL_CUS);
 
+let serviceChosenID = ""
+
 const getServicesAll = async () => {
   //method from todos class which returns an array of task objects
   services.getServices().then((services) =>{
@@ -267,6 +269,11 @@ function renderService(service){
       // Create card div
       var cardDiv = document.createElement("div");
       cardDiv.classList.add("card", "text-center", "text-bg-dark");
+      cardDiv.addEventListener('click', ()=>{
+        serviceChosenID = ""
+        serviceChosenID = service.serviceId;
+        serviceChosen(serviceChosenID)
+      })
 
       // Create card image
       var cardImg = document.createElement("img");
@@ -282,7 +289,7 @@ function renderService(service){
       var title = document.createElement("h5");
       title.classList.add("card-title");
       title.textContent = service.serviceName;
-      title.id = "serviceName" + service.serviceId;
+      title.id = "serviceID" + service.serviceId;
 
       // Create card text for description
       var description = document.createElement("p");
@@ -318,6 +325,11 @@ function renderService(service){
    // Create card div
    var cardDiv = document.createElement("div");
    cardDiv.classList.add("card", "text-center", "text-bg-dark");
+   cardDiv.addEventListener('click', ()=>{
+    serviceChosenID = ""
+        serviceChosenID = service.serviceId;
+        serviceChosen(serviceChosenID)
+  })
 
    // Create card image
    var cardImg = document.createElement("img");
@@ -600,17 +612,22 @@ function submit(){
   let phone = document.getElementById('validationCustom04').value
   
   let personalInfoObj = new Object();
-
+  let customerID = ""
   personalInfoObj.fname = fname;
   personalInfoObj.lname = lname;
   personalInfoObj.email = email;
   personalInfoObj.phone = phone;
+  const confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'), {
+    keyboard: false
+  })
   console.log(personalInfoObj)
-  customers.createNewCustomer(personalInfoObj).then((customers) =>{
-    customers.forEach(ts => {
-        console.log(ts);//handling of ui elements
-        alert("suckkass")
-    });
+  customers.createNewCustomer(personalInfoObj).then((customer) =>{
+    customer.forEach(cust =>{
+      console.log(cust.customerId);//handling of ui elements
+      customerID = cust.customerId;
+    }) 
+    getAppointmentReady("someths", customerID, serviceChosenID, timeslotChosen)
+    confirmModal.show()
   }).catch((error) => {//error handling
     alert(error)
   })
@@ -620,22 +637,33 @@ function timeChosen(timeslotChosen){
   console.log(timeslotChosen)
 }
 
-function getAppointmentReady(description, customerId, serviceId, timeslotId){
+function serviceChosen(service){
+  console.log(service)
+}
+
+function getAppointmentReady(description, customerId, serviceId, timeslotId){//customerID, service, timeslotChosen
   let appointmentReady = new Object();
+
+  appointmentReady.customerID = customerId;
+  appointmentReady.serviceID = serviceId;
+  appointmentReady.timeslotID = timeslotId;
+  appointmentReady.description = description
+
+  console.log(appointmentReady)
 }
 
 const getAllCustomers = async()=>{
   customers.getAllCustomers().then((customers)=>{
     customers.forEach(customer =>{
-      console.log(customer)
+      // console.log(customer)
     })
   })
 }
 
-const confBut = document.getElementById('confirmButton')
-confBut.addEventListener('click', ()=>{
-  getAllCustomers();
-})
+// const confBut = document.getElementById('confirmButton')
+// confBut.addEventListener('click', ()=>{
+//   getAllCustomers();
+// })
 
 getEmployeesAll();
 
