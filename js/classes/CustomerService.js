@@ -10,7 +10,7 @@ import { Customer } from './customer.js'
 
     async getCustomers() {
         try {
-            const response = await fetch(`${this.backendUrl}/customers`);
+            const response = await fetch(`${this.#backendUrl}/customers`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -23,11 +23,11 @@ import { Customer } from './customer.js'
         }
     }
 
-    createNewCustomer = async (customer) =>{
-        let fname = customer.fname;
-        let lname = customer.lname;
-        let email = customer.email;
-        let phone = customer.phone;
+    createNewCustomer = async(customer)=>{
+        const firstname = customer.fname;
+        const lastname = customer.lname;
+        const email = customer.email;
+        const phone = customer.phone;
         return new Promise((resolve, reject) => {
             fetch(this.#backendUrl + '/new', {
                 method: 'POST',
@@ -35,15 +35,16 @@ import { Customer } from './customer.js'
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    firstname: fname,
-                    lastname: lname,
+                    firstname: firstname,
+                    lastname: lastname,
                     email: email,
                     phone: phone
                 })
             })
             .then((response) => response.json())
             .then((json) => {
-                this.#readJson(json);//storing employees from response as instances of employee class inside employees array
+                this.#readJson(json);
+                console.log(this.#customers)
                 resolve(this.#customers)
             })
             .catch(error => {

@@ -50,6 +50,43 @@ class Timeslots{
             })
         })
     }
+
+    changeTimeslotStatus = async (id) => {
+        let timeslot_status;
+        this.#timeslots.forEach(time =>{
+            if(time.timeslot_id == id){
+                timeslot_status = time.is_available;
+            }
+        })
+        
+        switch(timeslot_status ){
+            case true:
+                timeslot_status  = false;
+                break;
+            case false:
+                timeslot_status  = true;
+                break;
+            default:
+                console.log('no data');
+        }
+
+        return new Promise((resolve, reject) => {
+            fetch(this.#backend_url + '/update/' + id, {
+                method: 'put',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ is_available: timeslot_status })
+            })
+            .then(response => response.json())
+            .then(json => {
+                resolve(json.appointment_id);
+            })
+            .catch(error => {
+                reject(error);
+            });
+        });
+    }  
 }
 
 export { Timeslots }

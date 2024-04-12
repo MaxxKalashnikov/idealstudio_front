@@ -117,6 +117,36 @@ class Appointments{
             })
         })
     }
+
+    createNewAppointment = async(appointment)=>{
+        const description = appointment.description;
+        const customer_id = appointment.customerID
+        const service_id = appointment.serviceID
+        const timeslot_id = appointment.timeslotID
+        return new Promise((resolve, reject) => {
+            fetch(this.#backend_url + '/new', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    description: description,
+                    customer_id: customer_id,
+                    service_id: service_id,
+                    timeslot_id: timeslot_id
+                })
+            })
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json)
+                resolve(json)
+            })
+            .catch(error => {
+                console.error('Error creating new customer:', error);
+                reject(error);
+            });
+        });
+    }
     
     
 }
