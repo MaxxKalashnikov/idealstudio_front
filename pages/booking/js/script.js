@@ -387,7 +387,7 @@ function renderService(service){
 //MASTERS
 const getEmployeesAll = async () => {
   //method from todos class which returns an array of task objects
-  employees.getMoreEmployee().then((employees) =>{
+  employees.getEmployees().then((employees) =>{
       employees.forEach(employee => {
           renderMaster(employee);//handling of ui elements
       });
@@ -592,38 +592,53 @@ function removeTimeslots(){
     }
 }
 
-(function () {
-  'use strict';
+const subbutton = document.getElementById('subButton')
+subbutton.addEventListener('click', ()=>{
+  let fname = document.getElementById('validationDefault01').value
+  let lname = document.getElementById('validationDefault02').value
+  let email = document.getElementById('validationDefault03').value
+  let phone = document.getElementById('validationDefault04').value
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation');
+  if(fname.length > 0 && lname.length > 0 && email.length > 0 && phone.length > 0){
+    submit();
+  }
+  else 
+  {
+    alert("Fill all the fields")
+  }
+})
+// (function () {
+//   'use strict';
 
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-          return;
-        }
+//   // Fetch all the forms we want to apply custom Bootstrap validation styles to
+//   var forms = document.querySelectorAll('.needs-validation');
 
-        submit()
+//   // Loop over them and prevent submission
+//   Array.prototype.slice.call(forms)
+//     .forEach(function (form) {
+//       form.addEventListener('button', function (event) {
+//         if (form.checkValidity() === false) {
+//           event.preventDefault();
+//           event.stopPropagation();
+//           return;
+//         }
 
-        form.classList.add('was-validated');
-      }, false);
-    });
-})();
+//         submit()
+
+//         form.classList.add('was-validated');
+//       }, false);
+//     });
+// })();
 
 let customerID = ""
 let customerChosenObject = "";
 let message = ""
 
 function submit(){
-  let fname = document.getElementById('validationCustom01').value
-  let lname = document.getElementById('validationCustom02').value
-  let email = document.getElementById('validationCustom03').value
-  let phone = document.getElementById('validationCustom04').value
+  let fname = document.getElementById('validationDefault01').value
+  let lname = document.getElementById('validationDefault02').value
+  let email = document.getElementById('validationDefault03').value
+  let phone = document.getElementById('validationDefault04').value
   
   let personalInfoObj = new Object();
 
@@ -644,6 +659,7 @@ function submit(){
       customerID = cust.customerId;
       customerChosenObject = cust;
     }) 
+    
 
     const p1 = document.createElement('p');
     if(manic === true){

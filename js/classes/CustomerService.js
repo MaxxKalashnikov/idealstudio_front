@@ -23,6 +23,34 @@ import { Customer } from './customer.js'
         }
     }
 
+    // createNewCustomer = async()=>{
+    //     return new Promise(async (resolve, reject) => {
+    //         try {
+    //             const response = await fetch('http://localhost:3001/customers/new', {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': 'application/json'
+    //                 },
+    //                 body: JSON.stringify({
+    //                     user_account_id : null,
+    //                     firstname : "test",
+    //                     lastname : "test",
+    //                     email : "test132@adbc.com",
+    //                     phone : "0384740979"
+    //                 })
+    //             });
+    
+    //             const json = await response.json();
+    
+    //             console.log(json);
+    //             resolve(json);
+    //         } catch (error) {
+    //             console.error('Error creating new customer:', error);
+    //             reject(error);
+    //         }
+    //     });
+    // }
+
     createNewCustomer = async(customer)=>{
         const firstname = customer.fname;
         const lastname = customer.lname;
