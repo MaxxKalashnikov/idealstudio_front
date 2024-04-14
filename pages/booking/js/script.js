@@ -752,6 +752,7 @@ const getAllCustomers = async()=>{
 const confirmAppointment = document.getElementById('confirmAppointment');
 confirmAppointment.addEventListener('click', ()=>{
   const appointment = getAppointmentReady("someths", customerID, serviceChosenID, timeslotChosen)
+  const sections = document.querySelectorAll('section');
 
   appointmentsAll.createNewAppointment(appointment)
   .then(() => {
