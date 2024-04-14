@@ -789,9 +789,10 @@ function sendMail(){
   })
 }
 
-function moveToFront(){
+
+function moveToFrontPage(){
   window.location.href = "../../index.html";
-}
+} 
 
 getEmployeesAll();
 
