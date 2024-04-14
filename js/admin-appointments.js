@@ -2,15 +2,10 @@ const BACKEND_ROOT_URL = "http://localhost:3001/appointments"; //back url
 import { Appointments } from './classes/appointmentAll.js' //importing class for appointments
 const appointments = new Appointments(BACKEND_ROOT_URL);
 
-function renderAppointment(appointment){
-    const parentElement = document.getElementById('tableAppointmentsBody');
+const parentElement = document.getElementById('tableAppointmentsBody');
 
-    const childElement = parentElement.querySelector('tr');
-    if(childElement){
-        while (parentElement.firstChild) {
-            parentElement.removeChild(parentElement.firstChild);
-        }
-    }
+
+function renderAppointment(appointment){
     // Создаем элемент tr
     var tr = document.createElement("tr");
 
@@ -76,6 +71,12 @@ function renderAppointment(appointment){
 
 //initial func for getting a list appointments
 const getAppointmentsAll = async () => {
+    const childElement = parentElement.querySelector('tr');
+    if(childElement){
+        while (parentElement.firstChild) {
+            parentElement.removeChild(parentElement.firstChild);
+        }
+    }
     //method from todos class which returns an array of task objects
     appointments.getAppointments().then((appoints) =>{
         console.log(appoints)
