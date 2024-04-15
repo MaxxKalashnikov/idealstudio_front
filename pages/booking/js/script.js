@@ -752,6 +752,7 @@ const getAllCustomers = async()=>{
 const confirmAppointment = document.getElementById('confirmAppointment');
 confirmAppointment.addEventListener('click', ()=>{
   const appointment = getAppointmentReady("someths", customerID, serviceChosenID, timeslotChosen)
+  const sections = document.querySelectorAll('section');
 
   appointmentsAll.createNewAppointment(appointment)
   .then(() => {
@@ -784,10 +785,15 @@ function sendMail(){
   let templateID = "template_2wcessl"
 
   emailjs.send(serviceID, templateID, params)
-  .then( res=>{
+  .then(res=>{
     alert('message has been sent successfully')
   })
 }
+
+
+function moveToFrontPage(){
+  window.location.href = "../../index.html";
+} 
 
 getEmployeesAll();
 
