@@ -1,8 +1,8 @@
 // Function to fetch and display details of a specific master
 
-import {Master} from "./Master_class.js";
-class MasterS{
-    #masters_list = [];
+import {Employee} from "./employee.js";
+class EmployeesService{
+    #employee_list = [];
     #backend_url;
 
 
@@ -12,73 +12,73 @@ class MasterS{
 
     #read_json = (taskAsJson) => {
         taskAsJson.forEach(row => {
-            const master = new Master(
-                row.id,
-                row.user_account_id,
-                row.first_name,
-                row.last_name,
+            const employee = new Employee(
+                row.employee_id,
+                row.firstname,
+                row.lastname,
                 row.email,
                 row.phone,
-                row.specialization,
                 row.employee_type,
-                row.status
+                row.specialization,
+                row.is_active,
+                row.user_account_id
             );
-            this.#masters_list.push(master);
+            this.#employee_list.push(employee);
         });
     }
 
-    get_masters = () => {
-        this.#masters_list = [];
+    get_employees = () => {
+        this.#employee_list = [];
         
-        return fetch(`${this.#backend_url}/masters`) 
+        return fetch(`${this.#backend_url}/employees`) 
             .then(response => response.json())
             .then(json => {
                 this.#read_json(json);
-                console.log(this.#masters_list);
-                return this.#masters_list;
+                console.log(this.#employee_list);
+                return this.#employee_list;
             }).catch(error => {
-                console.error('Error fetching masters:', error);
+                console.error('Error fetching employees:', error);
                 throw error;
             });
     }
 
-    get_master_by_id = async (masterId) => {
+    get_employee_by_id = async (employeeId) => {
         try {
-            const response = await fetch(`${this.#backend_url}/${masterId}`); 
+            const response = await fetch(`${this.#backend_url}/${employeeId}`); 
             if (!response.ok) {
-                throw new Error('Failed to fetch master details');
+                throw new Error('Failed to fetch employee details');
             }
-            const master = await response.json();
-            console.log(master);
+            const employee = await response.json();
+            console.log(employee);
         } catch (error) {
             console.error('Error:', error);
         }
     }
     
 
-    add_new_master = async(masterData) => {
+    add_new_employee = async(employeeData) => {
         try {
-            const response = await fetch(this.#backend_url+ "/masters/new", {
+            const response = await fetch(this.#backend_url+ "/employees/new", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(masterData)
+                body: JSON.stringify(employeeData)
             });
             if (!response.ok) {
                 throw new Error('Failed to add new master');
             }
-            const newMaster = await response.json();
-            console.log('New master added:', newMaster);
+            const newEmployee = await response.json();
+            console.log('New master added:', newEmployee);
             // Optionally, update UI to reflect the addition of the new master
         } catch (error) {
             console.error('Error:', error);
         }
     }
 
-    update_master_info = async (masterId, updatedData) => {
+    update_employee_info = async (employeeId, updatedData) => {
         try {
-            const response = await fetch(`${this.#backend_url}/masters/update/${masterId}`, { 
+            const response = await fetch(`${this.#backend_url}/employees/update/${employeeId}`, { 
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -88,23 +88,23 @@ class MasterS{
             if (!response.ok) {
                 throw new Error('Failed to update master');
             }
-            const updatedMaster = await response.json();
-            console.log('Master updated:', updatedMaster);
+            const updatedEmployee = await response.json();
+            console.log('Master updated:', updatedEmployee);
         } catch (error) {
             console.error('Error:', error);
         }
     }
     
-    delete_master = async (masterId) => {
+    delete_employee = async (employeeId) => {
         try {
-            const response = await fetch(`${this.#backend_url}/masters/delete/${masterId}`, { // Исправлено здесь
+            const response = await fetch(`${this.#backend_url}/employees/delete/${employeeId}`, { // Исправлено здесь
                 method: 'DELETE'
             });
             if (!response.ok) {
                 throw new Error('Failed to delete master');
             }
-            const deletedMaster = await response.json();
-            console.log('Master deleted:', deletedMaster);
+            const deletedEmployee = await response.json();
+            console.log('Master deleted:', deletedEmployee);
         } catch (error) {
             console.error('Error:', error);
         }
@@ -116,6 +116,6 @@ class MasterS{
 }
 
 
-export {MasterS}
+export {EmployeesService}
 
 
