@@ -82,7 +82,7 @@
     </nav> 
     
 
-   <!-- Modal Section  -->
+      <!-- Modal Section  -->
       <section class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" id="loginContent" style="display: block;">
@@ -116,50 +116,50 @@
         <!-- signup content -->
         <div class="modal-content" id="signupContent" style="display: none;">
           <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Create account</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeBut"></button>
           </div>
           <div class="modal-body">
               <div class="row">
                   <div class="col-12">
-                    <label for="username">First name</label>
-                    <input type="text" class="form-control" placeholder="Enter first name" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    <label for="signup-form-firstname">First name</label>
+                    <input id="signup-form-firstname" type="text" class="form-control" placeholder="Enter firstname" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <label for="password">Second name</label>
-                    <input type="text" class="form-control" placeholder="Enter secondname" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    <label for="signup-form-lastname">Last name</label>
+                    <input id="signup-form-lastname" type="text" class="form-control" placeholder="Enter lastname" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <label for="password">Email</label>
-                    <input type="email" class="form-control" placeholder="Enter email" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    <label for="signup-form-email">Email</label>
+                    <input id="signup-form-email" type="email" class="form-control" placeholder="Enter email" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <label for="password">Phone number</label>
-                    <input type="tel" class="form-control" placeholder="Enter phone number" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    <label for="signup-form-phone">Phone number</label>
+                    <input id="signup-form-phone" type="tel" class="form-control" placeholder="Enter phone number" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <label for="password">Username</label>
-                    <input type="text" class="form-control" placeholder="Enter any username you like" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    <label for="signup-form-username">Username</label>
+                    <input id="signup-form-username" type="text" class="form-control" placeholder="Enter any username you like" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" placeholder="Enter password" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    <label for="signup-form-password">Password</label>
+                    <input id="signup-form-password" type="password" class="form-control" placeholder="Enter password" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <label for="password">Confirm password</label>
-                    <input type="password" class="form-control" placeholder="Enter password again" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    <label for="signup-form-confirm-password">Confirm password</label>
+                    <input id="signup-form-confirm-password" type="password" class="form-control" placeholder="Enter password again" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                   </div>
                 </div>
           </div>
@@ -171,9 +171,9 @@
                   <p>Don't have an account? <a href="#" data-bs-toggle="tooltip" title="Tooltip"  id="toggleContent">Create it here!</a></p>
                 </div>
               </div>
-  
+    
               <div class="col-12 align-items-center text-center" id="signupFooter" style="display: none;"> <!-- Center align the content -->
-                <button type="button" class="btn btn-primary">Sign up</button>
+                <button id="signup-form-button" type="button" class="btn btn-primary">Sign up</button>
               </div>
             </div>
           </div>          
@@ -606,5 +606,6 @@
         
         </script>
         <script src="./js/index.js"></script>
+        <script src="./js/signup.js"></script>
 </body>
 </html>
