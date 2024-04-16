@@ -14,8 +14,8 @@ class Services{
             const service = new Service(
                 node.service_id,
                 node.service_name,
-                node.category,
                 node.description,
+                node.category,
                 node.price,
                 node.is_available);
             this.#services.push(service);
