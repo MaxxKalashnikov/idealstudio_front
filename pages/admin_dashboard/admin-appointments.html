@@ -21,6 +21,8 @@
                 });
             }
         });
+
+
     </script>
     <title>Dashboard</title>
 </head>
@@ -161,5 +163,11 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script type="module" src="../../js/admin-appointments.js"></script>
+    <script>
+        function logOut(){
+            sessionStorage.removeItem('accessToken')
+            window.location.href = "http://127.0.0.1:5501/index.html#";
+        }
+    </script>
 </body>
 </html>

@@ -41,8 +41,14 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                            <li><a class="dropdown-item" onclick="logOut()">Sign out</a></li>
                         </ul>
+                        <script>
+                            function logOut(){
+                                sessionStorage.removeItem('accessToken')
+                                window.location.href = "http://127.0.0.1:5501/index.html#";
+                            }
+                        </script>
                     </div>
                 </div>
             </div>

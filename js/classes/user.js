@@ -70,36 +70,12 @@ class User {
             throw error; // Пробросить ошибку для обработки в другом месте кода
         }
 
-
-        // if (token) {
-        //     fetch(this.#backend_url + '/profile', {
-        //         method: 'GET',
-        //         headers: {
-        //             'Authorization': `Bearer ${token}`
-        //         }
-        //     })
-        //     .then(response => {
-        //         if (response.ok) {
-        //             return response.json();
-        //         } else {
-        //             throw new Error('Failed to fetch data');
-        //         }
-        //     })
-        //     .then(data => {
-        //         return data
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //     });
-        // } else {
-        //     console.error('Access token not found in Session Storage');
-        // }
     }
 
-  logout() {
-    this.#token = undefined
-    sessionStorage.removeItem('accessToken')
-  }
+    logout() {
+        this.#token = undefined
+        sessionStorage.removeItem('accessToken')
+    }
 
 }
 

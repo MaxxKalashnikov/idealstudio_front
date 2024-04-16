@@ -67,10 +67,20 @@
                         <a href="./pages/booking/booking.html" class="btn btn-outline-secondary">Make an Appointment</a>
                     </li>
                     <li class="nav-item d-md-none">
-                        <a href="#login" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Login</a>
+                        <a href="#login" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display: block;">Login</a>
                     </li>
+                    <li class="nav-item d-md-none">
+                      <a href="#login" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display: none;">Login</a>
+                  </li>
                     <li class="nav-item  ms-2 d-none d-md-inline">
-                        <a href="#login" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                      <a href="#login" class="nav-link" id="checkUserButton" style="display: block;">
+                          <h4>
+                              <i class="bi bi-person-circle"></i>
+                          </h4>
+                      </a>
+                  </li>
+                    <li class="nav-item  ms-2 d-none d-md-inline">
+                        <a href="#login" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display: none;" id="ifNoToken" >
                             <h4>
                                 <i class="bi bi-person-circle"></i>
                             </h4>

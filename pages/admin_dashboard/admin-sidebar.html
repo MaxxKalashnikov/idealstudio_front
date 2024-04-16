@@ -1,4 +1,5 @@
 <div class="d-flex flex-column align-items-center align-items-sm-start px-1 px-sm-3 pt-2 text-white min-vh-100">
+    </script> 
     <a href="#" class="d-flex align-items-sm-center pb-1 mb-md-0 me-md-auto text-white text-decoration-none">
         <span class="fs-6 d-none d-sm-inline text-secondary fw-bold">Nail Studio Ideal</span>
     </a>
@@ -84,13 +85,18 @@
             <span class="d-none d-sm-inline mx-1">loser</span>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
             <li><a class="dropdown-item" href="#">Settings</a></li>
             <li><a class="dropdown-item" href="#">Profile</a></li>
             <li>
                 <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
+            <li><a class="dropdown-item" onclick="logOut()">Sign out</a></li>
         </ul>
+        <script>
+            function logOut(){
+                sessionStorage.removeItem('accessToken')
+                window.location.href = "http://127.0.0.1:5501/index.html#";
+            }
+        </script>
     </div>
 </div>
