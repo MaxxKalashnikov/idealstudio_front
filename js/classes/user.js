@@ -47,29 +47,53 @@ class User {
 
     fetchProfile = async(token) =>{
     
-        if (token) {
-            fetch(this.#backend_url + '/profile', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            .then(response => {
+        try {
+            if (token) {
+                const response = await fetch(this.#backend_url + '/profile', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+    
                 if (response.ok) {
-                    return response.json();
+                    const data = await response.json();
+                    return data;
                 } else {
                     throw new Error('Failed to fetch data');
                 }
-            })
-            .then(data => {
-                console.log(data)
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        } else {
-            console.error('Access token not found in Session Storage');
+            } else {
+                throw new Error('Access token not found in Session Storage');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            throw error; // Пробросить ошибку для обработки в другом месте кода
         }
+
+
+        // if (token) {
+        //     fetch(this.#backend_url + '/profile', {
+        //         method: 'GET',
+        //         headers: {
+        //             'Authorization': `Bearer ${token}`
+        //         }
+        //     })
+        //     .then(response => {
+        //         if (response.ok) {
+        //             return response.json();
+        //         } else {
+        //             throw new Error('Failed to fetch data');
+        //         }
+        //     })
+        //     .then(data => {
+        //         return data
+        //     })
+        //     .catch(error => {
+        //         console.error('Error:', error);
+        //     });
+        // } else {
+        //     console.error('Access token not found in Session Storage');
+        // }
     }
 
   logout() {
