@@ -110,6 +110,19 @@ class Appointments{
             fetch(this.#backend_url + "/more" + `/${id}`)//fetching back
             .then((response) => response.json())
             .then((json) => {
+                this.#readJson(json);//storing appointments from response as instances of appointment class inside appointments array
+                resolve(this.#appointments)
+            },(error) => {
+                reject(error);
+            })
+        })
+    }
+
+    getApointmentsByUsername = async(username)=>{
+        return new Promise(async(resolve, reject) => {
+            fetch(this.#backend_url + "/my" + `/${username}`)//fetching back
+            .then((response) => response.json())
+            .then((json) => {
                 this.#readJsonMore(json);//storing appointments from response as instances of appointment class inside appointments array
                 resolve(this.#appointmentsMore)
             },(error) => {

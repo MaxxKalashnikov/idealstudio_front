@@ -10,7 +10,7 @@ const ifNoToken = document.getElementById('ifNoToken')
 checkUserButton.addEventListener('click', async()=>{
     const token = sessionStorage.getItem('accessToken');
     if(token){
-        const message = await user.checkToken(token);
+        const message = await user.checkToken();
         console.log(message.role);
         
         switch(message.role){
@@ -52,7 +52,7 @@ loginButton.addEventListener('click', async(event)=>{
         const token = sessionStorage.getItem('accessToken');
         console.log(token);
     
-        const message = await user.checkToken(token);
+        const message = await user.checkToken();
         
         switch(message.role){
             case 'admin':

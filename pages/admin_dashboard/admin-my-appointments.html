@@ -21,6 +21,8 @@
                 });
             }
         });
+
+
     </script>
     <title>Dashboard</title>
 </head>
@@ -38,13 +40,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-6 text-start">
-                            <h2>My appointments:</h2>
+                            <h2>All appoinments:</h2>
                         </div>
                     </div>
-                    <div class="container" id="content">
+                    <div class="container">
                         <div class="row">
                           <div class="col-12">
-                            <div class="table-responsive" bis_skin_checked="1">
+                            <div class="table-responsive" bis_skin_checked="1" id="allAppointments">
                                 <table class="table">
                                   <thead>
                                     <tr>
@@ -55,12 +57,12 @@
                                         <th scope="col">Ends at</th>
                                         <th scope="col">Service</th>
                                         <th scope="col">Employee</th>
-                                        <th scope="col">Customer</th>
+                                        <th scope="col">Customer's name</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                   </thead>
-                                  <tbody>
-                                        <tr>
+                                  <tbody id="tableAppointmentsBody">
+                                    <!-- <tr>
                                         <th scope="row">1</th>
                                         <td><div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -71,19 +73,8 @@
                                         <td>Jane Doe</td>
                                         <td>Helmi Suomalainen</td>
                                         <td>active</td>
-                                      </tr>
-                                      <tr>
-                                        <th scope="row">2</th>
-                                        <td><div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                          </div></td>
-                                        <td>04-04-2024 15:30</td>
-                                        <td>04-04-2024 15:30</td>
-                                        <td>Nail-polish</td>
-                                        <td>Jane Doe</td>
-                                        <td>Helmi Suomalainen</td>
-                                        <td>active</td>
-                                      </tr>
+                                      </tr> -->
+                                      
                                   </tbody>
                                 </table>
                               </div>
@@ -93,43 +84,69 @@
 
                     <div class="row">
                         <div class="col-12">
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            Add new appointment
-                          </button>
-                          <button type="button" class="btn btn-primary">
-                            Change a status
-                          <button type="button" class="btn btn-primary">
-                            View details
-                          </button>
+                            <button type="button" class="btn btn-primary">
+                                Add new appointment
+                              </button>
+                              <button type="button" class="btn btn-primary" id="changeButton">
+                                Change a status
+                                
+                              </button>
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="moreBut">
+                                View details
+                              </button>
                               <!-- Modal -->
                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Add new appointment</h5>
+                                        <h5 class="modal-title" id="staticBackdropLabel">Appointment details</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                  <input type="text" class="form-control" placeholder="First name" aria-label="First name">
-                                                </div>
-                                                <div class="col">
-                                                  <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
-                                                </div>
-                                              </div>
-                                              <div class="row">
-                                                <div class="col">
-                                                  <input type="text" class="form-control" placeholder="First name" aria-label="First name">
-                                                </div>
-                                                <div class="col">
-                                                  <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
-                                                </div>
-                                              </div>
+                                          <div class="row">
+                                            <div class="col-6">
+                                                <p>ID</p>
+                                                <p>Date</p>
+                                                <p>Start Time</p>
+                                                <p>End Time</p>
+                                                <p>Service Name</p>
+                                                <p>Category</p>
+                                                <p>Price</p>
+                                                <p>Master's First Name</p>
+                                                <p>Master's Last Name</p>
+                                                <p>Master's Email</p>
+                                                <p>Master's Phone</p>
+                                                <p>Master's Specialization</p>
+                                                <p>Customer First Name</p>
+                                                <p>Customer Last Name</p>
+                                                <p>Customer Email</p>
+                                                <p>Customer Phone</p>
+                                                <p>Status</p>
+                                            </div>
+                                            <div class="col-6" id="detailsDiv">
+                                              <!-- <p id="appointment_id"></p>
+                                              <p id="timeslot_date"></p>
+                                              <p id="start_time"></p>
+                                              <p id="end_time"></p>
+                                              <p id="service_name"></p>
+                                              <p id="category"></p>
+                                              <p id="price"></p>
+                                              <p id="employee_firstname"></p>
+                                              <p id="employee_lastname"></p>
+                                              <p id="employee_email"></p>
+                                              <p id="employee_phone"></p>
+                                              <p id="employee_specialization"></p>
+                                              <p id="customer_firstname"></p>
+                                              <p id="customer_lastname"></p>
+                                              <p id="customer_email"></p>
+                                              <p id="customer_phone"></p>
+                                              <p id="is_canceled"></p> -->
+                                            </div>
+                                        </div>
+                                        
                                         </div>
                                         <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Add</button>
                                         </div>
                                     </div>
                                     </div>
@@ -137,7 +154,6 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
@@ -146,11 +162,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script type="module" src="../../js/admin-my-appointments.js"></script>
     <script>
-      function logOut(){
-          sessionStorage.removeItem('accessToken')
-          window.location.href = "http://127.0.0.1:5501/index.html#";
-      }
-  </script>
-  </body>
+        function logOut(){
+            sessionStorage.removeItem('accessToken')
+            window.location.href = "http://127.0.0.1:5501/index.html#";
+        }
+    </script>
+</body>
 </html>

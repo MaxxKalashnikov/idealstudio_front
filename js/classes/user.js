@@ -40,7 +40,8 @@ class User {
             }
     }
 
-    checkToken = async(token) =>{
+    checkToken = async() =>{
+        const token = sessionStorage.getItem('accessToken');
         try {
             if (token) {
                 const response = await fetch(this.#backend_url + '/profile', {

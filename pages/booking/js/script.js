@@ -607,28 +607,6 @@ subbutton.addEventListener('click', ()=>{
     alert("Fill all the fields")
   }
 })
-// (function () {
-//   'use strict';
-
-//   // Fetch all the forms we want to apply custom Bootstrap validation styles to
-//   var forms = document.querySelectorAll('.needs-validation');
-
-//   // Loop over them and prevent submission
-//   Array.prototype.slice.call(forms)
-//     .forEach(function (form) {
-//       form.addEventListener('button', function (event) {
-//         if (form.checkValidity() === false) {
-//           event.preventDefault();
-//           event.stopPropagation();
-//           return;
-//         }
-
-//         submit()
-
-//         form.classList.add('was-validated');
-//       }, false);
-//     });
-// })();
 
 let customerID = ""
 let customerChosenObject = "";
@@ -739,14 +717,6 @@ function getAppointmentReady(description, customerId, serviceId, timeslotId){//c
 function printObj(customerChosenObject, serviceChosenObject, timeChosenObject){
 
   console.log(customerChosenObject + '\n//////////////////\n' + serviceChosenObject + "\n/////////////////////\n" + timeChosenObject);
-}
-
-const getAllCustomers = async()=>{
-  customers.getAllCustomers().then((customers)=>{
-    customers.forEach(customer =>{
-      // console.log(customer)
-    })
-  })
 }
 
 const confirmAppointment = document.getElementById('confirmAppointment');
