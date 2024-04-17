@@ -79,16 +79,21 @@ const getAppointmentsAll = async () => {
             parentElement.removeChild(parentElement.firstChild);
         }
     }
-    const username = await user.checkToken()
-    //method from todos class which returns an array of task objects
-    appointments.getApointmentsByUsername().then((appoints) =>{
-        console.log(appoints)
-        appoints.forEach(appoint => {
-            renderAppointment(appoint);//handling of ui elements
-        });
-    }).catch((error) => {//error handling
-        alert(error)
-    })
+    const userData = await user.checkToken()
+    if(userData){
+        //method from todos class which returns an array of task objects
+        appointments.getApointmentsByUsername(userData.username).then((appoints) =>{
+            console.log(appoints)
+            appoints.forEach(appoint => {
+                renderAppointment(appoint);//handling of ui elements
+            });
+        }).catch((error) => {//error handling
+            alert(error)
+        })
+    }
+    else{
+        alert("error :(")
+    }
 }
 
 const changeButton = document.getElementById('changeButton');
@@ -183,9 +188,5 @@ more.addEventListener('click', ()=>{
 
     getAppointmentsMore(idNumber);
 })
-
-const getAppointmentsByUn = async()=>{
-
-}
 
 getAppointmentsAll();

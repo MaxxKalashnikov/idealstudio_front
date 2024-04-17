@@ -67,6 +67,44 @@ class Appointments{
         })
     }
 
+    cancelOrActivateAppointmentForUser = async (id) => {
+        let appoint_status;
+        this.#appointmentsMore.forEach(appoint =>{
+            if(appoint.appointment_id == id){
+                appoint_status = appoint.is_canceled;
+            }
+            console.log(appoint)
+        })
+        
+        switch(appoint_status){
+            case true:
+                appoint_status = false;
+                break;
+            case false:
+                appoint_status = true;
+                break;
+            default:
+                console.log('no data');
+        }
+
+        return new Promise((resolve, reject) => {
+            fetch(this.#backend_url + '/update/' + id, {
+                method: 'put',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ is_canceled: appoint_status })
+            })
+            .then(response => response.json())
+            .then(json => {
+                resolve(json.appointment_id);
+            })
+            .catch(error => {
+                reject(error);
+            });
+        });
+    }  
+
     cancelOrActivateAppointment = async (id) => {
         let appoint_status;
         this.#appointments.forEach(appoint =>{
@@ -106,12 +144,13 @@ class Appointments{
     
     
     getMoreDetails = async(id) =>{
+        this.#appointmentsMore = [];
         return new Promise(async(resolve, reject) => {
             fetch(this.#backend_url + "/more" + `/${id}`)//fetching back
             .then((response) => response.json())
             .then((json) => {
-                this.#readJson(json);//storing appointments from response as instances of appointment class inside appointments array
-                resolve(this.#appointments)
+                this.#readJsonMore(json);//storing appointments from response as instances of appointment class inside appointments array
+                resolve(this.#appointmentsMore)
             },(error) => {
                 reject(error);
             })
@@ -119,12 +158,13 @@ class Appointments{
     }
 
     getApointmentsByUsername = async(username)=>{
+        this.#appointments.length = 0
         return new Promise(async(resolve, reject) => {
             fetch(this.#backend_url + "/my" + `/${username}`)//fetching back
             .then((response) => response.json())
             .then((json) => {
-                this.#readJsonMore(json);//storing appointments from response as instances of appointment class inside appointments array
-                resolve(this.#appointmentsMore)
+                this.#readJson(json);//storing appointments from response as instances of appointment class inside appointments array
+                resolve(this.#appointments)
             },(error) => {
                 reject(error);
             })
