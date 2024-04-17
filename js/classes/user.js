@@ -1,6 +1,4 @@
 class User {
-//   #username = undefined
-//   #user_type = undefined
   #token = undefined
   #backend_url = "http://localhost:3001/users";
 
@@ -8,10 +6,7 @@ class User {
     const userFromStorage = sessionStorage.getItem('accessToken')
     if (userFromStorage) {
         const userObject = JSON.parse(userFromStorage)
-        this.#token = userObject.token
-    //   this.#username = userObject.username
-    //   this.#user_type = userObject.user_type
-        
+        this.#token = userObject.token     
     }
   }
 
@@ -45,8 +40,7 @@ class User {
             }
     }
 
-    fetchProfile = async(token) =>{
-    
+    checkToken = async(token) =>{
         try {
             if (token) {
                 const response = await fetch(this.#backend_url + '/profile', {
@@ -54,8 +48,7 @@ class User {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
-                });
-    
+                }); 
                 if (response.ok) {
                     const data = await response.json();
                     return data;

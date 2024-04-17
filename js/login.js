@@ -10,10 +10,10 @@ const ifNoToken = document.getElementById('ifNoToken')
 checkUserButton.addEventListener('click', async()=>{
     const token = sessionStorage.getItem('accessToken');
     if(token){
-        const message = await user.fetchProfile(token);
-        console.log(message.message);
+        const message = await user.checkToken(token);
+        console.log(message.role);
         
-        switch(message.message){
+        switch(message.role){
             case 'admin':
                 window.location.href = "http://127.0.0.1:5501/pages/admin_dashboard/admin-home.html";
                 break;
@@ -52,10 +52,9 @@ loginButton.addEventListener('click', async(event)=>{
         const token = sessionStorage.getItem('accessToken');
         console.log(token);
     
-        const message = await user.fetchProfile(token);
-        console.log(message.message);
+        const message = await user.checkToken(token);
         
-        switch(message.message){
+        switch(message.role){
             case 'admin':
                 window.location.href = "http://127.0.0.1:5501/pages/admin_dashboard/admin-home.html";
                 break;
