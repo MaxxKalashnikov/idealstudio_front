@@ -2,7 +2,11 @@ import { Posts } from './classes/Posts.js'
 
 const posts = new Posts()
 import { Post } from './classes/Post.js'
+import { User } from './classes/user.js'
 
+const user = new User()
+
+// render a post
 function renderPost(post) { 
     const list = document.querySelector('#posts-list')
 
@@ -13,6 +17,7 @@ function renderPost(post) {
     list.appendChild(li) 
 }
 
+// create a card element for a post
 function createPostCard(post) {
     const card = document.createElement('div')
     card.classList = 'card'
@@ -56,6 +61,7 @@ function createPostCard(post) {
     button.href = '#article-section'
 
 
+    // event listener
     button.addEventListener('click', (event) => {
         event.preventDefault()
         const posts_section = document.getElementById('posts-section');
@@ -72,6 +78,15 @@ function createPostCard(post) {
         post_container.appendChild(card)
         body.removeChild(button)
         getReplies(post.id)
+
+        // hide the reply-container if the user is not logged in
+        const reply_container = document.getElementById('reply-container')
+        const userData = user.checkToken()
+        if (!userData) {
+          reply_container.classList.add('d-none')
+        } else {
+          reply_container.classList.remove('d-none')
+        }
     })
 
     body.appendChild(button)
@@ -80,6 +95,7 @@ function createPostCard(post) {
 }
 
 
+// render a reply
 function renderReply(reply) { 
   const list = document.querySelector('#replies-list')
 
@@ -90,6 +106,7 @@ function renderReply(reply) {
   list.appendChild(li) 
 }
 
+// create a card element for a reply
 function createReplyCard(reply) {
   const card = document.createElement('div')
   card.classList = 'card p-3 border-0'
@@ -118,7 +135,7 @@ function createReplyCard(reply) {
 }
 
 
-
+// get all posts
 const getPosts = () => {
     posts.getPosts().then(post_objects => {
       post_objects.forEach(post_object => {
@@ -131,7 +148,7 @@ const getPosts = () => {
 }
 
 
-
+// get all replies
 const getReplies = (post_id) => {
   posts.getReplies(post_id).then(replies => {
     replies.forEach(reply => {
@@ -143,21 +160,33 @@ const getReplies = (post_id) => {
 })
 }
 
+// add a reply
 const addReply = (reply) => {
   posts.addReply(reply).then(result => {
     console.log(result)
   })
 }
 
+// reply button enevent listener
 document.getElementById('reply-button').addEventListener('click', (event) => { 
   event.preventDefault()
   document.querySelector('#replies-list').innerHTML = ''
 
+  // post id
   const post_id = document.getElementById('article-section').post_id
 
+  // verify user
+  const userData = user.checkToken()
+
+  if (!userData) {
+    alert('You must be logged in to reply')
+    return
+  }
+
+  // reply
   const reply = {
     "post_id": post_id,
-    "author_id": 1,
+    "author_id": userData.id,
     "content": document.getElementById('reply-content').value
   }
   addReply(reply)
@@ -165,6 +194,8 @@ document.getElementById('reply-button').addEventListener('click', (event) => {
   getReplies(post_id)
 })
 
+
+// back button event listener
 document.getElementById('back-button').addEventListener('click', (event) => {
   event.preventDefault()
   const posts_section = document.getElementById('posts-section');
