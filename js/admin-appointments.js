@@ -69,14 +69,18 @@ function renderAppointment(appointment){
  
 }
 
-//initial func for getting a list appointments
-const getAppointmentsAll = async () => {
+function cleanDiv(){
     const childElement = parentElement.querySelector('tr');
     if(childElement){
         while (parentElement.firstChild) {
             parentElement.removeChild(parentElement.firstChild);
         }
     }
+}
+
+//initial func for getting a list appointments
+const getAppointmentsAll = async () => {
+    cleanDiv()
     //method from todos class which returns an array of task objects
     appointments.getAppointments().then((appoints) =>{
         console.log(appoints)
@@ -103,6 +107,14 @@ changeButton.addEventListener('click', () => {
     });
     if (num == 0) {
         return;
+    }
+    const detailsDiv = document.getElementById('detailsDiv');
+
+    const childElement = detailsDiv.querySelector('p');
+    if(childElement){
+        while (detailsDiv.firstChild) {
+            detailsDiv.removeChild(detailsDiv.firstChild);
+        }
     }
 
     // Call cancelOrActivateAppointment and chain getAppointmentsAll after it's resolved

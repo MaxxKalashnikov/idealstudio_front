@@ -6,11 +6,11 @@ class Service{
     #price;
     #is_available;
 
-    constructor(service_id, service_name, category, description, price, is_available) {
+    constructor(service_id, service_name, description, category, price, is_available) {
         this.#service_id = service_id;
         this.#service_name = service_name;
-        this.#category = category;
         this.#description = description;
+        this.#category = category;
         this.#price = price;
         this.#is_available = is_available;
     }

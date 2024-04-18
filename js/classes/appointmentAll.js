@@ -97,6 +97,7 @@ class Appointments{
             })
             .then(response => response.json())
             .then(json => {
+                this.#appointmentsMore.length = 0
                 resolve(json.appointment_id);
             })
             .catch(error => {
@@ -134,6 +135,7 @@ class Appointments{
             })
             .then(response => response.json())
             .then(json => {
+                this.#appointmentsMore = []
                 resolve(json.appointment_id);
             })
             .catch(error => {

@@ -257,6 +257,7 @@ const getServicesAll = async () => {
   //method from todos class which returns an array of task objects
   services.getServices().then((services) =>{
       services.forEach(service => {
+        console.log(service)
           renderService(service);//handling of ui elements
       });
   }).catch((error) => {//error handling
@@ -265,7 +266,7 @@ const getServicesAll = async () => {
 }
 
 function renderService(service){
-  if(service.category == "Manicure"){
+  if(service.category == "manicure"){
 
     // Create col-md-4 and col-xs-12 div
       var colDiv = document.createElement("div");
@@ -322,7 +323,7 @@ function renderService(service){
       parent.appendChild(colDiv);
   }
 
-  if(service.category == "Pedicure"){
+  if(service.category == "pedicure"){
 
    // Create col-md-4 and col-xs-12 div
    var colDiv = document.createElement("div");
@@ -641,9 +642,9 @@ function submit(){
 
     const p1 = document.createElement('p');
     if(manic === true){
-      p1.innerText = "Manicure";
+      p1.innerText = "manicure";
     }else{
-      p1.innerText = "Pedicure";
+      p1.innerText = "pedicure";
     }
   
     const p2 = document.createElement('p');

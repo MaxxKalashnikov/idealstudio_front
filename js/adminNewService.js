@@ -11,8 +11,8 @@ document.querySelector('form').addEventListener('submit', async function(event) 
         service_name: serviceName,
         category: category,
         service_price: service_price,
-        is_available: isAvailable === '1' ? true : false,
-        service_description: description
+        service_description: description,
+        is_available: isAvailable === '1' ? true : false
     };
 
     try {
