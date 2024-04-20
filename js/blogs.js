@@ -179,7 +179,7 @@ document.getElementById('reply-button').addEventListener('click', (event) => {
   const userData = user.checkToken()
 
   if (!userData) {
-    alert('You must be logged in to reply')
+    alert('You must be logged in to reply!')
     return
   }
 
@@ -206,5 +206,6 @@ document.getElementById('back-button').addEventListener('click', (event) => {
   window.location.reload()
  
 })
+
 getPosts()
 
