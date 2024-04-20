@@ -168,7 +168,7 @@ const addReply = (reply) => {
 }
 
 // reply button enevent listener
-document.getElementById('reply-button').addEventListener('click', (event) => { 
+document.getElementById('reply-button').addEventListener('click', async (event) => { 
   event.preventDefault()
   document.querySelector('#replies-list').innerHTML = ''
 
@@ -176,7 +176,7 @@ document.getElementById('reply-button').addEventListener('click', (event) => {
   const post_id = document.getElementById('article-section').post_id
 
   // verify user
-  const userData = user.checkToken()
+  const userData = await user.checkToken()
 
   if (!userData) {
     alert('You must be logged in to reply!')
