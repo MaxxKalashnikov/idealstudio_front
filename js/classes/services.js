@@ -28,7 +28,7 @@ class Services{
             fetch(this.#backend_url + "/")//fetching back
             .then((response) => response.json())
             .then((json) => {
-                this.#readJson(json);//storing appointments from response as instances of appointment class inside appointments array
+                this.#readJson(json);//storing appointments from response as instances of appointment class inside appointments array    
                 resolve(this.#services)
             },(error) => {
                 reject(error);

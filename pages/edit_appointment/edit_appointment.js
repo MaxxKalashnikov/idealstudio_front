@@ -12,7 +12,7 @@ const cancelApp = document.getElementById('cancelApp')
 booking.addEventListener('click', ()=>{
     window.location.href = "http://127.0.0.1:5501/pages/booking/booking.html";
 })
-
+let appointArray = '';
 cancelApp.addEventListener('click', async()=>{
     const idElement = document.getElementById('appointment_id')
     if(idElement){
@@ -51,6 +51,7 @@ findApp.addEventListener('click', async () => {
             if(appoints.length > 0){
                 appoints.forEach(appoint => {
                     renderDetails(appoint); // handling of ui elements
+                    console.log(appoint.appointment_id)
                 });
                 josFound.style.display = "block";
                 notFound.style.display = "none";
@@ -64,6 +65,34 @@ findApp.addEventListener('click', async () => {
             notFound.style.display = "block";
             alert("Provide an appointment number!");
         }
+
+        const appointmentFields = [
+            'appointment_id',
+            'timeslot_date',
+            'start_time',
+            'end_time',
+            'service_name',
+            'category',
+            'price',
+            'employee_firstname',
+            'employee_lastname',
+            'employee_email',
+            'employee_phone',
+            'employee_specialization',
+            'customer_firstname',
+            'customer_lastname',
+            'customer_email',
+            'customer_phone',
+            'is_canceled'
+          ];
+
+        appointmentFields.forEach(field=>{
+            console.log(appointArray.appointment_id) //yess
+        })
+
+        // appointmentFields.forEach(appoint=>{
+        //     console.log(appoint)
+        // })
         appointId.value = '';
     } catch (error) {
         alert(error); // error handling
