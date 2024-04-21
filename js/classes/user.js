@@ -6,7 +6,7 @@ class User {
     const userFromStorage = sessionStorage.getItem('accessToken')
     if (userFromStorage) {
         const userObject = JSON.parse(userFromStorage)
-        this.#token = userObject.token     
+        this.#token = userObject
     }
   }
 
@@ -54,7 +54,8 @@ class User {
                     const data = await response.json();
                     return data;
                 } else {
-                    throw new Error('Failed to fetch data');
+                    this.#token = undefined
+                    sessionStorage.removeItem('accessToken')
                 }
             } else {
                 throw new Error('Access token not found in Session Storage');
@@ -69,6 +70,27 @@ class User {
     logout() {
         this.#token = undefined
         sessionStorage.removeItem('accessToken')
+    }
+
+    resetPassword = async(username, actualEmail)=>{
+        try {
+            const response = await fetch(this.#backend_url + '/forgotpassword', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({username: username, email: actualEmail})
+            });
+            const responseData = await response.json();
+            if (response.ok) {
+                return responseData
+            } else {
+                throw new Error('Failed to suc ass');
+            }
+        } catch (error) {
+            console.error('Failed to suc ass:', error);
+            alert('Failed to succ ass');
+        }
     }
 
 }
