@@ -4,6 +4,7 @@ class User {
 
   constructor() {
     const userFromStorage = sessionStorage.getItem('accessToken')
+    
     if (userFromStorage) {
         const userObject = JSON.parse(userFromStorage)
         this.#token = userObject
@@ -14,7 +15,7 @@ class User {
     return this.#token
   }
 
-  get isLoggedIn() {
+  isLoggedIn() {
     return this.#token !== undefined ? true : false
   }
 

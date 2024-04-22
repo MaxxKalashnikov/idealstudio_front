@@ -1,10 +1,11 @@
 import { Posts } from './classes/Posts.js'
-
 const posts = new Posts()
-import { Post } from './classes/Post.js'
-import { User } from './classes/user.js'
 
+//import { Post } from './classes/Post.js'
+
+import { User } from './classes/user.js'
 const user = new User()
+
 
 // render a post
 function renderPost(post) { 
@@ -81,8 +82,10 @@ function createPostCard(post) {
 
         // hide the reply-container if the user is not logged in
         const reply_container = document.getElementById('reply-container')
-        const userData = user.checkToken()
-        if (!userData) {
+        
+        // check if the user is logged in
+        const isLoggedIn = user.isLoggedIn()
+        if (!isLoggedIn) {
           reply_container.classList.add('d-none')
         } else {
           reply_container.classList.remove('d-none')
