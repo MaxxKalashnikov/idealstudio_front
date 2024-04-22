@@ -83,6 +83,7 @@ class User {
             });
             const responseData = await response.json();
             if (response.ok) {
+                sessionStorage.setItem('resetToken', JSON.stringify(responseData.resetToken))
                 return responseData
             } else {
                 throw new Error('Failed to suc ass');
