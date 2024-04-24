@@ -51,18 +51,18 @@ loginButton.addEventListener('click', async(event)=>{
 
         const token = sessionStorage.getItem('accessToken');
         console.log(token);
-    
+        
         const message = await user.checkToken();
         
         switch(message.role){
             case 'admin':
-                window.location.href = "http://127.0.0.1:5501/pages/admin_dashboard/admin-home.html";
+                window.location.href = "./../pages/admin_dashboard/admin-home.html";
                 break;
             case 'customer':
-                window.location.href = "http://127.0.0.1:5501/pages/customer_dashboard/customer_home.html";
+                window.location.href = "./../pages/customer_dashboard/customer_home.html";
                 break;
             case 'employee':
-                window.location.href = "http://127.0.0.1:5501/pages/employee_dashboard/employee_home.html";
+                window.location.href = "./../pages/employee_dashboard/employee_home.html";
                 break;
             default:
                 console.log('no role :(')

@@ -7,6 +7,7 @@ console.log(user.token)
 
 const getInformationAndStatistics = async () => {
     const userInf = await user.checkToken();
+
     statNinfo.getInfo(userInf.id).then((piece) =>{
         piece.forEach(elem => {
             renderInfo(elem);//handling of ui elements

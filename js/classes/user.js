@@ -21,6 +21,7 @@ class User {
 
 
     tryLogin = async(username, password)=>{
+        console.log("TRYING TO LOGIN")
         const response = await fetch(this.#backend_url + "/login", {
             method: 'POST',
             headers: {
@@ -31,12 +32,14 @@ class User {
                 password: password
             })
         })
+        
             if (response.ok === true) {
                 const json = await response.json()
                 this.#token = json.token
                 sessionStorage.setItem('accessToken', JSON.stringify(json.token))
                 return this
             } else {
+                console.log("CAN NOT LOGIN")
                 throw response.statusText
             }
     }
