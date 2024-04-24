@@ -550,7 +550,7 @@ function renderTS(ts){
   let day = chosenDate.substring(3,5);
   day = Number(day);
   day = day - 1;
-  if(day >= 0 && )
+  if(day >= 0 && day <= 9)
   day = String(day)
   let year = chosenDate.substring(6,10);
   chosenDate = `${year}-${month}-${day}`

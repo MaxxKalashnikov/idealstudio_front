@@ -2,6 +2,23 @@ import { User } from "../../js/classes/user.js";
 const reset = document.getElementById('reset');
 const checkCode = document.getElementById('checkCode')
 const user = new User()
+let plainToken = ''
+
+const emailDiv = document.getElementById('divForEmail')
+const codeDiv = document.getElementById('divForCode')
+const divForUsername = document.getElementById('divForUsername')
+const checkMail = document.getElementById('checkMail')
+const resetForUname = document.getElementById('resetForUname')
+
+checkMail.addEventListener('click', ()=>{
+  divForUsername.style.display = 'none'
+  emailDiv.style.display = 'block'
+})
+
+resetForUname.addEventListener('click', ()=>{
+  
+})
+
 
 reset.addEventListener('click', async ()=>{
     const emailInp = document.getElementById('exampleFormControlInput1')
@@ -10,14 +27,11 @@ reset.addEventListener('click', async ()=>{
     console.log(actualEmail)
     try{
         const response = await user.resetPassword(username, actualEmail)
-        console.log(response.resetToken)
+        console.log(response)
+        plainToken = response.resetToken;
         const code = response.resetToken.slice(0, 6); 
-        await sendMail(actualEmail, code)
-        const resetToken = sessionStorage.getItem('resetToken');
-        if(resetToken){
-          const emailDiv = document.getElementById('divForEmail')
-          const codeDiv = document.getElementById('divForCode')
-
+        //await sendMail(actualEmail, code)
+        if(response.resetToken.length > 1){
           emailDiv.style.display = "none"
           codeDiv.style.display = "block"
         }else{
@@ -28,18 +42,46 @@ reset.addEventListener('click', async ()=>{
     }
 })
 
+const divForNewPassword = document.getElementById('divForNewPassword')
 checkCode.addEventListener('click', async() =>{
     let codeInp = document.getElementById('codeInp');
-    let resetToken = sessionStorage.getItem('resetToken');
-    resetToken = resetToken.slice(1, 7); 
+    let plainTokenCut = plainToken.slice(0, 6); 
     codeInp = codeInp.value.trim()
-    console.log(resetToken + '\n\n' + codeInp)
+    console.log(plainTokenCut + '\n\n' + codeInp)
 
-    if(codeInp == resetToken){
+    if(codeInp == plainTokenCut){
       console.log('gocha')
+      codeDiv.style.display = "none"
+      divForNewPassword.style.display = 'block'
     }else{
       console.log('hell nah')
     }
+})
+
+const sendNewPass = document.getElementById('sendNewPass')
+sendNewPass.addEventListener('click', async()=>{
+  const newPass = document.getElementById('newPass')
+  const confNewPass = document.getElementById('confNewPass') 
+
+  if(newPass.value === confNewPass.value && newPass.value.length >= 4 && confNewPass.value.length >=4){
+    const result = await user.createNewPass(newPass.value, plainToken)
+    if(result){
+      console.log(result)
+      const divSucass = document.getElementById('divSucass')
+      divForNewPassword.style.display = 'none'
+      divSucass.style.display = 'block'
+    }
+  }
+  else{
+    alert('Passwords do not match or are too short!')
+    newPass.value = ""
+    confNewPass.value = ""
+  }
+})
+
+const mainPage = document.getElementById('mainPage');
+mainPage.addEventListener('click', ()=>{
+  window.location.href = "http://127.0.0.1:5501/index.html#";
 })
 
 async function sendMail(mail, message){

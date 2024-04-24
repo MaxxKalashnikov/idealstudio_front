@@ -1,10 +1,13 @@
 const BACKEND_ROOT_URL = "http://localhost:3001/home"; //back url 
 import { StatAndInfo } from './classes/statAndInfo.js' //importing class for appointments
+import { User } from './classes/user.js';
 const statNinfo = new StatAndInfo(BACKEND_ROOT_URL);
+const user = new User()
+console.log(user.token)
 
 const getInformationAndStatistics = async () => {
-    //method from todos class which returns an array of task objects
-    statNinfo.getInfo().then((piece) =>{
+    const userInf = await user.checkToken();
+    statNinfo.getInfo(userInf.id).then((piece) =>{
         piece.forEach(elem => {
             renderInfo(elem);//handling of ui elements
         });
@@ -13,7 +16,6 @@ const getInformationAndStatistics = async () => {
     })
 
     statNinfo.getStat().then((piece) =>{
-        // console.log(piece)
         piece.forEach(elem => {
             renderStat(elem);//handling of ui elements
         });

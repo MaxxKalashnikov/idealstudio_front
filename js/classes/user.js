@@ -84,7 +84,27 @@ class User {
             });
             const responseData = await response.json();
             if (response.ok) {
-                sessionStorage.setItem('resetToken', JSON.stringify(responseData.resetToken))
+                return responseData
+            } else {
+                throw new Error('Failed to suc ass');
+            }
+        } catch (error) {
+            console.error('Failed to suc ass:', error);
+            alert('Failed to succ ass');
+        }
+    }
+
+    createNewPass = async(pass, token)=>{
+        try {
+            const response = await fetch(this.#backend_url + '/newpassword', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({password: pass, token: token})
+            });
+            const responseData = await response.json();
+            if (response.ok) {
                 return responseData
             } else {
                 throw new Error('Failed to suc ass');

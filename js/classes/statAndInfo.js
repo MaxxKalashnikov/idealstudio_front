@@ -36,10 +36,10 @@ class StatAndInfo{
     
     
 
-    getInfo = async () =>{
+    getInfo = async (id) =>{
         this.#info.length = 0;
         return new Promise(async(resolve, reject) => {
-            fetch(this.#backend_url)//fetching back
+            fetch(this.#backend_url + `/${id}`)//fetching back
             .then((response) => response.json())
             .then((json) => {
                 this.#readOnlyInfo(json);//storing appointments from response as instances of appointment class inside appointments array
