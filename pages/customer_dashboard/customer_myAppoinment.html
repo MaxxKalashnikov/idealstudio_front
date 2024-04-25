@@ -12,7 +12,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             const sidebarContainer = document.getElementById("sidebar-container");
             if (sidebarContainer) {
-                fetch("employee_sidebar.html")
+                fetch("customer_sidebar.html")
                     .then(response => response.text())
                     .then(data => {
                     sidebarContainer.innerHTML = data;
