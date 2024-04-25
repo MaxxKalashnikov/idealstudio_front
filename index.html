@@ -737,7 +737,7 @@
         </div>
       </section>
 
-    <section id="contact-info">
+      <section id="contact-info">
         <!-- Map section -->
         <div class="container contact-info">
             <div class="row justify-content-center"> <!-- Center the content horizontally -->
@@ -776,31 +776,8 @@
                     </div>
                 </div>
                 <!-- Right half for contact information -->
-                <div class="col-md-6 d-flex justify-content-center align-items-center">
-                    <div>
-                        <h2>Contact Information</h2>
-                        <div class="card-body">
-                            <h5 class="card-title">Master 1</h5>
-                            <p class="card-text">Specialization: Specialization 1</p>
-                            <p class="card-text">Email: master1@example.com</p>
-                            <p class="card-text">Phone: +1234567890</p>
-                        </div>
-                        <!-- Master 2 -->
-                        <div class="card-body">
-                            <h5 class="card-title">Master 2</h5>
-                            <p class="card-text">Specialization: Specialization 2</p>
-                            <p class="card-text">Email: master2@example.com</p>
-                            <p class="card-text">Phone: +1234567890</p>
-                        </div>
-                        <!-- Master 3 -->
-                        <div class="card-body">
-                            <h5 class="card-title">Master 3</h5>
-                            <p class="card-text">Specialization: Specialization 3</p>
-                            <p class="card-text">Email: master3@example.com</p>
-                            <p class="card-text">Phone: +1234567890</p>
-                        </div>
-                        <!-- Add more contact information as needed -->
-                    </div>
+                <div class="col-md-6 d-flex justify-content-center align-items-center" id="contactInformation">
+                    <!-- Contact information will be populated here -->
                 </div>
             </div>
         </div>
@@ -815,42 +792,66 @@
     <!-- Google Maps API (You need to replace YOUR_API_KEY with your actual API key) -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
     
-    <!-- bootstrap js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script type="module" src="./js/index.js"></script>
-        <script type="module" src="./js/login.js"></script>
-        <script src="./js/signup.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-      </div>
-      <script>
-        
+    <!-- Add your other script tags -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
         // Swiper initialization code
         var swiper = new Swiper(".mySwiper", {
-          slidesPerView: 5,
-          spaceBetween: 20,
-          navigation: {
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-          },
-          // pagination: {
-          //     el: ".swiper-pagination",
-          //     clickable: true,
-          // },
-          breakpoints: {
-              0: {
-                  slidesPerView: 1,
-              },
-              520: {
-                  slidesPerView: 2,
-              },
-              800: {
-                  slidesPerView: 3,
-              },
-              1000: {
-                  slidesPerView: 4,
-              },
-          }
+            slidesPerView: 5,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                520: {
+                    slidesPerView: 2,
+                },
+                800: {
+                    slidesPerView: 3,
+                },
+                1000: {
+                    slidesPerView: 4,
+                },
+            }
         });
-      </script>
+    
+        // Fetch employee data from backend
+        fetch('http://localhost:3001/employees/')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Handle the response data
+                if (data && data.length > 0) {
+                    var employeesHtml = '';
+                    data.forEach(employee => {
+                        employeesHtml += `
+                            <div class="card-body">
+                                <h5 class="card-title">${employee.firstname} ${employee.lastname}</h5>
+                                <p class="card-text">Specialization: ${employee.specialization}</p>
+                                <p class="card-text">Email: ${employee.email}</p>
+                                <p class="card-text">Phone: ${employee.phone}</p>
+                            </div>
+                        `;
+                    });
+                    // Update the contact information section with the employee data
+                    document.getElementById('contactInformation').innerHTML = employeesHtml;
+                } else {
+                    document.getElementById('contactInformation').innerHTML = '<p>No employee data available.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching employee data:', error);
+                // Handle error
+                document.getElementById('contactInformation').innerHTML = '<p>Error fetching employee data.</p>';
+            });
+    </script>
 </body>
 </html>
