@@ -1,11 +1,25 @@
-const BACKEND_ROOT_URL = "http://localhost:3001/home"; //back url 
+let backend_root_url = ""; 
 import { User } from './classes/user.js';
 import { StatAndInfo } from './classes/statAndInfo.js' //importing class for appointments
-const statNinfo = new StatAndInfo(BACKEND_ROOT_URL);
+
+
+
 const user = new User()
+const userInf = await user.checkToken();
+
+if (userInf.role == "customer"){
+    backend_root_url = "http://localhost:3001/customers"
+}
+else{
+    backend_root_url = "http://localhost:3001/home"
+}
+
+console.log("BAQCKEND URL", backend_root_url)
+const statNinfo = new StatAndInfo(backend_root_url);
+
 
 const getInformation = async () => {
-    const userInf = await user.checkToken();
+
     //method from todos class which returns an array of task objects
     statNinfo.getInfo(userInf.id).then((piece) =>{
         piece.forEach(elem => {
@@ -16,6 +30,7 @@ const getInformation = async () => {
     })
 
 }
+
 
 function renderInfo(elem){
     const parent = document.getElementById('infoSection')

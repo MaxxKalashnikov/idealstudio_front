@@ -14,7 +14,7 @@ class StatAndInfo{
         const personalInfo = json.personalInfo; // Extracting personal information from the input JSON
         // console.log(personalInfo[0].firstname, "\n\n" + personalInfo[0].lastname)
         // Create an instance of Info class with the personal information
-        console.log("PERSONAL INFO json:: ", json)
+        console.log("PERSONAL INFO json:: ", personalInfo)
         const info = new Info(
             personalInfo[0].firstname,
             personalInfo[0].lastname,
