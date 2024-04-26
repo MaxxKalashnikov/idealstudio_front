@@ -544,18 +544,58 @@ $('#datepicker').datepicker().on('changeDate', function(e) {
 let timeslotChosen = "";
 let timeChosenObject = "";
 
+class Previous{
+  #day
+
+  constructor(day){
+    this.#day = day
+  }
+
+  get day(){
+    return this.#day;
+  }
+}
+
 function renderTS(ts){
   chosenDate = date.value;
   let month = chosenDate.substring(0,2);
   let day = chosenDate.substring(3,5);
+  let currentDay = new Previous(day)
   day = Number(day);
   day = day - 1;
-  if(day >= 0 && day <= 9)
+  if(day >= 0 && day <= 9){
+    if(day == 0){
+      let prevDay = Number(currentDay.day)
+      day = day + 1;
+      day = String(day)
+      day = "0" + day
+    }else{
+      day = String(day)
+      day = "0" + day
+    }
+  }
   day = String(day)
+  currentDay = new Previous(day)
   let year = chosenDate.substring(6,10);
   chosenDate = `${year}-${month}-${day}`
   console.log(chosenDate)
-  let tsDate = ts.timeslot_date.substring(0, 10);
+  let dayOfMonth = ts.timeslot_date.substring(8, 10);
+  if(dayOfMonth[0] == '0'){
+    let dof = Number(dayOfMonth[1])
+    dof = dof + 1;
+    if(dof == 10){
+      dayOfMonth = String(dof)
+    }else{
+      dayOfMonth = '0' + dof
+    }
+  }else{
+    dayOfMonth = Number(dayOfMonth)
+    dayOfMonth = dayOfMonth + 1; 
+    dayOfMonth = String(dayOfMonth)
+  }
+
+  let tsDate = ts.timeslot_date.substring(0, 8) + `${dayOfMonth}` + ts.timeslot_date.substring(10);
+  tsDate = ts.timeslot_date.substring(0, 10);
 
   if(tsDate == chosenDate && ts.is_available === true){
       console.log(ts)

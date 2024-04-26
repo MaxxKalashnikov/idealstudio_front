@@ -8,7 +8,7 @@ const user = new User()
 const userInf = await user.checkToken();
 
 if (userInf.role == "customer"){
-    backend_root_url = "http://localhost:3001/customers"
+    backend_root_url = "http://localhost:3001/customers/profile"
 }
 else{
     backend_root_url = "http://localhost:3001/home"
@@ -19,8 +19,6 @@ const statNinfo = new StatAndInfo(backend_root_url);
 
 
 const getInformation = async () => {
-
-    //method from todos class which returns an array of task objects
     statNinfo.getInfo(userInf.id).then((piece) =>{
         piece.forEach(elem => {
             renderInfo(elem);//handling of ui elements

@@ -38,6 +38,10 @@ class Timeslot{
     get employee_id() {
         return this.#employee_id;
     }
+
+    set timeslot_date(date) {
+        this.#timeslot_date = date;
+    }
 }
 
 export { Timeslot }

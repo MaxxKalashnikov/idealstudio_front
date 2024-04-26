@@ -56,13 +56,13 @@ loginButton.addEventListener('click', async(event)=>{
         
         switch(message.role){
             case 'admin':
-                window.location.href = "./../pages/admin_dashboard/admin-home.html";
+                window.location.href = "/pages/admin_dashboard/admin-home.html";
                 break;
             case 'customer':
-                window.location.href = "./../pages/customer_dashboard/customer_home.html";
+                window.location.href = "/pages/customer_dashboard/customer_home.html";
                 break;
             case 'employee':
-                window.location.href = "./../pages/employee_dashboard/employee_home.html";
+                window.location.href = "/pages/employee_dashboard/employee_home.html";
                 break;
             default:
                 console.log('no role :(')

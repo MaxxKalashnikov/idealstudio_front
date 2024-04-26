@@ -27,8 +27,24 @@ function renderAppointment(appointment){
 
     var td8 = document.createElement("td");
     var date = appointment.timeslot_date;
-    date = date.substring(0, 10)
-    td8.textContent = date;
+    let dayOfMonth = appointment.timeslot_date.substring(8, 10);
+    if(dayOfMonth[0] == '0'){
+        let dof = Number(dayOfMonth[1])
+        dof = dof + 1;
+        if(dof == 10){
+        dayOfMonth = String(dof)
+        }else{
+        dayOfMonth = '0' + dof
+        }
+    }else{
+        dayOfMonth = Number(dayOfMonth)
+        dayOfMonth = dayOfMonth + 1; 
+        dayOfMonth = String(dayOfMonth)
+    }
+    let tsDate = appointment.timeslot_date.substring(0, 8) + `${dayOfMonth}` + appointment.timeslot_date.substring(10);
+    tsDate = tsDate.substring(0, 10);
+    console.log(tsDate)
+    td8.textContent = tsDate;
 
     var td2 = document.createElement("td");
     td2.textContent = appointment.start_time;
