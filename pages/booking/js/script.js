@@ -57,6 +57,33 @@ const categorySection = document.getElementById('booking_section_first');
 let manic = false;
 let pedic = false;
 
+function toggleSection(section1, section2) {
+  if (section1.classList.contains('visible')) {
+    setTimeout(function() {
+      section1.classList.remove('visible');
+      section1.classList.add('hidden');
+    }, 150); // Задержка в миллисекундах
+  } else {
+    setTimeout(function() {
+      section1.classList.remove('hidden');
+      section1.classList.add('visible');
+    }, 150); // Задержка в миллисекундах
+  }
+
+  if (section2.classList.contains('visible')) {
+    setTimeout(function() {
+      section2.classList.remove('visible');
+      section2.classList.add('hidden');
+    }, 150); // Задержка в миллисекундах
+  } else {
+    setTimeout(function() {
+      section2.classList.remove('hidden');
+      section2.classList.add('visible');
+    }, 150); // Задержка в миллисекундах
+  }
+}
+
+
 // Event Listeners
 imgManic.addEventListener('click', () => {
   manic = true;
@@ -66,12 +93,12 @@ imgManic.addEventListener('click', () => {
   imgManic.id = 'clicked'
   imgPedic1.id = ''
   if (manic) {
-    categorySection.style.display = "none"; 
-    manicSection.style.display = "block";
+    toggleSection(categorySection, manicSection)
   }
   if (pedic) {
-      categorySection.style.display = "none";
-      pedicSection.style.display = "block";
+      // categorySection.style.display = "none";
+      // pedicSection.style.display = "block";
+      toggleSection(categorySection, pedicSection)
   }
   if (manic === false && pedic === false){ 
     alert("Choose category first!")
@@ -86,12 +113,14 @@ imgPedic.addEventListener('click', () => {
   imgManic.id = ''
   imgPedic1.id = ''
   if (manic) {
-    categorySection.style.display = "none";
-    manicSection.style.display = "block";
+    // categorySection.style.display = "none";
+    // manicSection.style.display = "block";
+    toggleSection(categorySection, manicSection)
   }
   if (pedic) {
-      categorySection.style.display = "none";
-      pedicSection.style.display = "block";
+      // categorySection.style.display = "none";
+      // pedicSection.style.display = "block";
+      toggleSection(categorySection, pedicSection)
   }
   if (manic === false && pedic === false){ 
     alert("Choose category first!")
@@ -106,12 +135,14 @@ imgManic1.addEventListener('click', () => {
   imgManic.id = ''
   imgPedic1.id = ''
   if (manic) {
-    categorySection.style.display = "none";
-    manicSection.style.display = "block";
+    // categorySection.style.display = "none";
+    // manicSection.style.display = "block";
+    toggleSection(categorySection, manicSection)
   }
   if (pedic) {
-      categorySection.style.display = "none";
-      pedicSection.style.display = "block";
+      // categorySection.style.display = "none";
+      // pedicSection.style.display = "block";
+      toggleSection(categorySection, pedicSection)
   }
   if (manic === false && pedic === false){ 
     alert("Choose category first!")
@@ -126,12 +157,14 @@ imgPedic1.addEventListener('click', () => {
   imgManic.id = ''
   imgPedic.id = ''
   if (manic) {
-    categorySection.style.display = "none";
-    manicSection.style.display = "block";
+    // categorySection.style.display = "none";
+    // manicSection.style.display = "block";
+    toggleSection(categorySection, manicSection)
   }
   if (pedic) {
-      categorySection.style.display = "none";
-      pedicSection.style.display = "block";
+      // categorySection.style.display = "none";
+      // pedicSection.style.display = "block";
+      toggleSection(categorySection, pedicSection)
   }
   if (manic === false && pedic === false){ 
     alert("Choose category first!")
@@ -140,12 +173,14 @@ imgPedic1.addEventListener('click', () => {
 
 next_buttonFirst.addEventListener('click', () => {
   if (manic) {
-      categorySection.style.display = "none";
-      manicSection.style.display = "block";
+      // categorySection.style.display = "none";
+      // manicSection.style.display = "block";
+      toggleSection(categorySection, manicSection)
   }
   if (pedic) {
-      categorySection.style.display = "none";
-      pedicSection.style.display = "block";
+      // categorySection.style.display = "none";
+      // pedicSection.style.display = "block";
+      toggleSection(categorySection, pedicSection)
   }
   if (manic === false && pedic === false){ 
     alert("Choose category first!")
@@ -154,12 +189,14 @@ next_buttonFirst.addEventListener('click', () => {
 
 next_buttonFirst1.addEventListener('click', () => {
   if (manic) {
-    categorySection.style.display = "none";
-    manicSection.style.display = "block";
+    // categorySection.style.display = "none";
+    // manicSection.style.display = "block";
+    toggleSection(categorySection, manicSection)
   }
   if (pedic) {
-      categorySection.style.display = "none";
-      pedicSection.style.display = "block";
+      // categorySection.style.display = "none";
+      // pedicSection.style.display = "block";
+      toggleSection(categorySection, pedicSection)
   }
   if (manic === false && pedic === false){ 
     alert("Choose category first!")
@@ -170,8 +207,9 @@ nextToMasterForManicure.addEventListener('click', () => {
   if(!serviceChosenID){
     alert("Choose service first!")
   }else{
-    manicSection.style.display = "none";
-    masterSection.style.display = "block";
+    // manicSection.style.display = "none";
+    // masterSection.style.display = "block";
+    toggleSection(manicSection, masterSection)
   }
 });
 
@@ -179,8 +217,9 @@ nextToMasterForPedicure.addEventListener('click', () => {
   if(!serviceChosenID){
     alert("Choose service first!")
   }else{
-    pedicSection.style.display = "none";
-    masterSection.style.display = "block";
+    // pedicSection.style.display = "none";
+    // masterSection.style.display = "block";
+    toggleSection(pedicSection, masterSection)
   }
 });
 
@@ -188,8 +227,9 @@ nextToMasterForManicure1.addEventListener('click', () => {
   if(!serviceChosenID){
     alert("Choose service first!")
   }else{
-    manicSection.style.display = "none";
-    masterSection.style.display = "block";
+    // manicSection.style.display = "none";
+    // masterSection.style.display = "block";
+    toggleSection(manicSection, masterSection)
   }
 });
 
@@ -197,34 +237,39 @@ nextToMasterForPedicure1.addEventListener('click', () => {
   if(!serviceChosenID){
     alert("Choose service first!")
   }else{
-    pedicSection.style.display = "none";
-  masterSection.style.display = "block";
+  //   pedicSection.style.display = "none";
+  // masterSection.style.display = "block";
+  toggleSection(pedicSection, masterSection)
   }
 });
 
 backToCategory1.addEventListener('click', () => {
-  const categorySection = document.getElementById('booking_section_first');
-  pedicSection.style.display = "none";
-  manicSection.style.display = "none";
-  categorySection.style.display = "block";
+  // const categorySection = document.getElementById('booking_section_first');
+  // pedicSection.style.display = "none";
+  // manicSection.style.display = "none";
+  // categorySection.style.display = "block";
+  toggleSection(manicSection, categorySection)
 });
 backToCategory2.addEventListener('click', () => {
-  const categorySection = document.getElementById('booking_section_first');
-  pedicSection.style.display = "none";
-  manicSection.style.display = "none";
-  categorySection.style.display = "block";
+  // const categorySection = document.getElementById('booking_section_first');
+  // pedicSection.style.display = "none";
+  // manicSection.style.display = "none";
+  // categorySection.style.display = "block";
+  toggleSection(manicSection, categorySection)
 });
 backToCategory3.addEventListener('click', () => {
-  const categorySection = document.getElementById('booking_section_first');
-  pedicSection.style.display = "none";
-  manicSection.style.display = "none";
-  categorySection.style.display = "block";
+  // const categorySection = document.getElementById('booking_section_first');
+  // pedicSection.style.display = "none";
+  // manicSection.style.display = "none";
+  // categorySection.style.display = "block";
+  toggleSection(pedicSection, categorySection)
 });
 backToCategory4.addEventListener('click', () => {
-  const categorySection = document.getElementById('booking_section_first');
-  pedicSection.style.display = "none";
-  manicSection.style.display = "none";
-  categorySection.style.display = "block";
+  // const categorySection = document.getElementById('booking_section_first');
+  // pedicSection.style.display = "none";
+  // manicSection.style.display = "none";
+  // categorySection.style.display = "block";
+  toggleSection(pedicSection, categorySection)
 });
 let master = "";
 let masterChosenObject = ""
@@ -233,18 +278,15 @@ nextToDate.addEventListener('click', () => {
     alert("choose")
   }else{
   removeTimeslots();
-  masterSection.style.display = "none";
-  datetimeSection.style.display = "block";
+  toggleSection(masterSection, datetimeSection)
   }
 });
 
 backToManicPedic.addEventListener('click', () => {
   if (manic) {
-      masterSection.style.display = "none";
-      manicSection.style.display = "block";
+    toggleSection(masterSection, manicSection)
   } else if (pedic) {
-      masterSection.style.display = "none";
-      pedicSection.style.display = "block";
+    toggleSection(masterSection, pedicSection)
   }
 });
 
@@ -253,18 +295,15 @@ nextToDate1.addEventListener('click', () => {
     alert("choose")
   }else{
   removeTimeslots();
-  masterSection.style.display = "none";
-  datetimeSection.style.display = "block";
+  toggleSection(masterSection, datetimeSection)
   }
 });
 
 backToManicPedic1.addEventListener('click', () => {
   if (manic) {
-      masterSection.style.display = "none";
-      manicSection.style.display = "block";
+    toggleSection(masterSection, manicSection)
   } else if (pedic) {
-      masterSection.style.display = "none";
-      pedicSection.style.display = "block";
+    toggleSection(masterSection, pedicSection)
   }
 });
 
@@ -273,19 +312,16 @@ nextToInfo.addEventListener('click', () => {
     alert("Choose timeslot first!")
   }else{
     timeChosen(timeslotChosen)
-    datetimeSection.style.display = "none";
-    infoSection.style.display = "block";
+    toggleSection(datetimeSection, infoSection)
   }
 });
 
 backToMaster.addEventListener('click', () => {
-  datetimeSection.style.display = "none";
-  masterSection.style.display = "block";
+  toggleSection(datetimeSection, masterSection)
 });
 
 backToDate.addEventListener('click', () => {
-  infoSection.style.display = "none";
-  datetimeSection.style.display = "block";
+  toggleSection(infoSection, datetimeSection)
 });
 
 nextToInfo1.addEventListener('click', () => {
@@ -293,19 +329,18 @@ nextToInfo1.addEventListener('click', () => {
     alert("Choose timeslot first!")
   }else{
     timeChosen(timeslotChosen)
-    datetimeSection.style.display = "none";
-    infoSection.style.display = "block";
+    toggleSection(datetimeSection, infoSection)
   }
 });
 
 backToMaster1.addEventListener('click', () => {
-  datetimeSection.style.display = "none";
-  masterSection.style.display = "block";
+  toggleSection(datetimeSection, masterSection)
 });
 
 backToDate1.addEventListener('click', () => {
-  infoSection.style.display = "none";
-  datetimeSection.style.display = "block";
+  // infoSection.style.display = "none";
+  // datetimeSection.style.display = "block";
+  toggleSection(infoSection, datetimeSection)
 });
 
 const BACKEND_ROOT_URL_SERVICE = "http://localhost:3001/services"; //back url 
@@ -328,20 +363,6 @@ const appointmentsAll = new Appointments(BACKEND_ROOT_URL_APP)
 
 let serviceChosenID = ""
 let serviceChosenObject = "";
-
-function toggleSections() {
-  const activeSection = categorySection.classList.contains('active') ? categorySection : manicSection;
-  const hiddenSection = manicSection.classList.contains('active') ? manicSection : categorySection;
-
-  // Устанавливаем задержку перед изменением стилей, чтобы переход был плавным
-  setTimeout(() => {
-    activeSection.classList.remove('active');
-    activeSection.classList.add('hidden');
-    hiddenSection.classList.remove('hidden');
-    hiddenSection.classList.add('active');
-  }, 500); // Минимальная задержка перед началом анимации
-}
-
 
 
 const getServicesAll = async () => {
@@ -445,8 +466,7 @@ function renderService(service){
         console.log("SERVICE:: "+serviceChosenObject)
         serviceNameAtMaster.innerText = serviceChosenObject.category;
         servicePriceAtMaster.innerText = serviceChosenObject.price + '€'
-        manicSection.style.display = "none";
-        masterSection.style.display = "block";
+        toggleSection(manicSection, masterSection)
       })
   }
 
@@ -517,8 +537,7 @@ function renderService(service){
     console.log("SERVICE:: "+serviceChosenObject)
     serviceNameAtMaster.innerText = serviceChosenObject.category;
     servicePriceAtMaster.innerText = serviceChosenObject.price + '€'
-    pedicSection.style.display = "none";
-    masterSection.style.display = "block";
+    toggleSection(pedicSection, masterSection)
   })
 
   }
@@ -594,8 +613,7 @@ function renderMaster(employee){
           alert("choose")
         }else{
         removeTimeslots();
-        masterSection.style.display = "none";
-        datetimeSection.style.display = "block";
+        toggleSection(masterSection, datetimeSection)
         }
         return master;
     })
