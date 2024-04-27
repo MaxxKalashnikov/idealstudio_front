@@ -18,10 +18,10 @@ class Employees{
                 mode.lastname,
                 mode.email,
                 mode.phone,
-                mode.employee_type,
                 mode.specialization,
                 mode.is_active,
                 mode.user_account_id,
+                mode.user_type,
                 mode.profile_picture_url);
             this.#employeesMore.push(employee);
         });
@@ -30,7 +30,7 @@ class Employees{
     #readJson = (employeeAsJson) => {
         employeeAsJson.forEach(mode => {
             //creating instances of service class for every json node from back response
-            const employee = new EmployeeMore(
+            const employee = new Employee(
                 mode.employee_id,
                 mode.firstname,
                 mode.lastname,
@@ -61,9 +61,10 @@ class Employees{
     getMoreEmployee = async ()=>{
         this.#employeesMore.length = 0;
         return new Promise(async(resolve, reject) => {
-            fetch(this.#backend_url + "/more")//fetching back
+            fetch(this.#backend_url + "/get/more")//fetching back
             .then((response) => response.json())
             .then((json) => {
+                console.log(json)
                 this.#readJsonMore(json);//storing employees from response as instances of employee class inside employees array
                 resolve(this.#employeesMore)
             },(error) => {

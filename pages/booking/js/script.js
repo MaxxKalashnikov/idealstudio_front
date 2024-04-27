@@ -13,12 +13,11 @@ var swiper = new Swiper(".mySwiper", {
   breakpoints: {
       0: {
           slidesPerView: 1,
+          spaceBetween: 150
       },
-      520: {
-          slidesPerView: 1,
-      },
-      950: {
+      1200: {
           slidesPerView: 2,
+          spaceBetween: 50
       },
   }
 });
@@ -53,7 +52,7 @@ const backToDate1 = document.getElementById('backToDate1');
 const masterSection = document.getElementById('booking_section_master');
 const manicSection = document.getElementById('booking_section_manicure');
 const pedicSection = document.getElementById('booking_section_pedicure');
-
+const categorySection = document.getElementById('booking_section_first');
 // Flags
 let manic = false;
 let pedic = false;
@@ -62,25 +61,84 @@ let pedic = false;
 imgManic.addEventListener('click', () => {
   manic = true;
   pedic = false;
+  imgManic1.id = ''
+  imgPedic.id = ''
+  imgManic.id = 'clicked'
+  imgPedic1.id = ''
+  if (manic) {
+    categorySection.style.display = "none"; 
+    manicSection.style.display = "block";
+  }
+  if (pedic) {
+      categorySection.style.display = "none";
+      pedicSection.style.display = "block";
+  }
+  if (manic === false && pedic === false){ 
+    alert("Choose category first!")
+  }
 });
 
 imgPedic.addEventListener('click', () => {
   manic = false;
   pedic = true;
+  imgManic1.id = ''
+  imgPedic.id = 'clicked'
+  imgManic.id = ''
+  imgPedic1.id = ''
+  if (manic) {
+    categorySection.style.display = "none";
+    manicSection.style.display = "block";
+  }
+  if (pedic) {
+      categorySection.style.display = "none";
+      pedicSection.style.display = "block";
+  }
+  if (manic === false && pedic === false){ 
+    alert("Choose category first!")
+  }
 });
 
 imgManic1.addEventListener('click', () => {
   manic = true;
   pedic = false;
+  imgManic1.id = 'clicked'
+  imgPedic.id = ''
+  imgManic.id = ''
+  imgPedic1.id = ''
+  if (manic) {
+    categorySection.style.display = "none";
+    manicSection.style.display = "block";
+  }
+  if (pedic) {
+      categorySection.style.display = "none";
+      pedicSection.style.display = "block";
+  }
+  if (manic === false && pedic === false){ 
+    alert("Choose category first!")
+  }
 });
 
 imgPedic1.addEventListener('click', () => {
   manic = false;
   pedic = true;
+  imgManic1.id = ''
+  imgPedic1.id = 'clicked'
+  imgManic.id = ''
+  imgPedic.id = ''
+  if (manic) {
+    categorySection.style.display = "none";
+    manicSection.style.display = "block";
+  }
+  if (pedic) {
+      categorySection.style.display = "none";
+      pedicSection.style.display = "block";
+  }
+  if (manic === false && pedic === false){ 
+    alert("Choose category first!")
+  }
 });
 
 next_buttonFirst.addEventListener('click', () => {
-  const categorySection = document.getElementById('booking_section_first');
   if (manic) {
       categorySection.style.display = "none";
       manicSection.style.display = "block";
@@ -95,35 +153,53 @@ next_buttonFirst.addEventListener('click', () => {
 });
 
 next_buttonFirst1.addEventListener('click', () => {
-  const categorySection = document.getElementById('booking_section_first');
   if (manic) {
-      categorySection.style.display = "none";
-      manicSection.style.display = "block";
+    categorySection.style.display = "none";
+    manicSection.style.display = "block";
   }
   if (pedic) {
       categorySection.style.display = "none";
       pedicSection.style.display = "block";
   }
+  if (manic === false && pedic === false){ 
+    alert("Choose category first!")
+  }
 });
 
 nextToMasterForManicure.addEventListener('click', () => {
-  manicSection.style.display = "none";
-  masterSection.style.display = "block";
+  if(!serviceChosenID){
+    alert("Choose service first!")
+  }else{
+    manicSection.style.display = "none";
+    masterSection.style.display = "block";
+  }
 });
 
 nextToMasterForPedicure.addEventListener('click', () => {
+  if(!serviceChosenID){
+    alert("Choose service first!")
+  }else{
     pedicSection.style.display = "none";
     masterSection.style.display = "block";
+  }
 });
 
 nextToMasterForManicure1.addEventListener('click', () => {
-  manicSection.style.display = "none";
-  masterSection.style.display = "block";
+  if(!serviceChosenID){
+    alert("Choose service first!")
+  }else{
+    manicSection.style.display = "none";
+    masterSection.style.display = "block";
+  }
 });
 
 nextToMasterForPedicure1.addEventListener('click', () => {
-  pedicSection.style.display = "none";
+  if(!serviceChosenID){
+    alert("Choose service first!")
+  }else{
+    pedicSection.style.display = "none";
   masterSection.style.display = "block";
+  }
 });
 
 backToCategory1.addEventListener('click', () => {
@@ -253,6 +329,21 @@ const appointmentsAll = new Appointments(BACKEND_ROOT_URL_APP)
 let serviceChosenID = ""
 let serviceChosenObject = "";
 
+function toggleSections() {
+  const activeSection = categorySection.classList.contains('active') ? categorySection : manicSection;
+  const hiddenSection = manicSection.classList.contains('active') ? manicSection : categorySection;
+
+  // Устанавливаем задержку перед изменением стилей, чтобы переход был плавным
+  setTimeout(() => {
+    activeSection.classList.remove('active');
+    activeSection.classList.add('hidden');
+    hiddenSection.classList.remove('hidden');
+    hiddenSection.classList.add('active');
+  }, 500); // Минимальная задержка перед началом анимации
+}
+
+
+
 const getServicesAll = async () => {
   //method from todos class which returns an array of task objects
   services.getServices().then((services) =>{
@@ -265,7 +356,31 @@ const getServicesAll = async () => {
   })
 }
 
+function toggleCard(cardId) {
+  //manicSection pedicSection
+  let card = document.getElementById(`${cardId}`);
+  let clickedCards = document.querySelectorAll('.clicked');
+  // Проходимся по всем элементам с классом 'clicked' и удаляем этот класс
+  clickedCards.forEach(function(clickedCard) {
+    clickedCard.classList.remove('clicked');
+  });
+  // Добавляем класс 'clicked' только к текущему элементу
+  card.classList.add('clicked');
+}
+
 function renderService(service){
+  const pictures = {
+    1: '/assets/manicWomen1.jpg',
+    2: '/assets/manicMen1.jpg',
+    3: '/assets/manicRemove1.jpg',
+    4: '/assets/manicShort1.jpg',
+    5: '/assets/manicLong1.jpg',
+    6: '/assets/manicExtention1.jpg',
+    7: '/assets/pedicWomen1.jpg',
+    8: '/assets/pedicCoating1.jpg',
+    9: '/assets/pedicMen1.jpg',
+}
+
   if(service.category == "manicure"){
 
     // Create col-md-4 and col-xs-12 div
@@ -275,17 +390,12 @@ function renderService(service){
       // Create card div
       var cardDiv = document.createElement("div");
       cardDiv.classList.add("card", "text-center", "text-bg-dark");
-      cardDiv.addEventListener('click', ()=>{
-        serviceChosenID = ""
-        serviceChosenID = service.serviceId;
-        serviceChosenObject = service
-        serviceChosen(serviceChosenID)
-      })
+      cardDiv.id = service.serviceId;
 
       // Create card image
       var cardImg = document.createElement("img");
       cardImg.classList.add("card-img");
-      cardImg.src = "../../assets/section.jpg";
+      cardImg.src = pictures[service.serviceId];
       cardImg.alt = "...";
 
       // Create card overlay div
@@ -308,7 +418,9 @@ function renderService(service){
       var price = document.createElement("p");
       price.classList.add("card-text");
       price.id = "servicePrice" + service.price;
-      price.textContent = service.price;
+      price.textContent = service.price + "€";
+      price.className = "highlighted";
+
 
       // Append elements to their respective parent
       overlayDiv.appendChild(title);
@@ -321,6 +433,21 @@ function renderService(service){
       // Append the newly created structure to the body or any other container element
       const parent = document.getElementById('manicContainer');
       parent.appendChild(colDiv);
+
+      cardDiv.addEventListener('click', ()=>{
+        serviceChosenID = ""
+        serviceChosenID = service.serviceId;
+        serviceChosenObject = service
+        serviceChosen(serviceChosenID)
+        toggleCard(serviceChosenID)
+        const serviceNameAtMaster = document.getElementById('serviceNameAtMaster')
+        const servicePriceAtMaster = document.getElementById('servicePriceAtMaster')
+        console.log("SERVICE:: "+serviceChosenObject)
+        serviceNameAtMaster.innerText = serviceChosenObject.category;
+        servicePriceAtMaster.innerText = serviceChosenObject.price + '€'
+        manicSection.style.display = "none";
+        masterSection.style.display = "block";
+      })
   }
 
   if(service.category == "pedicure"){
@@ -332,17 +459,12 @@ function renderService(service){
    // Create card div
    var cardDiv = document.createElement("div");
    cardDiv.classList.add("card", "text-center", "text-bg-dark");
-   cardDiv.addEventListener('click', ()=>{
-    serviceChosenID = ""
-        serviceChosenID = service.serviceId;
-        serviceChosenObject = service
-        serviceChosen(serviceChosenID)
-  })
+   cardDiv.id = service.serviceId;
 
    // Create card image
    var cardImg = document.createElement("img");
    cardImg.classList.add("card-img");
-   cardImg.src = "../../assets/section.jpg";
+   cardImg.src = pictures[service.serviceId]; 
    cardImg.alt = "...";
 
    // Create card overlay div
@@ -367,7 +489,8 @@ function renderService(service){
    var price = document.createElement("p");
    price.classList.add("card-text");
    price.id = "servicePrice" + service.price;
-   price.textContent = service.price;
+   price.textContent = service.price + "€";
+   price.className = "highlighted";
 
    // Append elements to their respective parent
    overlayDiv.appendChild(title);
@@ -381,6 +504,23 @@ function renderService(service){
    const parent = document.getElementById('pedicContainer');
    parent.appendChild(colDiv);
 
+   cardDiv.addEventListener('click', ()=>{
+    serviceChosenID = ""
+    serviceChosenObject = ""
+    serviceChosenID = service.serviceId;
+    serviceChosenObject = service
+    serviceChosen(serviceChosenID)
+    toggleCard(serviceChosenID)
+    //for the service name and price which are chosen
+    const serviceNameAtMaster = document.getElementById('serviceNameAtMaster')
+    const servicePriceAtMaster = document.getElementById('servicePriceAtMaster')
+    console.log("SERVICE:: "+serviceChosenObject)
+    serviceNameAtMaster.innerText = serviceChosenObject.category;
+    servicePriceAtMaster.innerText = serviceChosenObject.price + '€'
+    pedicSection.style.display = "none";
+    masterSection.style.display = "block";
+  })
+
   }
 }
 
@@ -388,8 +528,9 @@ function renderService(service){
 //MASTERS
 const getEmployeesAll = async () => {
   //method from todos class which returns an array of task objects
-  employees.getEmployees().then((employees) =>{
+  employees.getMoreEmployee().then((employees) =>{
       employees.forEach(employee => {
+        console.log(employee)
           renderMaster(employee);//handling of ui elements
       });
   }).catch((error) => {//error handling
@@ -399,40 +540,6 @@ const getEmployeesAll = async () => {
 
 
 function renderMaster(employee){
-  //for the service name and price which are chosen
-  const namePriceDiv = document.getElementById('serviceNameAtMaster')
-
-  var div1 = document.createElement("div");
-  div1.classList.add("col-6", "text-center");
-
-  // Создаем заголовок h2 для первой части
-  var h2_1 = document.createElement("h2");
-  h2_1.textContent = serviceChosenObject.serviceName;
-
-  // Добавляем заголовок в первую часть
-  div1.appendChild(h2_1);
-
-  // Создаем div элемент для второй части
-  var div2 = document.createElement("div");
-  div2.classList.add("col-6", "text-center");
-
-  // Создаем заголовок h2 для второй части
-  var h2_2 = document.createElement("h2");
-  h2_2.textContent = serviceChosenObject.price;
-
-  // Добавляем заголовок во вторую часть
-  div2.appendChild(h2_2);
-
-  // Получаем контейнер, куда мы хотим добавить созданные элементы
-  // var container = document.getElementById("container");
-
-  // Добавляем обе части в контейнер
-  // container.appendChild(div1);
-  // container.appendChild(div2);
-
-
-
-
   //slides
   // Create a new swiper-slide element
     var swiperSlide = document.createElement("div");
@@ -453,7 +560,7 @@ function renderMaster(employee){
     var img = document.createElement("img");
     img.setAttribute("src", `${employee.picture}`);
     img.setAttribute("alt", "");
-    img.classList.add("card-img");
+    img.classList.add("card-image");
 
     // Append img to card-image div
     cardImage.appendChild(img);
@@ -475,12 +582,21 @@ function renderMaster(employee){
     // Create button element
     var button = document.createElement("button");
     button.classList.add("button");
+    button.type = 'button'
+    button.classList.add("btn");
     button.textContent = "Choose";
     button.addEventListener('click', ()=>{
         master = "";
         master = employee.employeeId;
         masterChosenObject = employee
         console.log(master)
+        if(master == ""){
+          alert("choose")
+        }else{
+        removeTimeslots();
+        masterSection.style.display = "none";
+        datetimeSection.style.display = "block";
+        }
         return master;
     })
 
@@ -544,28 +660,14 @@ $('#datepicker').datepicker().on('changeDate', function(e) {
 let timeslotChosen = "";
 let timeChosenObject = "";
 
-class Previous{
-  #day
-
-  constructor(day){
-    this.#day = day
-  }
-
-  get day(){
-    return this.#day;
-  }
-}
-
 function renderTS(ts){
   chosenDate = date.value;
   let month = chosenDate.substring(0,2);
   let day = chosenDate.substring(3,5);
-  let currentDay = new Previous(day)
   day = Number(day);
   day = day - 1;
   if(day >= 0 && day <= 9){
     if(day == 0){
-      let prevDay = Number(currentDay.day)
       day = day + 1;
       day = String(day)
       day = "0" + day
@@ -575,7 +677,6 @@ function renderTS(ts){
     }
   }
   day = String(day)
-  currentDay = new Previous(day)
   let year = chosenDate.substring(6,10);
   chosenDate = `${year}-${month}-${day}`
   console.log(chosenDate)

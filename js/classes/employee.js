@@ -70,7 +70,7 @@ class EmployeeMore{
     #user_account_id;
     #profile_picture_url
 
-    constructor(employee_id, firstname, lastname, email, phone, employee_type, specialization, is_active, user_account_id, url) {
+    constructor(employee_id, firstname, lastname, email, phone, specialization, is_active, user_account_id, employee_type, url) {
         this.#employee_id = employee_id;
         this.#firstname = firstname;
         this.#lastname = lastname;

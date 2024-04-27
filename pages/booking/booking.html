@@ -35,8 +35,8 @@
         @media (min-width: 768px) and (max-width: 992px) {
         [id^="serviceDescription"] {
             display: none; /* Размер шрифта для экранов md (ширина 992px - 1200px) */
+            }
         }
-}
     </style>
 </head>
 <body>
@@ -231,52 +231,52 @@
       </section>
 
 
-    <section id="booking_section_first">
+    <section id="booking_section_first" class="visible">
         <div class="container">
             <div class="row justify-content-center align-items-center vh-100">
                 <div class="row justify-content-center">
                     <div class="col-md-12 d-none d-md-block text-end" id="nextDiv">
-                        <button id="next_buttonFirst">Next</button>
+                        <button type="button" class="btn btn-outline-none" id="next_buttonFirst">Next →</button>
                     </div>
                     <div class="col-12 text-center mb-5">
                         <h2>Select category</h2>
                     </div>
                     <div class="row" id="categorySection">
-                        <div class="col-md-6 text-end mb-5 d-none d-md-block" id="manicure">
-                            <div class="card text-center text-bg-dark">
-                                <img src="../../assets/section.jpg" class="card-img" alt="...">
+                        <div class="col-md-6 text-end mb-5 d-none d-md-block">
+                            <div class="card text-center text-bg-dark" id="manicure">
+                                <img src="/assets/manicCategory.jpg" class="card-img" alt="...">
                                 <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
-                                    <h5 class="card-title" id="nameOfService">Manicure</h5>
+                                    <h3 class="card-title" id="nameOfService">Manicure</h3>
                                     <p class="card-text" id="descriptionOfService"><small>manicure services</small></p>
                                     <p class="card-text" id="priceOfService"></p>  
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 text-end mb-5 d-none d-md-block" id="pedicure">
-                            <div class="card text-center text-bg-dark">
-                                <img src="../../assets/section.jpg" class="card-img" alt="...">
+                        <div class="col-md-6 text-end mb-5 d-none d-md-block" >
+                            <div class="card text-center text-bg-dark" id="pedicure">
+                                <img src="/assets/pedCategory.jpeg" class="card-img" alt="...">
                                 <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
-                                    <h5 class="card-title" id="nameOfService">Pedicure</h5>
+                                    <h3 class="card-title" id="nameOfService">Pedicure</h3>
                                     <p class="card-text" id="descriptionOfService"><small>pedicure services</small></p>
                                     <p class="card-text" id="priceOfService"></p>  
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 text-center mb-5 d-block d-md-none" id="manicure1">
-                            <div class="card text-center text-bg-dark">
-                                <img src="../../assets/section.jpg" class="card-img" alt="...">
+                        <div class="col-xs-12 text-center mb-5 d-block d-md-none">
+                            <div class="card text-center text-bg-dark" id="manicure1">
+                                <img src="/assets/manicCategory.jpg" class="card-img" alt="...">
                                 <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
-                                    <h5 class="card-title" id="nameOfService">Manicure</h5>
+                                    <h3 class="card-title" id="nameOfService">Manicure</h3>
                                     <p class="card-text" id="descriptionOfService"><small>manicure services</small></p>
                                     <p class="card-text" id="priceOfService"></p>  
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 text-center mb-5 d-block d-md-none" id="pedicure1">
-                            <div class="card text-center text-bg-dark">
-                                <img src="../../assets/section.jpg" class="card-img" alt="...">
+                        <div class="col-xs-12 text-center mb-5 d-block d-md-none">
+                            <div class="card text-center text-bg-dark" id="pedicure1">
+                                <img src="/assets/pedCategory.jpeg" class="card-img" alt="...">
                                 <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
-                                    <h5 class="card-title" id="nameOfService">Pedicure</h5>
+                                    <h3 class="card-title" id="nameOfService">Pedicure</h3>
                                     <p class="card-text" id="descriptionOfService"><small>pedicure services</small></p>
                                     <p class="card-text" id="priceOfService"></p>   
                                 </div>
@@ -284,7 +284,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 d-block d-md-none text-center" id="nextDiv">
-                        <button id="next_buttonFirst1">Next</button>
+                        <button id="next_buttonFirst1" type="button" class="btn btn-outline-none">Next →</button>
                     </div>
                 </div>
             </div>
@@ -298,15 +298,15 @@
 
 
 
-    <section id="booking_section_manicure" style="display: none;">
+    <section id="booking_section_manicure" style="display: none;" class="hidden">
         <div class="container" style="margin-top: 50px;">
             <div class="row justify-content-center align-items-center vh-100">
                 <div class="row justify-content-center">
                     <div class="col-md-6 d-none d-md-block text-start" id="nextDiv">
-                        <button id="backToCategory1">Back</button>
+                        <button type="button" class="btn btn-outline-none" id="backToCategory1">← Back</button>
                     </div>
                     <div class="col-md-6 d-none d-md-block text-end">
-                        <button id="nextToMasterForManicure">Next</button>
+                        <button type="button" class="btn btn-outline-none" id="nextToMasterForManicure">Next →</button>
                     </div>
                     <div class="col-12 text-center mb-5">
                         <h2>Select manicure service</h2>
@@ -323,11 +323,11 @@
                             </div>
                         </div> -->
                     </div>
-                    <div class="col-6 d-md-none d-block text-start" id="nextDiv">
-                        <button id="nextToMasterForManicure1">Next</button>
-                    </div>
                     <div class="col-6 d-md-none d-block text-end">
-                        <button id="backToCategory2">Back</button>
+                        <button type="button" class="btn btn-outline-none" id="backToCategory2">← Back</button>
+                    </div>
+                    <div class="col-6 d-md-none d-block text-start" id="nextDiv">
+                        <button type="button" class="btn btn-outline-none" id="nextToMasterForManicure1">Next →</button>
                     </div>
                 </div>
             </div>
@@ -342,10 +342,10 @@
                 <div class="row justify-content-center">
                     <div class="row">
                         <div class="col-md-6 d-none d-md-block text-start" id="nextDiv">
-                            <button id="backToCategory3">Back</button>
+                            <button type="button" class="btn btn-outline-none" id="backToCategory3">← Back</button>
                         </div>
                         <div class="col-md-6 d-none d-md-block text-end">
-                            <button id="nextToMasterForPedicure1">Next</button>
+                            <button type="button" class="btn btn-outline-none" id="nextToMasterForPedicure1">Next →</button>
                         </div>
                     </div>
                     <div class="row">
@@ -365,11 +365,11 @@
                         </div> -->
                     </div>
                     <div class="row">
-                        <div class="col-6 d-md-none d-block text-start" id="nextDiv">
-                            <button id="nextToMasterForPedicure">Next</button>
-                        </div>
                         <div class="col-6 d-md-none d-block text-end">
-                            <button id="backToCategory4">Back</button>
+                            <button type="button" class="btn btn-outline-none" id="backToCategory4">← Back</button>
+                        </div>
+                        <div class="col-6 d-md-none d-block text-start" id="nextDiv">
+                            <button type="button" class="btn btn-outline-none" id="nextToMasterForPedicure">Next →</button>
                         </div>
                     </div>
                 </div>
@@ -381,22 +381,22 @@
 
 
 
-    <section id="booking_section_master" style="display: none;">
+    <section id="booking_section_master" style="display: none; margin-bottom: 70px;">
         <div class="container" style="margin-top: 100px;">
             <div class="row">
                 <div class="col-md-6 d-none d-md-block text-start" id="nextDiv">
-                    <button id="backToManicPedic1">Back</button>
+                    <button type="button" class="btn btn-outline-none" id="backToManicPedic1">← Back</button>
                 </div>
                 <div class="col-md-6 d-none d-md-block text-end">
-                    <button id="nextToDate1">Next</button>
+                    <button type="button" class="btn btn-outline-none" id="nextToDate1">Next →</button>
                 </div>
             </div>
-            <div class="row mt-5" id="serviceNameAtMaster">
+            <div class="row mt-5">
                 <div class="col-6 text-center">
-                    <h2>Service name</h2>
+                    <h2 id="serviceNameAtMaster"></h2>
                 </div>
-                <div class="col-6 text-center">
-                    <h2>5$</h2>
+                <div class="col-6 text-center"> 
+                    <h2 id="servicePriceAtMaster"></h2>
                 </div>
             </div>
 
@@ -409,7 +409,7 @@
             <!-- slider -->
             <div class="row">
               <div class="col-2"></div>
-              <div class="col-8">
+              <div class="col-8"> 
 
                 <div class="swiper mySwiper">
                   <div class="swiper-wrapper" id="swiper_wrapper">
@@ -467,11 +467,11 @@
             </div>
 
             <div class="row">
-                <div class="col-6 d-md-none d-block text-start" id="nextDiv">
-                    <button id="nextToDate">Next</button>
-                </div>
                 <div class="col-6 d-md-none d-block text-end">
-                    <button id="backToManicPedic">Back</button>
+                    <button type="button" class="btn btn-outline-none" id="backToManicPedic">← Back</button>
+                </div>
+                <div class="col-6 d-md-none d-block text-start" id="nextDiv">
+                    <button type="button" class="btn btn-outline-none" id="nextToDate">Next →</button>
                 </div>
             </div>
         </div>
@@ -482,10 +482,10 @@
         <div class="container" style="margin-top: 100px;">
             <div class="row">
                 <div class="col-md-6 d-none d-md-block text-start" id="nextDiv">
-                    <button id="backToMaster1">Back</button>
+                    <button type="button" class="btn btn-outline-none" id="backToMaster1">← Back</button>
                 </div>
                 <div class="col-md-6 d-none d-md-block text-end">
-                    <button id="nextToInfo1">Next</button>
+                    <button type="button" class="btn btn-outline-none" id="nextToInfo1">Next →</button>
                 </div>
             </div>
 
@@ -525,11 +525,11 @@
         </form>
 
             <div class="row">
-                <div class="col-6 d-md-none d-block text-start" id="nextDiv">
-                    <button id="nextToInfo">Next</button>
-                </div>
                 <div class="col-6 d-md-none d-block text-end">
-                    <button id="backToMaster">Back</button>
+                    <button type="button" class="btn btn-outline-none" id="backToMaster">← Back</button>
+                </div>
+                <div class="col-6 d-md-none d-block text-start" id="nextDiv">
+                    <button type="button" class="btn btn-outline-none" id="nextToInfo">Next →</button>
                 </div>
             </div>
         </div>
@@ -542,7 +542,7 @@
         <div class="container" style="margin-top: 100px;">
             <div class="row">
                 <div class="col-md-6 d-none d-md-block text-start" id="nextDiv">
-                    <button id="backToDate">Back</button>
+                    <button type="button" class="btn btn-outline-none" id="backToDate">← Back</button>
                 </div>
             </div>
             <!-- <div class="row pt-5">
@@ -620,11 +620,8 @@
             </div>
 
             <div class="row">
-                <div class="col-6 d-md-none d-block text-start" id="nextDiv">
-                    <button id="next">Next</button>
-                </div>
                 <div class="col-6 d-md-none d-block text-end">
-                    <button id="backToDate1">Back</button>
+                    <button type="button" class="btn btn-outline-none" id="backToDate1">← Back</button>
                 </div>
             </div>
         </div>
