@@ -207,15 +207,16 @@
   }
 
   section {
+    transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .visible {
     opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.hidden {
+    height: auto;
+  }
+  
+  .hidden {
     opacity: 0;
-}
-
-/* После завершения анимации устанавливаем display: none; */
-.hidden.hidden-after-transition {
-    display: none;
-}
+    height: 0;
+  }
