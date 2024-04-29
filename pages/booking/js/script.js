@@ -66,12 +66,16 @@ imgManic.addEventListener('click', () => {
   imgManic.id = 'clicked'
   imgPedic1.id = ''
   if (manic) {
-    categorySection.style.display = "none"; 
-    manicSection.style.display = "block";
+    setTimeout(()=>{
+      categorySection.style.display = "none"; 
+      manicSection.style.display = "block";
+    }, 200)
   }
   if (pedic) {
+    setTimeout(()=>{
       categorySection.style.display = "none";
       pedicSection.style.display = "block";
+    }, 200)
   }
   if (manic === false && pedic === false){ 
     alert("Choose category first!")
@@ -86,12 +90,16 @@ imgPedic.addEventListener('click', () => {
   imgManic.id = ''
   imgPedic1.id = ''
   if (manic) {
+    setTimeout(()=>{
     categorySection.style.display = "none";
     manicSection.style.display = "block";
+  }, 200)
   }
   if (pedic) {
+    setTimeout(()=>{
       categorySection.style.display = "none";
       pedicSection.style.display = "block";
+    }, 200)
   }
   if (manic === false && pedic === false){ 
     alert("Choose category first!")
@@ -106,12 +114,16 @@ imgManic1.addEventListener('click', () => {
   imgManic.id = ''
   imgPedic1.id = ''
   if (manic) {
-    categorySection.style.display = "none";
-    manicSection.style.display = "block";
+    setTimeout(()=>{
+      categorySection.style.display = "none"; 
+      manicSection.style.display = "block";
+    }, 200)
   }
   if (pedic) {
+    setTimeout(()=>{
       categorySection.style.display = "none";
       pedicSection.style.display = "block";
+    }, 200)
   }
   if (manic === false && pedic === false){ 
     alert("Choose category first!")
@@ -126,12 +138,16 @@ imgPedic1.addEventListener('click', () => {
   imgManic.id = ''
   imgPedic.id = ''
   if (manic) {
+    setTimeout(()=>{
     categorySection.style.display = "none";
     manicSection.style.display = "block";
+  }, 200)
   }
   if (pedic) {
+    setTimeout(()=>{
       categorySection.style.display = "none";
       pedicSection.style.display = "block";
+    }, 200)
   }
   if (manic === false && pedic === false){ 
     alert("Choose category first!")
@@ -140,6 +156,7 @@ imgPedic1.addEventListener('click', () => {
 
 next_buttonFirst.addEventListener('click', () => {
   if (manic) {
+    
       categorySection.style.display = "none";
       manicSection.style.display = "block";
   }
@@ -619,24 +636,44 @@ function renderMaster(employee){
 
 }
 
-//TIMESLOTS
-// const getTimeslots = async () => {
-//   //method from todos class which returns an array of task objects
-//   timeslots.getTimeslots().then((timeslots) =>{
-//       timeslots.forEach(ts => {
-//           renderTS(ts);//handling of ui elements
-//       });
-//   }).catch((error) => {//error handling
-//       alert(error)
-//   })
-// }
+function paintDays(timeslot){
+  let dateString = timeslot.timeslot_date;
 
+  let date = new Date(dateString);
+
+  let timestamp = date.getTime();//timestamp from db here
+
+  let dayElements = document.querySelectorAll('.day');
+
+  dayElements.forEach(function(dayElement) {
+      let dateNew = dayElement.dataset.date;
+      dateNew = Number(dateNew)
+      dateNew = dateNew - 10800000;
+      // console.log(new Date(timestamp) + ":::" + new Date(dateNew))
+      if(timestamp == dateNew){
+        dayElement.style = 'background-color: #4ea550'
+      }
+  });
+}
+//TIMESLOTS
+
+let count = 0;
 const getTimeslotsPerPerson = async (id) => {
   //method from todos class which returns an array of task objects
   timeslots.getTimeslotsPerPerson(id).then((timeslots) =>{
+    count = 0
       timeslots.forEach(ts => {
           renderTS(ts);//handling of ui elements
       });
+      if(count == 0){
+        const parentElement = document.getElementById("timeSlotContainer");
+        var heading = document.createElement("h4");
+    
+        heading.classList.add("col-12", "text-center", "mb-3");
+        heading.textContent = "Unfortunately, master does not have any free timeslots this day. Please, try another date";
+    
+        parentElement.appendChild(heading);
+      }
   }).catch((error) => {//error handling
       alert(error)
   })
@@ -660,7 +697,9 @@ $('#datepicker').datepicker().on('changeDate', function(e) {
 let timeslotChosen = "";
 let timeChosenObject = "";
 
+
 function renderTS(ts){
+  paintDays(ts)
   chosenDate = date.value;
   let month = chosenDate.substring(0,2);
   let day = chosenDate.substring(3,5);
@@ -697,13 +736,16 @@ function renderTS(ts){
 
   let tsDate = ts.timeslot_date.substring(0, 8) + `${dayOfMonth}` + ts.timeslot_date.substring(10);
   tsDate = ts.timeslot_date.substring(0, 10);
-
+  
   if(tsDate == chosenDate && ts.is_available === true){
+
+    const parentElement = document.getElementById("timeSlotContainer");
+
       console.log(ts)
       var button = document.createElement("button");
     
       button.setAttribute("type", "button");
-      button.setAttribute("class", "btn btn-outline-primary time-slot-btn");
+      button.setAttribute("class", "btn time-slot-btn");
       button.id = ts.timeslot_id;
     
       let timeStart = ts.start_time.substring(0, 5);
@@ -712,10 +754,12 @@ function renderTS(ts){
       button.addEventListener('click', ()=>{
         timeslotChosen = button.id;
         timeChosenObject = ts
+        datetimeSection.style.display = "none";
+        infoSection.style.display = "block";
       })
       
-      const parentElement = document.getElementById("timeSlotContainer");
       parentElement.appendChild(button);
+      count = count + 1;
   }
 }
 
@@ -754,12 +798,44 @@ subbutton.addEventListener('click', ()=>{
 let customerID = ""
 let customerChosenObject = "";
 let message = ""
+let wishes = ""
+
+import { User } from "../../../js/classes/user.js"
+const user = new User();
+
+async function checkUser(){
+  try{
+    let fname = document.getElementById('validationDefault01')
+    let lname = document.getElementById('validationDefault02')
+    let email = document.getElementById('validationDefault03')
+    let phone = document.getElementById('validationDefault04')
+    const tokenData = await user.checkToken()
+    if(tokenData.role == 'customer'){
+      const userData = await customers.getCustomerByUserId(tokenData.id)
+      console.log(userData.personalInfo[0].firstname)
+      fname.value = userData.personalInfo[0].firstname
+      lname.value = userData.personalInfo[0].lastname
+      email.value = userData.personalInfo[0].email
+      phone.value = userData.personalInfo[0].phone
+    }else{
+      return
+    }
+  }catch(err){
+    console.log(err)
+  }
+}
+
+checkUser()
 
 function submit(){
   let fname = document.getElementById('validationDefault01').value
   let lname = document.getElementById('validationDefault02').value
   let email = document.getElementById('validationDefault03').value
   let phone = document.getElementById('validationDefault04').value
+  wishes = document.getElementById('floatingTextarea2').value
+  if(wishes.length <= 1){
+    wishes = "No comments for appointment"
+  }
   
   let personalInfoObj = new Object();
 
@@ -830,7 +906,7 @@ function submit(){
     appointmentDetailsDiv.appendChild(p6)
     appointmentDetailsDiv.appendChild(p7)
 
-    getAppointmentReady("someths", customerID, serviceChosenID, timeslotChosen)
+    getAppointmentReady(wishes, customerID, serviceChosenID, timeslotChosen)
     printObj(customerChosenObject, serviceChosenObject, timeChosenObject)
     confirmModal.show()
   }).catch((error) => {//error handling
@@ -864,15 +940,17 @@ function printObj(customerChosenObject, serviceChosenObject, timeChosenObject){
 
 const confirmAppointment = document.getElementById('confirmAppointment');
 confirmAppointment.addEventListener('click', ()=>{
-  const appointment = getAppointmentReady("someths", customerID, serviceChosenID, timeslotChosen)
+  const appointment = getAppointmentReady(wishes, customerID, serviceChosenID, timeslotChosen)
   const sections = document.querySelectorAll('section');
 
   appointmentsAll.createNewAppointment(appointment)
-  .then(() => {
+  .then((appointment) => {
+    console.log(appointment[0].appointment_id)
     timeslots.changeTimeslotStatus(timeslotChosen)
+    return appointment[0].appointment_id
   })
-  .then(() => {
-    sendMail()
+  .then((id) => {
+    sendMail(id)
   })
   .catch((error) => {
     alert("Error: " + error); // Обработка ошибок
@@ -880,11 +958,12 @@ confirmAppointment.addEventListener('click', ()=>{
 })
 
 
-function sendMail(){
+async function sendMail(id){
   (function(){
     emailjs.init('zY9SWgodnH3F5FHTU');//public key needs to be saved in .env file later
   })();
 
+  message = `\nYour id: ${id}` + message 
   let params = {
     sendername: "Nail-studio IDEAL",
     to: customerChosenObject.email,

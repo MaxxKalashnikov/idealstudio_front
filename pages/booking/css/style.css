@@ -206,17 +206,56 @@
     background-color: #db8e4f;
   }
 
-  section {
-    transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
-    overflow: hidden;
-  }
-  
-  .visible {
-    opacity: 1;
-    height: auto;
-  }
-  
-  .hidden {
-    opacity: 0;
-    height: 0;
-  }
+  #dateInp:focus {
+    box-shadow: 0px 0px 10px rgba(223, 166, 122, 0.8);
+    border-color: rgb(202, 132, 78) !important;
+    }
+
+    .time-slot-btn:focus,
+    .time-slot-btn:active,
+    .time-slot-btn:hover{
+        outline: none;
+        box-shadow: 0px 0px 0px; 
+        border-color: transparent; /* Убираем границы */
+    }
+
+    .time-slot-btn {
+        margin-bottom: 10px;
+        margin-right: 5px;
+        border-radius: 10px;
+        border-color: #d79d6d;
+        color: rgb(24, 24, 24);
+    }
+
+    .time-slot-btn:focus,
+    .time-slot-btn:active,
+    .time-slot-btn:hover{
+        border-color: transparent;
+        background-color: rgb(223, 166, 122);
+        box-shadow: 0px 0px 10px rgba(223, 166, 122, 0.8)
+    }
+
+    .form-control:focus{
+        box-shadow: 0px 0px 10px rgba(223, 166, 122, 0.8);
+        border-color: rgb(202, 132, 78) !important;
+    }
+
+    #subButton{
+        border-radius: 10px;
+        border-color: #d79d6d;
+        color: rgb(21, 21, 21);
+        background-color: rgb(223, 166, 122);
+    }
+
+    #subButton:hover{
+        background-color: rgb(215, 140, 82);
+    }
+
+    .datepicker table tr td.active.active{
+        background-image: none;
+        background-repeat: no-repeat;
+        color: #1e1e1e;
+        background-color: #e19b45 !important;
+    }
+
+

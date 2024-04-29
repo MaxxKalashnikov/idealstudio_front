@@ -13,12 +13,6 @@
 
     <link rel="stylesheet" href="./css/style.css">
     <style>
-        .time-slot-btn {
-            margin-bottom: 10px;
-        }
-        .time-slot-btn:focus{
-            background-color: bisque;
-        }
         body {
             font-family: Baskerville Old Face;
         }
@@ -231,7 +225,7 @@
       </section>
 
 
-    <section id="booking_section_first" class="visible">
+    <section id="booking_section_first">
         <div class="container">
             <div class="row justify-content-center align-items-center vh-100">
                 <div class="row justify-content-center">
@@ -298,7 +292,7 @@
 
 
 
-    <section id="booking_section_manicure" style="display: none;" class="hidden">
+    <section id="booking_section_manicure" style="display: none;">
         <div class="container" style="margin-top: 50px;">
             <div class="row justify-content-center align-items-center vh-100">
                 <div class="row justify-content-center">
@@ -507,19 +501,19 @@
             </div>
             <div class="row form-group" style="display: none;" id="timePickerContainer">
                 <div class="col-md-3"></div>
-                <div class="col-6" id="timeSlotContainer">
-                    <!-- <button type="button" class="btn btn-outline-primary time-slot-btn">08:00-11:00</button>
-                    <button type="button" class="btn btn-outline-primary time-slot-btn">08:30-11:30</button>
-                    <button type="button" class="btn btn-outline-primary time-slot-btn">09:00-12:00</button>
-                    <button type="button" class="btn btn-outline-primary time-slot-btn">09:30-12:30</button>
-                    <button type="button" class="btn btn-outline-primary time-slot-btn">10:00-13:00</button>
-                    <button type="button" class="btn btn-outline-primary time-slot-btn">10:30-13:30</button>
-                    <button type="button" class="btn btn-outline-primary time-slot-btn">11:00-14:00</button>
-                    <button type="button" class="btn btn-outline-primary time-slot-btn">11:30-14:30</button>
-                    <button type="button" class="btn btn-outline-primary time-slot-btn">12:00-15:00</button>
-                    <button type="button" class="btn btn-outline-primary time-slot-btn">12:30-15:30</button>
-                    <button type="button" class="btn btn-outline-primary time-slot-btn">13:00-16:00</button> -->
-                </div>
+                    <div class="col-md-6 text-center" id="timeSlotContainer">
+                        <!-- <button type="button" class="btn btn-outline-primary time-slot-btn">08:00-11:00</button>
+                        <button type="button" class="btn btn-outline-primary time-slot-btn">08:30-11:30</button>
+                        <button type="button" class="btn btn-outline-primary time-slot-btn">09:00-12:00</button>
+                        <button type="button" class="btn btn-outline-primary time-slot-btn">09:30-12:30</button>
+                        <button type="button" class="btn btn-outline-primary time-slot-btn">10:00-13:00</button>
+                        <button type="button" class="btn btn-outline-primary time-slot-btn">10:30-13:30</button>
+                        <button type="button" class="btn btn-outline-primary time-slot-btn">11:00-14:00</button>
+                        <button type="button" class="btn btn-outline-primary time-slot-btn">11:30-14:30</button>
+                        <button type="button" class="btn btn-outline-primary time-slot-btn">12:00-15:00</button>
+                        <button type="button" class="btn btn-outline-primary time-slot-btn">12:30-15:30</button>
+                        <button type="button" class="btn btn-outline-primary time-slot-btn">13:00-16:00</button> -->
+                    </div>
                 <div class="col-md-3"></div>
             </div>
         </form>
@@ -613,7 +607,7 @@
                     </div>
                     <div class="col-md-2"></div>
                     <div class="col-12 text-center pt-5">
-                      <button class="btn btn-primary" id="subButton" type="button">Submit</button>
+                      <button class="btn btn-primary mb-3" id="subButton" type="button">Submit</button>
                     </div>
                   </form>
                   <div class="col-md-3"></div>

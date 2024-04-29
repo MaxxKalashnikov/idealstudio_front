@@ -109,6 +109,18 @@ import { Customer } from './customer.js'
             })
         })
     }
+
+    getCustomerByUserId = async(id)=>{
+        return new Promise(async(resolve, reject) => {
+            fetch(this.#backendUrl + '/profile' + `/${id}`)//fetching back
+            .then((response) => response.json())
+            .then((json) => {
+                resolve(json)
+            },(error) => {
+                reject(error);
+            })
+        })
+    }
 }
 
 
