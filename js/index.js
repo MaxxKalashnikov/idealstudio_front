@@ -43,6 +43,9 @@ function renderService(serv){
             getApp.setAttribute('type', 'button');
             getApp.classList.add('btn', 'btn-primary');
             getApp.innerText = "Get appointment";
+            getApp.addEventListener('click', ()=>{
+                window.location.href = '/pages/booking/booking.html';
+            })
             const topic = document.createElement("h3");
             topic.innerText = serv.serviceName;
             const price = document.createElement("h4");
@@ -94,6 +97,9 @@ function renderService(serv){
             getApp.setAttribute('type', 'button');
             getApp.classList.add('btn', 'btn-primary');
             getApp.innerText = "Get appointment";
+            getApp.addEventListener('click', ()=>{
+                window.location.href = '/pages/booking/booking.html';
+            })
             const topic = document.createElement("h3");
             topic.innerText = serv.serviceName;
             const price = document.createElement("h4");

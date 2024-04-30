@@ -25,10 +25,11 @@ function createPostCard(post) {
 
     const img = document.createElement('img')
     img.classList = 'card-img-top'
+    img.src = '/assets/room3_desk.jpg'
     card.appendChild(img)
-    if (post.image_url !== null) {
-        img.src = post.image_url
-    }
+    // if (post.image_url !== null) {
+    //     img.src = post.image_url
+    // }
     
 
     const body = document.createElement('div')

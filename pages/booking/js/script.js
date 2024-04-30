@@ -637,7 +637,8 @@ function renderMaster(employee){
 }
 
 function paintDays(timeslot){
-  let dateString = timeslot.timeslot_date;
+  if(timeslot.is_available == true){
+    let dateString = timeslot.timeslot_date;
 
   let date = new Date(dateString);
 
@@ -654,6 +655,7 @@ function paintDays(timeslot){
         dayElement.style = 'background-color: #4ea550'
       }
   });
+  }
 }
 //TIMESLOTS
 
@@ -665,10 +667,10 @@ const getTimeslotsPerPerson = async (id) => {
       timeslots.forEach(ts => {
           renderTS(ts);//handling of ui elements
       });
-      if(count == 0){
-        const parentElement = document.getElementById("timeSlotContainer");
-        var heading = document.createElement("h4");
-    
+      const parentElement = document.getElementById("timeSlotContainer");
+      var heading = document.createElement("h4");
+      if(count == 0 && heading.textContent == ''){
+  
         heading.classList.add("col-12", "text-center", "mb-3");
         heading.textContent = "Unfortunately, master does not have any free timeslots this day. Please, try another date";
     
@@ -680,6 +682,11 @@ const getTimeslotsPerPerson = async (id) => {
 }
 
 const date = document.getElementById('dateInp');
+date.addEventListener('click', async()=>{
+  removeTimeslots();
+  getTimeslotsPerPerson(master);
+  removeTimeslots();
+})
 let chosenDate = "";
 $('#datepicker').datepicker().on('changeDate', function(e) {
     console.log(master)
@@ -697,69 +704,77 @@ $('#datepicker').datepicker().on('changeDate', function(e) {
 let timeslotChosen = "";
 let timeChosenObject = "";
 
-
 function renderTS(ts){
-  paintDays(ts)
-  chosenDate = date.value;
-  let month = chosenDate.substring(0,2);
-  let day = chosenDate.substring(3,5);
-  day = Number(day);
-  day = day - 1;
-  if(day >= 0 && day <= 9){
-    if(day == 0){
-      day = day + 1;
-      day = String(day)
-      day = "0" + day
-    }else{
-      day = String(day)
-      day = "0" + day
+  let dateString = ts.timeslot_date;
+  let dateFromDB = new Date(dateString);
+  let timestamp = dateFromDB.getTime();
+  const systemTs = new Date().getTime();
+  // console.log(systemTs + "::::DB:::" + timestamp);
+  if(systemTs <= timestamp){
+    paintDays(ts)
+    chosenDate = date.value;
+    let month = chosenDate.substring(0,2);
+    let day = chosenDate.substring(3,5);
+    day = Number(day);
+    day = day - 1;
+    if(day >= 0 && day <= 9){
+      if(day == 0){
+        day = day + 1;
+        day = String(day)
+        day = "0" + day
+      }else{
+        day = String(day)
+        day = "0" + day
+      }
     }
-  }
-  day = String(day)
-  let year = chosenDate.substring(6,10);
-  chosenDate = `${year}-${month}-${day}`
-  console.log(chosenDate)
-  let dayOfMonth = ts.timeslot_date.substring(8, 10);
-  if(dayOfMonth[0] == '0'){
-    let dof = Number(dayOfMonth[1])
-    dof = dof + 1;
-    if(dof == 10){
-      dayOfMonth = String(dof)
+    day = String(day)
+    let year = chosenDate.substring(6,10);
+    chosenDate = `${year}-${month}-${day}`
+    console.log(chosenDate)
+    let dayOfMonth = ts.timeslot_date.substring(8, 10);
+    if(dayOfMonth[0] == '0'){
+      let dof = Number(dayOfMonth[1])
+      dof = dof + 1;
+      if(dof == 10){
+        dayOfMonth = String(dof)
+      }else{
+        dayOfMonth = '0' + dof
+      }
     }else{
-      dayOfMonth = '0' + dof
+      dayOfMonth = Number(dayOfMonth)
+      dayOfMonth = dayOfMonth + 1; 
+      dayOfMonth = String(dayOfMonth)
+    }
+  
+    let tsDate = ts.timeslot_date.substring(0, 8) + `${dayOfMonth}` + ts.timeslot_date.substring(10);
+    tsDate = ts.timeslot_date.substring(0, 10);
+    
+    if(tsDate == chosenDate && ts.is_available === true){
+  
+      const parentElement = document.getElementById("timeSlotContainer");
+  
+        console.log(ts)
+        var button = document.createElement("button");
+      
+        button.setAttribute("type", "button");
+        button.setAttribute("class", "btn time-slot-btn");
+        button.id = ts.timeslot_id;
+      
+        let timeStart = ts.start_time.substring(0, 5);
+        let timeEnd = ts.end_time.substring(0, 5);
+        button.textContent = `${timeStart}-${timeEnd}`;
+        button.addEventListener('click', ()=>{
+          timeslotChosen = button.id;
+          timeChosenObject = ts
+          datetimeSection.style.display = "none";
+          infoSection.style.display = "block";
+        })
+        
+        parentElement.appendChild(button);
+        count = count + 1;
     }
   }else{
-    dayOfMonth = Number(dayOfMonth)
-    dayOfMonth = dayOfMonth + 1; 
-    dayOfMonth = String(dayOfMonth)
-  }
-
-  let tsDate = ts.timeslot_date.substring(0, 8) + `${dayOfMonth}` + ts.timeslot_date.substring(10);
-  tsDate = ts.timeslot_date.substring(0, 10);
-  
-  if(tsDate == chosenDate && ts.is_available === true){
-
-    const parentElement = document.getElementById("timeSlotContainer");
-
-      console.log(ts)
-      var button = document.createElement("button");
-    
-      button.setAttribute("type", "button");
-      button.setAttribute("class", "btn time-slot-btn");
-      button.id = ts.timeslot_id;
-    
-      let timeStart = ts.start_time.substring(0, 5);
-      let timeEnd = ts.end_time.substring(0, 5);
-      button.textContent = `${timeStart}-${timeEnd}`;
-      button.addEventListener('click', ()=>{
-        timeslotChosen = button.id;
-        timeChosenObject = ts
-        datetimeSection.style.display = "none";
-        infoSection.style.display = "block";
-      })
-      
-      parentElement.appendChild(button);
-      count = count + 1;
+    return
   }
 }
 
@@ -767,6 +782,7 @@ function removeTimeslots(){
   const parentElement = document.getElementById("timeSlotContainer");
   const childElement1 = parentElement.querySelector('button');
   const childElement2 = parentElement.querySelector('h3');
+  const heading = parentElement.querySelector('h4');
     if(childElement1){
         while (parentElement.firstChild) {
             parentElement.removeChild(parentElement.firstChild);
@@ -777,26 +793,59 @@ function removeTimeslots(){
         parentElement.removeChild(parentElement.firstChild);
     }
     }
+    if(heading){
+      while (parentElement.firstChild) {
+        parentElement.removeChild(parentElement.firstChild);
+    }
+    }
 }
-
+let customerID = ""
+let customerChosenObject = "";
 const subbutton = document.getElementById('subButton')
-subbutton.addEventListener('click', ()=>{
+subbutton.addEventListener('click', async()=>{
   let fname = document.getElementById('validationDefault01').value
   let lname = document.getElementById('validationDefault02').value
   let email = document.getElementById('validationDefault03').value
   let phone = document.getElementById('validationDefault04').value
+  let schet = 0;
 
   if(fname.length > 0 && lname.length > 0 && email.length > 0 && phone.length > 0){
-    submit();
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const phonePattern = /^[0-9]{10}$/;
+    console.log(emailPattern.test(email))
+    console.log(phonePattern.test(phone))
+    if (emailPattern.test(email)) {
+      if (phonePattern.test(phone)) {
+        const inf = await customers.getAllCustomers()
+        inf.forEach(person=>{
+          if(person.email == email || person.phone == phone){
+            customerID = person.customerId
+            customerChosenObject = person
+            schet = schet + 1;
+          }
+        })
+
+        if(schet == 0){
+          submit();
+        }else{
+          submitIfUser()
+        }
+      } else {
+        console.log("Phone is invalid");
+        alert("Phone is invalid!")
+      }
+    } else {
+      console.log("Email is invalid");
+      alert("Email is invalid!")
+    }
   }
   else 
   {
-    alert("Fill all the fields")
+    alert("Fill all of the fields")
   }
 })
 
-let customerID = ""
-let customerChosenObject = "";
+
 let message = ""
 let wishes = ""
 
@@ -826,6 +875,92 @@ async function checkUser(){
 }
 
 checkUser()
+
+function submitIfUser(){
+  let fname = document.getElementById('validationDefault01').value
+  let lname = document.getElementById('validationDefault02').value
+  let email = document.getElementById('validationDefault03').value
+  let phone = document.getElementById('validationDefault04').value
+  wishes = document.getElementById('floatingTextarea2').value
+  if(wishes.length <= 1){
+    wishes = "No comments for appointment"
+  }
+  
+  let personalInfoObj = new Object();
+
+  personalInfoObj.fname = fname;
+  personalInfoObj.lname = lname;
+  personalInfoObj.email = email;
+  personalInfoObj.phone = phone;
+  const confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'), {
+    keyboard: false
+  })
+  const appointmentDetailsDiv = document.getElementById('appointmentDetails');
+ 
+
+  console.log(personalInfoObj)
+  customers.getAllCustomers().then((customer) =>{
+    // customer.forEach(cust =>{
+    //   console.log(cust.customerId);
+    //   customerID = cust.customerId;
+    //   customerChosenObject = cust;
+    // }) 
+    
+    const p1 = document.createElement('p');
+    if(manic === true){
+      p1.innerText = "manicure";
+    }else{
+      p1.innerText = "pedicure";
+    }
+  
+    const p2 = document.createElement('p');
+    p2.innerText = serviceChosenObject.serviceName
+  
+    const p3 = document.createElement('p');
+    p3.innerText = masterChosenObject.firstname + " " + masterChosenObject.lastname;
+  
+    const p4 = document.createElement('p');
+    let appDate = timeChosenObject.timeslot_date.substring(8, 10);
+    appDate = Number(appDate);
+    appDate = appDate + 1;
+    appDate = String(appDate)
+    let appDatenew = timeChosenObject.timeslot_date.substring(0, 8) + appDate;
+    let appTimeStart = timeChosenObject.start_time.substring(0, 5);
+    let appTimeEnd = timeChosenObject.end_time.substring(0, 5);
+    p4.innerText = appDatenew + " " + appTimeStart + "-" + appTimeEnd;
+  
+    const p5 = document.createElement('p');
+    p5.innerText = customerChosenObject.firstname + " " + customerChosenObject.lastname;
+  
+    const p6 = document.createElement('p');
+    p6.innerText = customerChosenObject.email
+  
+    const p7 = document.createElement('p');
+    p7.innerText = customerChosenObject.phone
+    const children = appointmentDetailsDiv.querySelector('p')
+
+    if(children){
+      while (appointmentDetailsDiv.firstChild) {
+        appointmentDetailsDiv.removeChild(appointmentDetailsDiv.firstChild);
+      }
+    }
+    //ADD APPOINTMENT ID!!!!  
+    message = `\nCategory:   ${p1.innerText}\nService:   ${p2.innerText}\nMaster's name:   ${p3.innerText}\n${p4.innerText}\n${p5.innerText}\n${p6.innerText}\n${p7.innerText}\n`
+    appointmentDetailsDiv.appendChild(p1)
+    appointmentDetailsDiv.appendChild(p2)
+    appointmentDetailsDiv.appendChild(p3)
+    appointmentDetailsDiv.appendChild(p4)
+    appointmentDetailsDiv.appendChild(p5)
+    appointmentDetailsDiv.appendChild(p6)
+    appointmentDetailsDiv.appendChild(p7)
+
+    getAppointmentReady(wishes, customerID, serviceChosenID, timeslotChosen)
+    printObj(customerChosenObject, serviceChosenObject, timeChosenObject)
+    confirmModal.show()
+  }).catch((error) => {//error handling
+    alert(error)
+  })
+}
 
 function submit(){
   let fname = document.getElementById('validationDefault01').value
@@ -857,7 +992,6 @@ function submit(){
       customerChosenObject = cust;
     }) 
     
-
     const p1 = document.createElement('p');
     if(manic === true){
       p1.innerText = "manicure";
@@ -939,22 +1073,48 @@ function printObj(customerChosenObject, serviceChosenObject, timeChosenObject){
 }
 
 const confirmAppointment = document.getElementById('confirmAppointment');
-confirmAppointment.addEventListener('click', ()=>{
+confirmAppointment.addEventListener('click', async ()=>{
   const appointment = getAppointmentReady(wishes, customerID, serviceChosenID, timeslotChosen)
   const sections = document.querySelectorAll('section');
 
-  appointmentsAll.createNewAppointment(appointment)
-  .then((appointment) => {
-    console.log(appointment[0].appointment_id)
-    timeslots.changeTimeslotStatus(timeslotChosen)
-    return appointment[0].appointment_id
-  })
-  .then((id) => {
-    sendMail(id)
-  })
-  .catch((error) => {
-    alert("Error: " + error); // Обработка ошибок
-  });
+  try{
+    const app = await appointmentsAll.createNewAppointment(appointment)
+    await timeslots.changeTimeslotStatus(timeslotChosen)
+    let confirmation = ''
+    await new Promise((resolve, reject) => {
+      sendMail(app[0].appointment_id)
+          .then(() => {
+            confirmation = confirm("Message with your appointment details has been sent successfully!\nProceed to the front page...");              resolve();
+          })
+          .catch(err => {
+              reject(err);
+          });
+    });
+    
+    if (confirmation) {
+        moveToFrontPage()
+    }else{
+        moveToFrontPage()
+    }
+  }catch(err){
+    console.log(err)
+  }
+
+  // appointmentsAll.createNewAppointment(appointment)
+  // .then((appointment) => {
+  //   console.log(appointment[0].appointment_id)
+  //   timeslots.changeTimeslotStatus(timeslotChosen)
+  //   return appointment[0].appointment_id
+  // })
+  // .then((id) => {
+  //   sendMail(id)
+  // })
+  // .then(()=>{
+  //   moveToFrontPage()
+  // })
+  // .catch((error) => {
+  //   alert("Error: " + error); // Обработка ошибок
+  // });
 })
 
 
@@ -976,14 +1136,15 @@ async function sendMail(id){
 
   let templateID = "template_2wcessl"
 
-  emailjs.send(serviceID, templateID, params)
-  .then(res=>{
-    alert('message has been sent successfully')
-  })
+  try{
+    await emailjs.send(serviceID, templateID, params)
+  }catch(err){
+    console.log(err)
+  }  
 }
 
 
-function moveToFrontPage(){
+async function moveToFrontPage(){
   window.location.href = "../../index.html";
 } 
 

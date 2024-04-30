@@ -8,6 +8,8 @@ const notFound = document.getElementById('notFound')
 const josFound = document.getElementById('josFound')
 const booking = document.getElementById('booking')
 const cancelApp = document.getElementById('cancelApp')
+const foundButCancelled = document.getElementById('foundButCancelled')
+
 
 booking.addEventListener('click', ()=>{
     window.location.href = "http://127.0.0.1:5501/pages/booking/booking.html";
@@ -21,17 +23,32 @@ cancelApp.addEventListener('click', async()=>{
         .then(() => appointments.getMoreDetails(idElement.innerText)
         .then((appoints)=>{
         if(appoints.length > 0){
+            let count = 0;
             appoints.forEach(appoint => {
-                renderDetails(appoint); // handling of ui elements
-            });
-            josFound.style.display = "block";
-            notFound.style.display = "none";
+                if(appoint.is_canceled == false){
+                    renderDetails(appoint);
+                    josFound.style.display = "block";
+                    notFound.style.display = "none";
+                    foundButCancelled.style.display = "none";
+                    cancelApp.style.display = 'block';
 
-            // alert(`Your appointment was successfully`)
+                    count = count + 1
+                }
+                console.log(appoint.appointment_id)
+            });
+            if(count == 0){
+                foundButCancelled.style.display = "block";
+                josFound.style.display = "none";
+                notFound.style.display = "none";
+                cancelApp.style.display = 'none';
+                // alert(`Your appointment was successfully deleted`)
+            }
         }
         else{
             josFound.style.display = "none";
             notFound.style.display = "block";
+            foundButCancelled.style.display = "none";
+            cancelApp.style.display = 'none';
         }
         })) // Fetch updated data after the operation is complete
         .catch((error) => {
@@ -49,20 +66,37 @@ findApp.addEventListener('click', async () => {
         if (appointId.value !== '') {
             const appoints = await appointments.getMoreDetails(appointId.value);
             if(appoints.length > 0){
+                let count = 0;
                 appoints.forEach(appoint => {
-                    renderDetails(appoint); // handling of ui elements
+                    if(appoint.is_canceled == false){
+                        renderDetails(appoint);
+                        josFound.style.display = "block";
+                        notFound.style.display = "none";
+                        foundButCancelled.style.display = "none";
+                        cancelApp.style.display = 'block';
+
+                        count = count + 1
+                    }
                     console.log(appoint.appointment_id)
                 });
-                josFound.style.display = "block";
-                notFound.style.display = "none";
+                if(count == 0){
+                    foundButCancelled.style.display = "block";
+                    josFound.style.display = "none";
+                    notFound.style.display = "none";
+                    cancelApp.style.display = 'none';
+                }
             }
             else{
                 josFound.style.display = "none";
                 notFound.style.display = "block";
+                foundButCancelled.style.display = "none";
+                cancelApp.style.display = 'none';
             }
         } else {
             josFound.style.display = "none";
             notFound.style.display = "block";
+            foundButCancelled.style.display = "none";
+            cancelApp.style.display = 'none';
             alert("Provide an appointment number!");
         }
 
@@ -71,18 +105,18 @@ findApp.addEventListener('click', async () => {
             'timeslot_date',
             'start_time',
             'end_time',
-            'service_name',
-            'category',
-            'price',
+            //'service_name',
+            // 'category',
+            // 'price',
             'employee_firstname',
             'employee_lastname',
             'employee_email',
             'employee_phone',
-            'employee_specialization',
-            'customer_firstname',
-            'customer_lastname',
-            'customer_email',
-            'customer_phone',
+            // 'employee_specialization',
+            // 'customer_firstname',
+            // 'customer_lastname',
+            // 'customer_email',
+            // 'customer_phone',
             'is_canceled'
           ];
 
@@ -108,18 +142,18 @@ function renderDetails(appointment){
         'timeslot_date',
         'start_time',
         'end_time',
-        'service_name',
-        'category',
-        'price',
+        //'service_name',
+        // 'category',
+        // 'price',
         'employee_firstname',
         'employee_lastname',
         'employee_email',
         'employee_phone',
-        'employee_specialization',
-        'customer_firstname',
-        'customer_lastname',
-        'customer_email',
-        'customer_phone',
+        // 'employee_specialization',
+        // 'customer_firstname',
+        // 'customer_lastname',
+        // 'customer_email',
+        // 'customer_phone',
         'is_canceled'
       ];
       
@@ -127,18 +161,26 @@ function renderDetails(appointment){
         const paragraph = document.createElement('p');
         paragraph.id = `${field}`;
         console.log(appointment[field])
+        
         if(appointment[field] === false){
             paragraph.textContent = "active"; 
         }else if(appointment[field] === true){
             paragraph.textContent = "canceled";
+        }else if(field == 'timeslot_date'){
+            let appDate = appointment['timeslot_date'].substring(8, 10);
+            appDate = Number(appDate);
+            appDate = appDate + 1;
+            appDate = String(appDate)
+            let appDatenew = appointment['timeslot_date'].substring(0, 8) + appDate
+            paragraph.textContent = appDatenew;
         }
         else{
             paragraph.textContent = appointment[field];
         }
-        
+
         detailsDiv.appendChild(paragraph);
       });
-}
+    }
 
 function cleanDiv(){
     const detailsDiv = document.getElementById('detailsDiv');

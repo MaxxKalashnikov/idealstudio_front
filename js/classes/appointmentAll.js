@@ -173,6 +173,20 @@ class Appointments{
         })
     }
 
+    getApointmentsCustomer = async(id)=>{
+        this.#appointments.length = 0
+        return new Promise(async(resolve, reject) => {
+            fetch(this.#backend_url + "/customer" + `/${id}`)//fetching back
+            .then((response) => response.json())
+            .then((json) => {
+                this.#readJson(json);//storing appointments from response as instances of appointment class inside appointments array
+                resolve(this.#appointments)
+            },(error) => {
+                reject(error);
+            })
+        })
+    }
+
     createNewAppointment = async(appointment)=>{
         const description = appointment.description;
         const customer_id = appointment.customerID

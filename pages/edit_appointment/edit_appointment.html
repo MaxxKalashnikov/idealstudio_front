@@ -20,7 +20,48 @@
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
+            height: 100vh;
         }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%; 
+            text-align: center; /* Выравнивание текста по центру */
+        }
+        #findApp2,
+        #findApp2:hover,
+        #findApp2:active,
+        #findApp2:focus{
+            outline: none;
+            box-shadow: 0px 0px 0px;
+        }
+        #findApp2,
+        #cancelApp,
+        #booking{
+          border-color: rgb(223, 166, 122);
+          font-size: 16px;
+          font-weight: bold;
+          color: #707070;
+          background-color: #FFDFD0;
+          border-radius: 25px;
+        }
+        #findApp2:hover,
+        #findApp2:active,
+        #cancelApp:hover,
+        #booking:hover,
+        #cancelApp:active,
+        #booking:active
+        {
+          background: #cd7f5a;
+        }
+        .btn.btn-secondary{
+          border-radius: 25px;
+        }
+        .form-control:focus{
+        box-shadow: 0px 0px 10px rgba(223, 166, 122, 0.8);
+        border-color: rgb(202, 132, 78) !important;
+      }
     </style>
     <title>Edit your appoinment</title>
 </head>
@@ -28,7 +69,7 @@
   <div id="ooo">
     <nav class="navbar navbar-expand-md navbar-light">
       <div class="container-xxl">
-          <a href="#intro" class="navbar-brand">
+          <a href="/index.html" class="navbar-brand">
               <span class="fw-bold text-secondary">
                   <img src="../../assets/logo-icon.ico" width="40" height="40" class="d-inline-block align-center" alt="">
                   Nail Studio Ideal
@@ -47,13 +88,13 @@
           id="main-nav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a href="#about" class="nav-link">Edit appointment</a>
+                  <a href="/pages/edit_appointment/edit_appointment.html" class="nav-link">Edit appointment</a>
                 </li>
                   <li class="nav-item">
-                      <a href="#about" class="nav-link">About</a>
+                      <a href="/index.html#about" class="nav-link">About</a>
                   </li>
                   <li class="nav-item">
-                      <a href="#services" class="nav-link">Services</a>
+                      <a href="/index.html#services" class="nav-link">Services</a>
                   </li>
                   <li class="nav-item">
                       <a href="/pages/blogs.html" class="nav-link">Blog</a>
@@ -62,13 +103,13 @@
                       <a href="#masters" class="nav-link">Technicians</a>
                   </li> -->
                   <li class="nav-item">
-                    <a href="#contact-info" class="nav-link">Contact</a>
+                    <a href="/index.html#contact-info" class="nav-link">Contact</a>
                   </li>
                   <li class="nav-item d-md-none">
-                      <a href="#appointments" class="nav-link">Appointments</a>
+                      <a href="/pages/booking/booking.html" class="nav-link">Appointments</a>
                   </li>
                   <li class="nav-item  ms-2 d-none d-md-inline">
-                      <a href="./pages/booking/booking.html" class="btn btn-outline-secondary">Make an Appointment</a>
+                      <a href="/pages/booking/booking.html" class="btn btn-outline-secondary">Make an Appointment</a>
                   </li>
                   <li class="nav-item d-md-none">
                       <a href="#login" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display: block;">Login</a>
@@ -105,7 +146,6 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-
               <div class="row">
                   <div class="col-12">
                     <label for="username">Username</label>
@@ -123,7 +163,8 @@
             <div class="row justify-content-center"> <!-- Center align the content -->
               <div class="col-12 align-items-center text-center"> <!-- Center align the content -->
                 <button type="button" class="btn btn-primary" id="loginButton" >Login</button>
-                <p>Don't have an account? <a href="#" data-bs-toggle="tooltip" title="Tooltip"  id="toggleContent">Create it here!</a></p>
+                <p style="margin-top: 15px;">Forgot password? <a href="http://127.0.0.1:5501/pages/reset_password/reset_password.html">Reset password.</a></p>
+                <p style="margin-top: -15px;">Don't have an account? <a href="#" data-bs-toggle="tooltip" title="Tooltip"  id="toggleContent">Create it here!</a></p>
               </div>
             </div>
           </div>          
@@ -218,7 +259,6 @@
       </script>
     </section>
 
-
   <div class="container">
       <div class="row justify-content-center align-items-center mt-5">
           <div class="row justify-content-center">
@@ -247,25 +287,27 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-6" id="josFound" style="display: none;">
-                  <p>ID</p>
+                  <p>Appointment ID</p>
                   <p>Date</p>
                   <p>Start Time</p>
                   <p>End Time</p>
-                  <p>Service Name</p>
-                  <p>Category</p>
-                  <p>Price</p>
-                  <p>Master's First Name</p>
-                  <p>Master's Last Name</p>
+                  <!-- <p>Service Name</p>
+                  <p>----------------</p> -->
+                  <!-- <p>Category</p>
+                  <p>Price</p> -->
+                  <p>Master's Name</p>
+                  <p>Last Name</p>
                   <p>Master's Email</p>
                   <p>Master's Phone</p>
-                  <p>Master's Specialization</p>
+                  <!-- <p>Master's Specialization</p>
                   <p>Customer First Name</p>
                   <p>Customer Last Name</p>
                   <p>Customer Email</p>
-                  <p>Customer Phone</p>
+                  <p>Customer Phone</p> -->
                   <p>Status</p>
               </div>
-              <div class="col-6" id="notFound" style="display: none;"><p>Appointment not found!</p></div>
+              <div class="col-12 text-center" id="notFound" style="display: none; font-weight: bold;"><p>Appointment not found!</p></div>
+              <div class="col-12 text-center" id="foundButCancelled" style="display: none; font-weight: bold;"><p>Your appointment has been cancelled!</p></div>
               <div class="col-6" id="detailsDiv">
                 <!-- <p id="appointment_id"></p>
                 <p id="timeslot_date"></p>

@@ -13,24 +13,38 @@
             font-family: Baskerville Old Face
         }
         .gallery {
-      overflow-x: scroll;
-      white-space: nowrap;
-      padding: 20px;
-    }
-    .gallery::-webkit-scrollbar{
-      display:none;
-    }
+          overflow-x: scroll;
+          white-space: nowrap;
+          padding: 20px;
+        }
+        .gallery::-webkit-scrollbar{
+          display:none;
+        }
+        body {
+            font-family: Baskerville Old Face;
+        }
+        #ooo{
+          background-image: url(../../assets/cement-texture.jpg);
+            background-repeat: repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            height: 100vh;
+        }
 
     </style>
     
     <title>Blogs</title>
 </head>
 <body>
-
+  <div id="ooo">
         <!-- navbar -->
     <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-xxl">
-            <a href="#intro" class="navbar-brand">
+            <a href="/index.html" class="navbar-brand">
                 <span class="fw-bold text-secondary">
                     <img src="/assets/logo-icon.ico" width="40" height="40" class="d-inline-block align-center" alt="">
                     Nail Studio Ideal
@@ -48,44 +62,54 @@
             <div class="collapse navbar-collapse justify-content-end align-center" 
             id="main-nav">
                 <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a href="/pages/edit_appointment/edit_appointment.html" class="nav-link">Edit appointment</a>
+                  </li>
                     <li class="nav-item">
-                        <a href="/index.html" class="nav-link">About</a>
+                        <a href="/index.html#about" class="nav-link">About</a>
                     </li>
                     <li class="nav-item">
                         <a href="/index.html#services" class="nav-link">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/pages/blogs.html" class="nav-link">blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/index.html#masters" class="nav-link">Technicians</a>
+                        <a href="/pages/blogs.html" class="nav-link">Blog</a>
                     </li>
                     <li class="nav-item">
                       <a href="/index.html#contact-info" class="nav-link">Contact</a>
                     </li>
                     <li class="nav-item d-md-none">
-                        <a href="/index.html#appointments" class="nav-link">Appointments</a>
+                        <a href="/pages/booking/booking.html" class="nav-link">Appointments</a>
                     </li>
                     <li class="nav-item  ms-2 d-none d-md-inline">
-                        <a href="/index.html#appointments" class="btn btn-outline-secondary">Make an Appointment</a>
+                        <a href="/pages/booking/booking.html" class="btn btn-outline-secondary">Make an Appointment</a>
                     </li>
                     <li class="nav-item d-md-none">
-                        <a href="/index.html#login" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Login</a>
-                    </li>
-                    <li class="nav-item  ms-2 d-none d-md-inline">
-                        <a href="/index.html#login" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            <h4>
-                                <i class="bi bi-person-circle"></i>
-                            </h4>
-                        </a>
-                    </li>
+                      <a href="#login" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display: block;">Login</a>
+                  </li>
+                  <li class="nav-item d-md-none">
+                    <a href="#login" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display: none;">Login</a>
+                </li>
+                  <li class="nav-item  ms-2 d-none d-md-inline">
+                    <a href="#login" class="nav-link" id="checkUserButton" style="display: block;">
+                        <h4>
+                            <i class="bi bi-person-circle"></i>
+                        </h4>
+                    </a>
+                </li>
+                  <li class="nav-item  ms-2 d-none d-md-inline">
+                      <a href="#login" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display: none;" id="ifNoToken" >
+                          <h4>
+                              <i class="bi bi-person-circle"></i>
+                          </h4>
+                      </a>
+                  </li>
                 </ul>
             </div>
         </div>
     </nav> 
     
 
-   <!-- Modal Section  -->
+      <!-- Modal Section  -->
       <section class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" id="loginContent" style="display: block;">
@@ -97,21 +121,22 @@
                 <div class="row">
                     <div class="col-12">
                       <label for="username">Username</label>
-                      <input type="text" class="form-control" placeholder="@username" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                      <input type="text" class="form-control" id="usernameInput" placeholder="Enter username" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-12">
                       <label for="password">Password</label>
-                      <input type="password" class="form-control" placeholder="Enter password" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                      <input type="password" class="form-control" id="passwordInput" placeholder="Enter password" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                     </div>
                   </div>
             </div>
             <div class="modal-footer justify-content-center">
               <div class="row justify-content-center"> <!-- Center align the content -->
                 <div class="col-12 align-items-center text-center"> <!-- Center align the content -->
-                  <button type="button" class="btn btn-primary">Login</button>
-                  <p>Don't have an account? <a href="#" data-bs-toggle="tooltip" title="Tooltip"  id="toggleContent">Create it here!</a></p>
+                  <button type="button" class="btn btn-primary" id="loginButton" >Login</button>
+                  <p style="margin-top: 15px;">Forgot password? <a href="http://127.0.0.1:5501/pages/reset_password/reset_password.html">Reset password.</a></p>
+                  <p style="margin-top: -15px;">Don't have an account? <a href="#" data-bs-toggle="tooltip" title="Tooltip"  id="toggleContent">Create it here!</a></p>
                 </div>
               </div>
             </div>          
@@ -119,50 +144,50 @@
         <!-- signup content -->
         <div class="modal-content" id="signupContent" style="display: none;">
           <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Create account</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeBut"></button>
           </div>
           <div class="modal-body">
               <div class="row">
                   <div class="col-12">
-                    <label for="username">First name</label>
-                    <input type="text" class="form-control" placeholder="Enter first name" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    <label for="signup-form-firstname">First name</label>
+                    <input id="signup-form-firstname" type="text" class="form-control" placeholder="Enter firstname" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <label for="password">Second name</label>
-                    <input type="text" class="form-control" placeholder="Enter secondname" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    <label for="signup-form-lastname">Last name</label>
+                    <input id="signup-form-lastname" type="text" class="form-control" placeholder="Enter lastname" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <label for="password">Email</label>
-                    <input type="email" class="form-control" placeholder="Enter email" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    <label for="signup-form-email">Email</label>
+                    <input id="signup-form-email" type="email" class="form-control" placeholder="Enter email" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <label for="password">Phone number</label>
-                    <input type="tel" class="form-control" placeholder="Enter phone number" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    <label for="signup-form-phone">Phone number</label>
+                    <input id="signup-form-phone" type="tel" class="form-control" placeholder="Enter phone number" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <label for="password">Username</label>
-                    <input type="text" class="form-control" placeholder="Enter any username you like" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    <label for="signup-form-username">Username</label>
+                    <input id="signup-form-username" type="text" class="form-control" placeholder="Enter any username you like" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" placeholder="Enter password" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    <label for="signup-form-password">Password</label>
+                    <input id="signup-form-password" type="password" class="form-control" placeholder="Enter password" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <label for="password">Confirm password</label>
-                    <input type="password" class="form-control" placeholder="Enter password again" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
+                    <label for="signup-form-confirm-password">Confirm password</label>
+                    <input id="signup-form-confirm-password" type="password" class="form-control" placeholder="Enter password again" style="background-color: transparent; border: none; border-bottom: 1px solid #ccc; border-radius: 50px; box-shadow: none; margin-bottom: 20px;">
                   </div>
                 </div>
           </div>
@@ -174,9 +199,9 @@
                   <p>Don't have an account? <a href="#" data-bs-toggle="tooltip" title="Tooltip"  id="toggleContent">Create it here!</a></p>
                 </div>
               </div>
-  
+    
               <div class="col-12 align-items-center text-center" id="signupFooter" style="display: none;"> <!-- Center align the content -->
-                <button type="button" class="btn btn-primary">Sign up</button>
+                <button id="signup-form-button" type="button" class="btn btn-primary">Sign up</button>
               </div>
             </div>
           </div>          
@@ -276,6 +301,8 @@
     <script type="module" src="../js/blogs.js"></script>
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    
+   <script type="module" src="/js/login.js"></script>
+    <script type="module" src="/js/signup.js"></script>
+  </div>
 </body>
 </html>

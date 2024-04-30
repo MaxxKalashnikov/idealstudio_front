@@ -121,6 +121,18 @@ import { Customer } from './customer.js'
             })
         })
     }
+
+    isThereCustomer = async(email)=>{
+        return new Promise(async(resolve, reject) => {
+            fetch(this.#backendUrl + '/profile' + `/${id}`)//fetching back
+            .then((response) => response.json())
+            .then((json) => {
+                resolve(json)
+            },(error) => {
+                reject(error);
+            })
+        })
+    }
 }
 
 
