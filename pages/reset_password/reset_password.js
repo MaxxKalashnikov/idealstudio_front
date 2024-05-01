@@ -9,36 +9,73 @@ const codeDiv = document.getElementById('divForCode')
 const divForUsername = document.getElementById('divForUsername')
 const checkMail = document.getElementById('checkMail')
 const resetForUname = document.getElementById('resetForUname')
+const backToUname = document.getElementById('backToUname')
 
 checkMail.addEventListener('click', ()=>{
   divForUsername.style.display = 'none'
   emailDiv.style.display = 'block'
 })
 
-resetForUname.addEventListener('click', ()=>{
-  
+resetForUname.addEventListener('click', async()=>{
+  const unameDiv = document.getElementById('unameDiv')
+    const actualEmail = "";
+    let username = unameDiv.value
+    if(username.length > 0){
+      console.log(username)
+      try{
+          const response = await user.resetPassword(username, actualEmail)
+          if(response.message){
+            alert('User with such username does not exist')
+          }
+          console.log(response)
+          plainToken = response.resetToken;
+          const code = response.resetToken.slice(0, 6); 
+          //await sendMail(actualEmail, code)
+          if(response.resetToken.length > 1){
+            divForUsername.style.display = "none"
+            codeDiv.style.display = "block"
+          }else{
+            console.log('not found')
+          }
+      }catch(e){
+          console.log(e)
+      }
+    }else{
+      alert('Fill the field first!')
+    }
 })
 
+backToUname.addEventListener('click', ()=>{
+  divForUsername.style.display = 'block'
+  emailDiv.style.display = 'none'
+})
 
 reset.addEventListener('click', async ()=>{
     const emailInp = document.getElementById('exampleFormControlInput1')
     const actualEmail = emailInp.value;
-    let username = ''
-    console.log(actualEmail)
-    try{
-        const response = await user.resetPassword(username, actualEmail)
-        console.log(response)
-        plainToken = response.resetToken;
-        const code = response.resetToken.slice(0, 6); 
-        //await sendMail(actualEmail, code)
-        if(response.resetToken.length > 1){
-          emailDiv.style.display = "none"
-          codeDiv.style.display = "block"
-        }else{
-          console.log('not found')
-        }
-    }catch(e){
-        console.log(e)
+    if(actualEmail.length > 0){
+      let username = ''
+      console.log(actualEmail)
+      try{
+          const response = await user.resetPassword(username, actualEmail)
+          console.log(response)
+          if(response.message){
+            alert('User with such email does not exist')
+          }
+          plainToken = response.resetToken;
+          const code = response.resetToken.slice(0, 6); 
+          //await sendMail(actualEmail, code)
+          if(response.resetToken.length > 1){
+            emailDiv.style.display = "none"
+            codeDiv.style.display = "block"
+          }else{
+            console.log('not found')
+          }
+      }catch(e){
+          console.log(e)
+    }
+    }else{
+      alert('Fill the field first!')
     }
 })
 
