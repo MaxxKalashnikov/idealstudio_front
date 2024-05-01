@@ -708,8 +708,8 @@ function renderTS(ts){
   let dateString = ts.timeslot_date;
   let dateFromDB = new Date(dateString);
   let timestamp = dateFromDB.getTime();
-  const systemTs = new Date().getTime();
-  // console.log(systemTs + "::::DB:::" + timestamp);
+  const systemTs = new Date().getTime() + 86400000;
+  // console.log(typeof(systemTs) + "::::DB:::" + timestamp);
   if(systemTs <= timestamp){
     paintDays(ts)
     chosenDate = date.value;

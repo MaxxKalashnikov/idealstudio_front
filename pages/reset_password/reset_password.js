@@ -30,7 +30,7 @@ resetForUname.addEventListener('click', async()=>{
           console.log(response)
           plainToken = response.resetToken;
           const code = response.resetToken.slice(0, 6); 
-          //await sendMail(actualEmail, code)
+          await sendMail(actualEmail, code)
           if(response.resetToken.length > 1){
             divForUsername.style.display = "none"
             codeDiv.style.display = "block"
@@ -64,7 +64,7 @@ reset.addEventListener('click', async ()=>{
           }
           plainToken = response.resetToken;
           const code = response.resetToken.slice(0, 6); 
-          //await sendMail(actualEmail, code)
+          await sendMail(actualEmail, code)
           if(response.resetToken.length > 1){
             emailDiv.style.display = "none"
             codeDiv.style.display = "block"
@@ -129,7 +129,7 @@ async function sendMail(mail, message){
     let params = {
       sendername: "Nail-studio IDEAL",
       to: mail,
-      subject: "Your appointment details",
+      subject: "Your password reset code",
       replyto: "maxvanholl75@gmail.com",
       message: message
     };
@@ -140,6 +140,6 @@ async function sendMail(mail, message){
   
     emailjs.send(serviceID, templateID, params)
     .then(res=>{
-      alert('message has been sent successfully')
+      // alert('message has been sent successfully')
     })
   }
