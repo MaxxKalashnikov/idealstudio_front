@@ -3,11 +3,11 @@ import { StatAndInfo } from './classes/statAndInfo.js' //importing class for app
 import { User } from './classes/user.js';
 const statNinfo = new StatAndInfo(BACKEND_ROOT_URL);
 const user = new User()
-console.log(user.token)
+const userInf = await user.checkToken();
 
 const getInformationAndStatistics = async () => {
-    const userInf = await user.checkToken();
 
+    console.log(userInf)
     statNinfo.getInfo(userInf.id).then((piece) =>{
         piece.forEach(elem => {
             renderInfo(elem);//handling of ui elements
@@ -27,6 +27,7 @@ const getInformationAndStatistics = async () => {
 
 function renderInfo(elem){
     const parent = document.getElementById('infoSection')
+    const img = document.querySelector('.img-fluid w-75 pt-3')
 
     const paragraphs = parent.querySelectorAll('p');
         paragraphs.forEach(paragraph => {
@@ -81,7 +82,7 @@ submit.addEventListener('click', ()=>{
     const emailInp = document.getElementById('emailInp');
     const phoneInp = document.getElementById('phoneInp');
 
-    statNinfo.updateInfo(nameInp.value, snameInp.value, emailInp.value, phoneInp.value)
+    statNinfo.updateInfo(nameInp.value, snameInp.value, emailInp.value, phoneInp.value, userInf.id)
     .then(() => getInformationAndStatistics())
     .catch((error) => {
         alert(error); // Error handling

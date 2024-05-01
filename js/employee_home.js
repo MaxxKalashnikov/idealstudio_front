@@ -16,7 +16,17 @@ else{
 
 console.log("BAQCKEND URL", backend_root_url)
 const statNinfo = new StatAndInfo(backend_root_url);
+const getInformationAndStatistics = async () => {
 
+    console.log(userInf)
+    statNinfo.getInfo(userInf.id).then((piece) =>{
+        piece.forEach(elem => {
+            renderInfo(elem);//handling of ui elements
+        });
+    }).catch((error) => {//error handling
+        alert(error)
+    })
+}
 
 const getInformation = async () => {
     statNinfo.getInfo(userInf.id).then((piece) =>{
@@ -74,6 +84,12 @@ submit.addEventListener('click', ()=>{
     const snameInp = document.getElementById('snameInp');
     const emailInp = document.getElementById('emailInp');
     const phoneInp = document.getElementById('phoneInp');
+
+    statNinfo.updateInfo(nameInp.value, snameInp.value, emailInp.value, phoneInp.value, userInf.id)
+    .then(() => getInformationAndStatistics())
+    .catch((error) => {
+        alert(error); // Error handling
+    });
 })
 
 getInformation();

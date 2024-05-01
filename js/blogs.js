@@ -25,7 +25,7 @@ function createPostCard(post) {
 
     const img = document.createElement('img')
     img.classList = 'card-img-top'
-    img.src = '/assets/room3_desk.jpg'
+    img.src = '/assets/rightBottomPic.jpeg'
     card.appendChild(img)
     // if (post.image_url !== null) {
     //     img.src = post.image_url

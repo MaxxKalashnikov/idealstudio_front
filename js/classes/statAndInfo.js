@@ -11,9 +11,7 @@ class StatAndInfo{
     }
 
     #readOnlyInfo(json){
-        const personalInfo = json.personalInfo; // Extracting personal information from the input JSON
-        // console.log(personalInfo[0].firstname, "\n\n" + personalInfo[0].lastname)
-        // Create an instance of Info class with the personal information
+        const personalInfo = json.personalInfo; // Extracting personal information from the input JSONW
         console.log("PERSONAL INFO json:: ", personalInfo)
         const info = new Info(
             personalInfo[0].firstname,
@@ -50,7 +48,7 @@ class StatAndInfo{
             })
         })
     }
-
+    
     getStat = async () =>{
         this.#statistics.length = 0;
         return new Promise(async(resolve, reject) => {
@@ -65,12 +63,12 @@ class StatAndInfo{
         })
     }
 
-    updateInfo = async (newName, newSname, newEmail, newPhone) =>{
+    updateInfo = async (newName, newSname, newEmail, newPhone, id) =>{
         return new Promise((resolve, reject) => {
             console.log(newName + "   " + newSname + "   " + newPhone + "  " + newEmail)
             newEmail = newEmail.trim();
             console.log('New Email:', JSON.stringify(newEmail));
-            fetch(this.#backend_url + '/update/',{
+            fetch(this.#backend_url + '/update/' + `${id}`,{
                 method: 'put',
                 headers: {
                     'Content-Type': 'application/json'

@@ -802,8 +802,14 @@
                     </div>
                 </div>
                 <!-- Right half for contact information -->
-                <div class="col-md-6 d-flex justify-content-center align-items-center" id="contactInformation">
+                <div class="col-md-6 text-start" id="contactInformation">
                     <!-- Contact information will be populated here -->
+                    <h2 class="d-md-block d-none">Contact information:</h2>
+                    <div class="">
+                      <h4 class="mt-5">Our address: Tampere, Teiskontie 22</h4>
+                    <h4 class="mt-1">Phone: +358 44 2360960</h4>
+                    <h4 class="mt-1">Email: olga.harkonen@idealstudio.com</h4>
+                    </div>
                 </div>
             </div>
         </div>
@@ -816,7 +822,7 @@
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Google Maps API (You need to replace YOUR_API_KEY with your actual API key) -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3rN9Xubz_QFIpHpxJu_VEGRSXSNG-_1Q&callback=initMap"></script>
     
     <!-- Add your other script tags -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -846,38 +852,38 @@
         });
     
         // Fetch employee data from backend
-        fetch('http://localhost:3001/employees/')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Handle the response data
-                if (data && data.length > 0) {
-                    var employeesHtml = '';
-                    data.forEach(employee => {
-                        employeesHtml += `
-                            <div class="card-body">
-                                <h5 class="card-title">${employee.firstname} ${employee.lastname}</h5>
-                                <p class="card-text">Specialization: ${employee.specialization}</p>
-                                <p class="card-text">Email: ${employee.email}</p>
-                                <p class="card-text">Phone: ${employee.phone}</p>
-                            </div>
-                        `;
-                    });
-                    // Update the contact information section with the employee data
-                    document.getElementById('contactInformation').innerHTML = employeesHtml;
-                } else {
-                    document.getElementById('contactInformation').innerHTML = '<p>No employee data available.</p>';
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching employee data:', error);
-                // Handle error
-                document.getElementById('contactInformation').innerHTML = '<p>Error fetching employee data.</p>';
-            });
+        // fetch('http://localhost:3001/employees/')
+        //     .then(response => {
+        //         if (!response.ok) {
+        //             throw new Error('Network response was not ok');
+        //         }
+        //         return response.json();
+        //     })
+        //     .then(data => {
+        //         // Handle the response data
+        //         if (data && data.length > 0) {
+        //             var employeesHtml = '';
+        //             data.forEach(employee => {
+        //                 employeesHtml += `
+        //                     <div class="card-body">
+        //                         <h5 class="card-title">${employee.firstname} ${employee.lastname}</h5>
+        //                         <p class="card-text">Specialization: ${employee.specialization}</p>
+        //                         <p class="card-text">Email: ${employee.email}</p>
+        //                         <p class="card-text">Phone: ${employee.phone}</p>
+        //                     </div>
+        //                 `;
+        //             });
+        //             // Update the contact information section with the employee data
+        //             document.getElementById('contactInformation').innerHTML = employeesHtml;
+        //         } else {
+        //             document.getElementById('contactInformation').innerHTML = '<p>No employee data available.</p>';
+        //         }
+        //     })
+        //     .catch(error => {
+        //         console.error('Error fetching employee data:', error);
+        //         // Handle error
+        //         document.getElementById('contactInformation').innerHTML = '<p>Error fetching employee data.</p>';
+        //     });
     </script>
         <script type="module" src="/js/login.js"></script>
         <script type="module" src="/js/signup.js"></script>
